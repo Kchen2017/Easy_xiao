@@ -1,0 +1,65 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/easyDo/index",
+			"style": {
+				"navigationBarTitleText": "EasyDo"
+			}
+		},
+		{
+			"path": "pages/news/index",
+			"style": {
+				"navigationBarTitleText": "资讯"
+			}
+		},
+		{
+			"path": "pages/my/index",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		}
+	    ,{
+            "path" : "common/css/ui/ui",
+            "style" : {}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+        "color": "#7A7E83",
+        "selectedColor": "#3cc51f",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [{
+            "pagePath": "pages/index/index",
+            "iconPath": "static/logo.png",
+            "selectedIconPath": "static/logo.png",
+            "text": "首页"
+        }, {
+            "pagePath": "pages/easyDo/index",
+            "iconPath": "static/logo.png",
+            "selectedIconPath": "static/logo.png",
+            "text": "EasyDo"
+        }, {
+            "pagePath": "pages/news/index",
+            "iconPath": "static/logo.png",
+            "selectedIconPath": "static/logo.png",
+            "text": "资讯"
+        }, {
+            "pagePath": "pages/my/index",
+            "iconPath": "static/logo.png",
+            "selectedIconPath": "static/logo.png",
+            "text": "我的"
+        }]
+    }
+}

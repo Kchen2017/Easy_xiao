@@ -1,0 +1,1 @@
+<view class="content"><uni-nav-bar vue-id="1" fixed="true" bind:__l="__l" vue-slots="{{['default','left','right']}}"><view><text class="iconfont">󰌈</text></view><view slot="left">left</view><view slot="right">right</view></uni-nav-bar></view>
