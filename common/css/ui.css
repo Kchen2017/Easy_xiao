@@ -1,7 +1,12 @@
 @font-face {
   font-family: 'iconfont';
-  src: url('~@/static/iconfont.ttf') format('truetype');
+  src: url('~@/static/iconfont1.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'iconfont';
+  src: url('~@/static/iconfont2.ttf') format('truetype');
+}
+
 .iconfont { 
   font-family: "iconfont" !important;
   font-size: 16px;
@@ -9,3 +14,163 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.icon-sousuo:before {
+  content: "\e613";
+}
+
+.icon-fanhui1:before {
+  content: "\e614";
+}
+
+.icon-fanhui2:before {
+  content: "\e615";
+}
+
+.icon-sousuo-m:before {
+  content: "\e60a";
+}
+
+.icon-iconfontzhizuobiaozhun22:before {
+  content: "\e616";
+}
+
+.icon-fanhui:before {
+  content: "\e617";
+}
+
+.icon-dingwei:before {
+  content: "\e675";
+}
+
+.icon-xiala:before {
+  content: "\e662";
+}
+
+.icon-wei-:before {
+  content: "\e608";
+}
+
+.icon-xiala1:before {
+  content: "\f0308";
+}
+
+.icon-zhifeiji:before {
+  content: "\e611";
+}
+
+.icon-fanhui3:before {
+  content: "\e669";
+}
+
+.icon-dingwei1:before {
+  content: "\e648";
+}
+
+.icon-fanhui4:before {
+  content: "\e682";
+}
+
+.icon-Group-:before {
+  content: "\e696";
+}
+
+.icon-dingwei2:before {
+  content: "\e64b";
+}
+
+.icon-dingwei3:before {
+  content: "\e77e";
+}
+
+.icon-sousuo1:before {
+  content: "\e620";
+}
+
+.icon-xiala2:before {
+  content: "\e62a";
+}
+
+.icon-xiala3:before {
+  content: "\e612";
+}
+
+.icon-saoma:before {
+  content: "\e749";
+}
+
+.icon-lanqiu:before {
+  content: "\e668";
+}
+
+.icon-saoma1:before {
+  content: "\e6bd";
+}
+
+.icon-wangqiu:before {
+  content: "\e75c";
+}
+
+.icon-wangqiu1:before {
+  content: "\ea76";
+}
+
+.icon-yumaoqiu:before {
+  content: "\ea77";
+}
+
+.icon-zuqiu:before {
+  content: "\e602";
+}
+
+.icon-weixinsaoma:before {
+  content: "\e669";
+}
+
+.icon-saoma2:before {
+  content: "\e74b";
+}
+
+.icon-lanqiu1:before {
+  content: "\e605";
+}
+
+.icon-zuqiu1:before {
+  content: "\e60c";
+}
+
+.icon-bingpangqiu:before {
+  content: "\e60d";
+}
+
+.icon-lanqiu2:before {
+  content: "\e66a";
+}
+
+.icon-yumaoqiu1:before {
+  content: "\e614";
+}
+
+.icon-zuqiu2:before {
+  content: "\e615";
+}
+
+.icon-tubiaozhizuomoban:before {
+  content: "\e610";
+}
+
+.icon-icon-test:before {
+  content: "\e621";
+}
+
+.icon-lanqiu3:before {
+  content: "\e611";
+}
+
+.icon-yumaoqiu2:before {
+  content: "\e722";
+}
+
+.icon-bingpangqiuchang:before {
+  content: "\e65a";
+}
+

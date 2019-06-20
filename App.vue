@@ -15,4 +15,8 @@
 <style>
 	@import url("./common/css/ui.css");
 	/*每个页面公共css */
+	.index_con .uni-navbar-container {
+		display: flex;
+		align-items: center;
+	}
 </style>
