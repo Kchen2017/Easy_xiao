@@ -1,6 +1,233 @@
 
-.content {
+.index_con .topBarCen {
+	width: 100%;
 	text-align: center;
-	height: 400rpx;
+}
+.index_con .icon-saoma {
+	font-size: 25px;
+}
+.index_con .search{
+	background-color: #f5f5f5;
+	height: 30px;
+	width: 100%;
+	-webkit-border-radius: 22px;
+	        border-radius: 22px;
+	position: relative;
+}
+.index_con .search input{
+	height: 100%;
+	width: 84%;
+	margin-left: 12%;
+}
+.index_con .icon-sousuo-m{
+	position: absolute;
+	left: 5px;
+	top: -5px;
+	font-size: 21px;
+}
+.index_con .index_body {
+	padding-top: 44px;
+}
+.index_con .chooseType {
+	height: 160rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	font-size: 12px;
+	padding: 0 20rpx;
+	padding-top: 30rpx;
+}
+.index_con .chooseType view {
+	width: 100rpx;
+	text-align: center;
+}
+.index_con .chooseType view .iconfont {
+	font-size: 40px;
+}
+.index_con .swip {
+	/* padding-top: 10upx; */
+}
+.index_con .swip .swiper-item {
+	height: 100%;
+	background-size:cover;
+}
+.index_con .servers_type {
+	padding: 0 20rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+.servers_type .typeItem {
+	margin: 8rpx;
+	height: 140rpx;
+	width: 40%;
+	border: 2rpx solid #f1ebeb;
+	-webkit-border-radius: 12rpx;
+	        border-radius: 12rpx;
+	padding: 20rpx;
+}
+.servers_type .typeItem .btn {
+	font-size: 14px;
+	background-color: #5eaef3;
+	width: 100px;
+	text-align: center;
+	color: #fff;
+	margin-top: 10px;
+	height: 24px;
+	line-height: 24px;
+	-webkit-border-radius: 6px;
+	        border-radius: 6px;
+}
+.index_con .easyDo {
+	padding: 20rpx;
+}
+.easyDo .title {
+	height: 24px;
+	border-left: 6px solid #5eaef3;
+	line-height: 24px;
+	padding-left: 6px;
+}
+.easyDo .msg {
+	font-size: 28rpx;
+	border: 2rpx solid #ddd;
+	margin-top: 20rpx;
+	padding: 20rpx;
+	-webkit-border-radius: 16rpx;
+	        border-radius: 16rpx;
+	color: #908b8b;
+}
+.easyDo .msg .go {
+	color: #000000;
+	padding-left: 10rpx;
+}
+.easyDo .msg .iconfont {
+	font-size: 24rpx;
+	color: #000000;
+}
+.playground {
+	padding: 20rpx;
+}
+.playground .title {
+	height: 24px;
+	border-left: 6px solid #5eaef3;
+	line-height: 24px;
+	padding-left: 6px;
+}
+.playground .list {
+	padding-top: 20rpx;
+}
+.playground .item {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	margin-bottom: 40rpx;
+	position: relative;
+}
+.playground .border:before {
+	content: "";
+	position: absolute;
+	height: 0;
+	width: 680rpx;
+	border: 1px solid #f1eeee;
+	left: 0;
+	bottom: -16rpx;
+}
+.playground .go_list_img image {
+	height: 200rpx;
+	width: 200rpx;
+}
+.playground .go_list_context {
+	height: 200rpx;
+	padding-left: 20rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient:vertical;
+	-webkit-box-direction:normal;
+	-webkit-flex-direction:column;
+	    -ms-flex-direction:column;
+	        flex-direction:column;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+}
+.go_list_context .iconfont {
+	font-size: 14px;
+}
+.playground .checkMore {
+	width: 100%;
+	text-align: center;
+	height: 80rpx;
+	line-height: 80rpx;
+	background-color: #f7f5f5;
+}
+.playgroup {
+	padding: 20rpx;
+}
+.playgroup .title {
+	height: 24px;
+	border-left: 6px solid #5eaef3;
+	line-height: 24px;
+	padding-left: 6px;
+}
+.playgroup .checkMore {
+	width: 100%;
+	text-align: center;
+	height: 80rpx;
+	line-height: 80rpx;
+	background-color: #f7f5f5;
+}
+.playgroup .list {
+	padding-top: 20rpx;
+}
+.playgroup .item {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	margin-bottom: 40rpx;
+	position: relative;
+}
+.playgroup .list_img image {
+	width: 300rpx;
+	height: 200rpx;
+}
+.playgroup .list_con {
+	height: 200rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient:vertical;
+	-webkit-box-direction:normal;
+	-webkit-flex-direction:column;
+	    -ms-flex-direction:column;
+	        flex-direction:column;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	font-size: 14px;
+}
+.playgroup .border:before {
+	content: "";
+	position: absolute;
+	height: 0;
+	width: 680rpx;
+	border: 1px solid #f1eeee;
+	left: 0;
+	bottom: -16rpx;
 }
 

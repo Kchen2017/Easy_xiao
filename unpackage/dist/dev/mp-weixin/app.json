@@ -4,7 +4,8 @@
     "pages/easyDo/index",
     "pages/news/index",
     "pages/my/index",
-    "common/css/ui/ui"
+    "common/css/ui/ui",
+    "pages/index/components/swipCom/swipCom"
   ],
   "subPackages": [],
   "window": {
@@ -15,36 +16,29 @@
   },
   "tabBar": {
     "color": "#7A7E83",
-    "selectedColor": "#3cc51f",
+    "selectedColor": "#5eaef3",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "static/logo.png",
-        "selectedIconPath": "static/logo.png",
+        "iconPath": "static/index1.png",
+        "selectedIconPath": "static/index2.png",
         "text": "首页"
       },
       {
-        "pagePath": "pages/easyDo/index",
-        "iconPath": "static/logo.png",
-        "selectedIconPath": "static/logo.png",
-        "text": "EasyDo"
-      },
-      {
         "pagePath": "pages/news/index",
-        "iconPath": "static/logo.png",
-        "selectedIconPath": "static/logo.png",
+        "iconPath": "static/news1.png",
+        "selectedIconPath": "static/news3.png",
         "text": "资讯"
       },
       {
         "pagePath": "pages/my/index",
-        "iconPath": "static/logo.png",
-        "selectedIconPath": "static/logo.png",
+        "iconPath": "static/my1.png",
+        "selectedIconPath": "static/my2.png",
         "text": "我的"
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

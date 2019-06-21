@@ -112,17 +112,143 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   components: { uniNavBar: uniNavBar },
   data: function data() {
     return {
-      title: 'Hello' };
+      title: 'Hello',
+      address: "http://pic40.nipic.com/20140424/12259251_002036722178_2.jpg",
+      golist: [{}, {}, {}, {}] };
 
   },
   onLoad: function onLoad() {
 
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    goToFilter: function goToFilter(type) {
+      alert(type);
+    } } };exports.default = _default;
 
 /***/ }),
 

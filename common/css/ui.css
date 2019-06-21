@@ -126,6 +126,10 @@
   content: "\e669";
 }
 
+.icon-you:before {
+  content: "\e640";
+}
+
 .icon-saoma2:before {
   content: "\e74b";
 }
@@ -170,7 +174,22 @@
   content: "\e722";
 }
 
+.icon-you1:before {
+  content: "\e634";
+}
+
+.icon-you2:before {
+  content: "\e62d";
+}
+
+.icon-jiantou:before {
+  content: "\e66d";
+}
+
 .icon-bingpangqiuchang:before {
   content: "\e65a";
 }
 
+.icon-you3:before {
+  content: "\e60e";
+}
