@@ -106,8 +106,20 @@
   content: "\e6bd";
 }
 
+.icon-qiehuan:before {
+  content: "\e65d";
+}
+
+.icon-qiehuan1:before {
+  content: "\e6ad";
+}
+
 .icon-wangqiu:before {
   content: "\e75c";
+}
+
+.icon-qiehuan2:before {
+  content: "\e60a";
 }
 
 .icon-wangqiu1:before {
@@ -124,6 +136,10 @@
 
 .icon-weixinsaoma:before {
   content: "\e669";
+}
+
+.icon-qh:before {
+  content: "\e697";
 }
 
 .icon-you:before {
@@ -166,12 +182,20 @@
   content: "\e621";
 }
 
+.icon-qiehuan3:before {
+  content: "\e636";
+}
+
 .icon-lanqiu3:before {
   content: "\e611";
 }
 
 .icon-yumaoqiu2:before {
   content: "\e722";
+}
+
+.icon-qiehuan4:before {
+  content: "\e667";
 }
 
 .icon-you1:before {

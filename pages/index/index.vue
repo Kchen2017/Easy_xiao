@@ -3,7 +3,6 @@
 		<uni-nav-bar fixed="true">
 			<view class="search">
 				<input type="text" placeholder="你想玩啥" />
-				<text class="input"></text>
 				<text class="iconfont icon-sousuo-m"></text>
 			</view>
 			<view slot="left" class="topBarCen">
@@ -90,64 +89,79 @@
 			<view class="playground" style="margin-bottom: 40upx;">
 				<view class="title">精选场地</view>
 				<view class="list">
-					<view v-for="(item, index) in golist" :key="index" class="item" :class="{border: index !== (golist.length-1)}" >
-						<view class="go_list_img">
-							<image src="http://qcloud.dpfile.com/pc/UNEToIAeCRQPxjLQt6_McVI4AjmAwOV_xVe9Mf7BKJUDnw8jcyW4sc-iLuwOCZlKZSUjBikR5Ecy-DoGYkMhlg.jpg"></image>
-						</view>
-						<view class="go_list_context">
-							<view>五棵松开伊拉克球场</view>
-							<view style="font-size: 14px;">篮球</view>
-							<view>
-								<text class="iconfont icon-dingwei">北京市海淀区五棵松</text>
-							</view>
-							<view>
-								<text class="iconfont icon-you">线上预定</text>
-								<text style="font-size: 14px;">￥20/人</text>
-							</view>
-						</view>
-					</view>
+					<groundlistItem v-for="(item, index) in golist" 
+							:value="item"
+							:key="index" 
+							:bottomBorder="index !== (golist.length-1)"></groundlistItem>
 				</view>
-				<view class="checkMore">查看更多场地</view>
+				<view @click="selecttypeFun('ground')" class="checkMore">查看更多场地</view>
 			</view>
 			<!-- 球局 -->
 			<view class="playgroup" style="margin-bottom: 40upx;">
 				<view class="title">热门局</view>
 				<view class="list">
-					<view v-for="(item, index) in golist" :key="index" class="item" :class="{border: index !== (golist.length-1)}">
-						<view class="list_img">
-							<image src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3000033855,214344624&fm=26&gp=0.jpg"></image>
-						</view>
-						<view class="list_con">
-							<view>龙骑士</view>
-							<view>时间：2019.4.24</view>
-							<view>地点：凯翔篮球馆</view>
-							<view>标签：</view>
-						</view>
-					</view>
+					<groupListItem v-for="(item, index) in golist" 
+							:value="item"
+							:key="index" 
+							:bottomBorder="index !== (golist.length-1)"></groupListItem>
 				</view>
-				<view class="checkMore">查看更多局</view>
+				<view @click="selecttypeFun('group')" class="checkMore">查看更多局</view>
 			</view>
+		
+		<!-- 弹出层 -->
+		<xy-dialog 
+			:showDia="showSelect" 
+			:isShowFirm="false"
+			@cancelButton="clickCancel">
+			<view class="dia_slot">
+				<view @click="selecttypeFun('ground')">找场</view>
+				<view @click="selecttypeFun('group')">找局</view>
+			</view>
+			
+		</xy-dialog>
 		</view>
 	</view>
 </template>
 
 <script>
 	import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
+	import xyDialog from "@/components/xy-dialog.vue"
+	import groundlistItem from './components/groundlist/groundListItem.vue'
+	import groupListItem from './components/grouplist/groupListItem.vue'
 	export default {
-		components: {uniNavBar},
+		components: {uniNavBar, xyDialog, groundlistItem, groupListItem},
 		data() {
 			return {
 				title: 'Hello',
 				address: "http://pic40.nipic.com/20140424/12259251_002036722178_2.jpg",
-				golist: [{},{},{},{}]
+				golist: [{},{},{},{}],
+				showSelect: false
 			}
 		},
 		onLoad() {
-
+			this.showSelect = false
 		},
 		methods: {
 			goToFilter(type){
-				alert(type)
+				this.showSelect = true
+			},
+			clickCancel(){
+				this.showSelect = false
+			},
+			selecttypeFun(type){
+				let params = {
+					animationType: 'pop-in',
+					animationDuration: 200,
+					success: ()=>{
+						this.showSelect = false
+					}
+				}
+				if(type === "ground"){
+					params.url = './components/groundlist/groundlist'
+				}else if(type === "group"){
+					params.url = './components/grouplist/grouplist'
+				}
+				uni.navigateTo(params)
 			}
 		}
 	}
@@ -265,34 +279,6 @@
 	.playground .list {
 		padding-top: 20upx;
 	}
-	.playground .item {
-		display: flex;
-		margin-bottom: 40upx;
-		position: relative;
-	}
-	.playground .border:before {
-		content: "";
-		position: absolute;
-		height: 0;
-		width: 680upx;
-		border: 1px solid #f1eeee;
-		left: 0;
-		bottom: -16upx;
-	}
-	.playground .go_list_img image {
-		height: 200upx;
-		width: 200upx;
-	}
-	.playground .go_list_context {
-		height: 200upx;
-		padding-left: 20upx;
-		display: flex;
-		flex-direction:column;
-		justify-content: space-between;
-	}
-	.go_list_context .iconfont {
-		font-size: 14px;
-	}
 	.playground .checkMore {
 		width: 100%;
 		text-align: center;
@@ -319,29 +305,19 @@
 	.playgroup .list {
 		padding-top: 20upx;
 	}
-	.playgroup .item {
+	.index_con .dia_slot {
+		height: 240upx;
 		display: flex;
-		margin-bottom: 40upx;
-		position: relative;
+		flex-direction: column;
+		align-items: center;
 	}
-	.playgroup .list_img image {
-		width: 300upx;
-		height: 200upx;
-	}
-	.playgroup .list_con {
-		height: 200upx;
-		display: flex;
-		flex-direction:column;
-		justify-content: space-between;
-		font-size: 14px;
-	}
-	.playgroup .border:before {
-		content: "";
-		position: absolute;
-		height: 0;
-		width: 680upx;
-		border: 1px solid #f1eeee;
-		left: 0;
-		bottom: -16upx;
+	.index_con .dia_slot view{
+		height: 34px;
+		width: 140px;
+		margin-top: 16px;
+		line-height: 34px;
+		color: #ffff;
+		background-color: #5eaef3;
+		border-radius: 10px;
 	}
 </style>

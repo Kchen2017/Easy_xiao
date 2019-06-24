@@ -24,13 +24,17 @@
 				"navigationBarTitleText": "我的"
 			}
 		}
-	    ,{
-            "path" : "common/css/ui/ui",
-            "style" : {}
+        ,{
+            "path" : "pages/index/components/groundlist/groundlist",
+            "style" : {
+				"navigationBarTitleText": "场地"
+			}
         }
         ,{
-            "path" : "pages/index/components/swipCom/swipCom",
-            "style" : {}
+            "path" : "pages/index/components/grouplist/grouplist",
+            "style" : {
+				"navigationBarTitleText": "局"
+			}
         }
     ],
 	"globalStyle": {
