@@ -17,16 +17,19 @@
 							:key="index" 
 							:bottomBorder="index !== (golist.length-1)"></groupListItem>
 		</view>
+		<switchType :text="'去找场'" :url="'../groundlist/groundlist'"></switchType>
 	</view>
 </template>
 
 <script>
 	import slFilter from '@/components/sl-filter/sl-filter.vue';
 	import groupListItem from './groupListItem.vue'
+	import switchType from '../switchType.vue'
 	export default {
 		components: {
             slFilter,
-			groupListItem
+			groupListItem,
+			switchType
         },
 		data() {
 			return {

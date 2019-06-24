@@ -17,7 +17,7 @@
 							:key="index" 
 							:bottomBorder="index !== (golist.length-1)"></groundlistItem>
 		</view>
-		<switchType></switchType>
+		<switchType :text="'去找局'" :url="'../grouplist/grouplist'"></switchType>
 	</view>
 </template>
 

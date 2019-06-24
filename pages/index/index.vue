@@ -5,7 +5,7 @@
 				<input type="text" placeholder="你想玩啥" />
 				<text class="iconfont icon-sousuo-m"></text>
 			</view>
-			<view slot="left" class="topBarCen">
+			<view @click="goCity" slot="left" class="topBarCen">
 				<text class="iconfont icon-dingwei">北京</text>
 			</view>
 			<view slot="right" class="topBarCen">
@@ -162,6 +162,13 @@
 					params.url = './components/grouplist/grouplist'
 				}
 				uni.navigateTo(params)
+			},
+			goCity(){
+				uni.navigateTo({
+					url: "./components/selectCity",
+					animationType: 'pop-in',
+					animationDuration: 200
+				})
 			}
 		}
 	}

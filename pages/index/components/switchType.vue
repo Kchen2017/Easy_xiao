@@ -1,18 +1,23 @@
 <template>
 	<view @click="goSwitch" class="switch">
 		<text class="iconfont icon-qiehuan3"></text>
-		<text class="txt">去找局</text>
+		<text class="txt">{{text}}</text>
 	</view>
 </template>
 
 <script>
 	export default {
+		props: ["text", "url"],
 		data(){
-			
+			return {
+				
+			}
 		},
 		methods: {
 			goSwitch(){
-				
+				uni.navigateTo({
+					url: this.url
+				})
 			}
 		}
 	}
