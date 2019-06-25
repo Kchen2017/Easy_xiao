@@ -1,5 +1,5 @@
 <template>
-	<view  class="item" :class="{border: bottomBorder}" >
+	<view @click="gotoDetail"  class="item" :class="{border: bottomBorder}" >
 		<view class="go_list_img">
 			<image src="http://qcloud.dpfile.com/pc/UNEToIAeCRQPxjLQt6_McVI4AjmAwOV_xVe9Mf7BKJUDnw8jcyW4sc-iLuwOCZlKZSUjBikR5Ecy-DoGYkMhlg.jpg"></image>
 		</view>
@@ -27,6 +27,10 @@
 			value: {
 				type: Object,
 				default: {}
+			},
+			path: {
+				type: String,
+				default: ""
 			}
 		},
 		data() {
@@ -35,7 +39,13 @@
 			}
 		},
 		methods: {
-			
+			gotoDetail(){
+				uni.navigateTo({
+					url: "./"+this.path+"/groundDetail",
+					animationType: 'pop-in',
+					animationDuration: 200
+				})
+			}
 		}
 	}
 </script>

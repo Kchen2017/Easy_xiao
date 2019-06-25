@@ -6,7 +6,7 @@
 				<text class="iconfont icon-sousuo-m"></text>
 			</view>
 			<view @click="goCity" slot="left" class="topBarCen">
-				<text class="iconfont icon-dingwei">北京</text>
+				<text class="iconfont icon-dingwei">{{city}}</text>
 			</view>
 			<view slot="right" class="topBarCen">
 				<text class="iconfont icon-saoma"></text>
@@ -90,6 +90,7 @@
 				<view class="title">精选场地</view>
 				<view class="list">
 					<groundlistItem v-for="(item, index) in golist" 
+							:path="'components/groundlist'"
 							:value="item"
 							:key="index" 
 							:bottomBorder="index !== (golist.length-1)"></groundlistItem>
@@ -135,11 +136,14 @@
 				title: 'Hello',
 				address: "http://pic40.nipic.com/20140424/12259251_002036722178_2.jpg",
 				golist: [{},{},{},{}],
-				showSelect: false
+				showSelect: false,
+				city: '' 
 			}
 		},
-		onLoad() {
+		onLoad(option) {
 			this.showSelect = false
+			console.log(option)
+			this.city = option.city || "北京"
 		},
 		methods: {
 			goToFilter(type){
@@ -165,7 +169,7 @@
 			},
 			goCity(){
 				uni.navigateTo({
-					url: "./components/selectCity",
+					url: "./components/selectCity?city="+this.city,
 					animationType: 'pop-in',
 					animationDuration: 200
 				})

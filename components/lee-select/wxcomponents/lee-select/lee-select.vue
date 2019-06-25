@@ -12,7 +12,7 @@
 						</view>
 				</view>
 			</scroll-view>
-			<view class="now-sort" :style="{fontSize:getListAttrTitleFontSize,color:getListAttrTitleColor,height:getListAttrTitleHeight,background:getListAttrTitleBackground,paddingLeft:getListAttrTitlePadding}">{{navData[activeIndex]}}</view>
+			<!-- <view class="now-sort" :style="{fontSize:getListAttrTitleFontSize,color:getListAttrTitleColor,height:getListAttrTitleHeight,background:getListAttrTitleBackground,paddingLeft:getListAttrTitlePadding}">{{navData[activeIndex]}}</view> -->
 			<view :class="['now-letter', fadeFlag?'fadeIn':'']">{{navData[activeIndex]}}</view>
 			<view class="letter-nav" v-if="navAttr.enable" :style="{backgroundColor:getNavAttrbackgroundColor,padding:getNavAttrPadding,borderRadius:getNavAttrBorderRadius}">
 				<text :class="['item',index === activeIndex ? 'active': '']" v-for="(item,index) in navData" :key="index"

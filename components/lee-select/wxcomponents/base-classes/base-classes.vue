@@ -1,6 +1,8 @@
 <template>
 	<view class="base-wrap" :style="{height:getHeight}">
-		<view class="title" :style="{fontSize:getTitleFontSize,color:getTitleColor,height:getTitleHeight,background:getTitleBackground,paddingLeft:getTitlePadding}">{{getTitle}}</view>
+		<view class="title" :style="{fontSize:getTitleFontSize,color:getTitleColor,height:getTitleHeight,background:getTitleBackground,paddingLeft:getTitlePadding}">
+		{{getTitle}}
+		</view>
 		<view class="panel" :style={padding:getContentPadding}>
 			<text v-for="(item,index) in getData" :key="index" class="item" :style="{width:getItemWidth,height:getItemHeight,fontSize:getItemFontSize,border:getItemBorder,borderRadius:getItemBorderRadius,marginTop:getItemMarginTop,color:getItemColor,background:getItemBackgroundColor}" @click="chooseItem(item)">{{item}}</text>
 		</view>
@@ -32,7 +34,7 @@
 				return uni.upx2px(this.classesAttr.titleHeight || 60) + 'px'
 			},
 			getTitleBackground() {
-				return this.classesAttr.titleBackground || '#ccc'
+				return this.classesAttr.titleBackground || '#f5f5f5'
 			},
 			getTitlePadding() {
 				return uni.upx2px(this.classesAttr.titlePadding ||20) + 'px'

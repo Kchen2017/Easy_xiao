@@ -23,25 +23,31 @@
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
-		}
-        ,{
+		},
+		{
             "path" : "pages/index/components/groundlist/groundlist",
             "style" : {
-							"navigationBarTitleText": "场地"
-						}
-        }
-        ,{
+				"navigationBarTitleText": "场地"
+			}
+        },
+		{
             "path" : "pages/index/components/grouplist/grouplist",
             "style" : {
-							"navigationBarTitleText": "局"
-						}
-        }
-				,{
-				    "path" : "pages/index/components/selectCity",
-				    "style" : {
-							"navigationBarTitleText": "选择城市"
-						}
-				}
+				"navigationBarTitleText": "局"
+			}
+        },
+		{
+			"path" : "pages/index/components/selectCity",
+			"style" : {
+				"navigationBarTitleText": "选择城市"
+			}
+		},{
+			"path" : "pages/index/components/groundlist/groundDetail",
+			"style" : {
+				"navigationBarTitleText": "场地信息"
+			}
+		}
+		
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

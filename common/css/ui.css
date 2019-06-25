@@ -94,6 +94,8 @@
   content: "\e612";
 }
 
+
+/* 2 */
 .icon-saoma:before {
   content: "\e749";
 }
@@ -132,6 +134,10 @@
 
 .icon-zuqiu:before {
   content: "\e602";
+}
+
+.icon-sousuo:before {
+  content: "\e629";
 }
 
 .icon-weixinsaoma:before {
@@ -206,8 +212,20 @@
   content: "\e62d";
 }
 
+.icon-sousuo1:before {
+  content: "\e60e";
+}
+
 .icon-jiantou:before {
   content: "\e66d";
+}
+
+.icon-sou_suo:before {
+  content: "\e623";
+}
+
+.icon-sousuo2:before {
+  content: "\e706";
 }
 
 .icon-bingpangqiuchang:before {
@@ -215,5 +233,5 @@
 }
 
 .icon-you3:before {
-  content: "\e60e";
+  content: "\e60f";
 }
