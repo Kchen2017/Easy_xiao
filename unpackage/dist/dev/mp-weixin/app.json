@@ -4,8 +4,10 @@
     "pages/easyDo/index",
     "pages/news/index",
     "pages/my/index",
-    "common/css/ui/ui",
-    "pages/index/components/swipCom/swipCom"
+    "pages/index/components/groundlist/groundlist",
+    "pages/index/components/grouplist/grouplist",
+    "pages/index/components/selectCity",
+    "pages/index/components/groundlist/groundDetail"
   ],
   "subPackages": [],
   "window": {
@@ -40,5 +42,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

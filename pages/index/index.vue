@@ -16,23 +16,7 @@
 			
 			<!-- 轮播图--- -->
 			<view class="swip">
-				<view class="uni-padding-wrap">
-					<view class="page-section swiper">
-						<view class="page-section-spacing">
-							<swiper class="swiper" indicator-dots="true" autoplay="false">
-								<swiper-item>
-									<view class="swiper-item fir" :style="{'background-image': 'url('+address+')'}"></view>
-								</swiper-item>
-								<swiper-item>
-									<view class="swiper-item scon" style="background-image: url('http://pic18.nipic.com/20111214/6834314_092609528357_2.jpg')"></view>
-								</swiper-item>
-								<swiper-item>
-									<view class="swiper-item third" style="background-image: url('http://pic33.nipic.com/20130928/7862248_113142019357_2.jpg')"></view>
-								</swiper-item>
-							</swiper>
-						</view>
-					</view>
-				</view>
+				<swiperSilder :swipArr="swipArr"></swiperSilder>
 			</view>
 			<!-- 选择运动的类型 -->
 			<view class="chooseType" style="margin-bottom: 40upx;">
@@ -129,15 +113,23 @@
 	import xyDialog from "@/components/xy-dialog.vue"
 	import groundlistItem from './components/groundlist/groundListItem.vue'
 	import groupListItem from './components/grouplist/groupListItem.vue'
+	import swiperSilder from "./components/swiperSilder.vue"
 	export default {
-		components: {uniNavBar, xyDialog, groundlistItem, groupListItem},
+		components: {uniNavBar, xyDialog, groundlistItem, groupListItem, swiperSilder},
 		data() {
 			return {
 				title: 'Hello',
 				address: "http://pic40.nipic.com/20140424/12259251_002036722178_2.jpg",
 				golist: [{},{},{},{}],
 				showSelect: false,
-				city: '' 
+				city: '' ,
+				swipArr: [{
+					url: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561467102487&di=51a2165e4319ce957afd6b2ba0d90d99&imgtype=0&src=http%3A%2F%2Fpic31.nipic.com%2F20130705%2F9527735_231540074000_2.jpg"
+				},{
+					url: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561467102486&di=a0f7af7e144d068ed3ee6d2bc573ddeb&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fc%2F53cdd1f7c1f21.jpg"
+				},{
+					url: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561467102486&di=86986f0d5701322373092fd2a8ac962f&imgtype=0&src=http%3A%2F%2Fpic40.nipic.com%2F20140424%2F12259251_002036722178_2.jpg"
+				}]
 			}
 		},
 		onLoad(option) {

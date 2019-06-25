@@ -16,7 +16,8 @@
 		},
 		data(){
 			return {
-				
+				indicatorDots: true,
+				autoplay: false,
 			}
 		}
 	}

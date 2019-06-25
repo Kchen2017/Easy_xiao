@@ -98,26 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniNavBar = function uniNavBar() {return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ "../../../../reactKchen/Easy_xiao/components/uni-nav-bar/uni-nav-bar.vue"));};var _default =
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniNavBar = function uniNavBar() {return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ "../../../../reactKchen/Easy_xiao/components/uni-nav-bar/uni-nav-bar.vue"));};var xyDialog = function xyDialog() {return __webpack_require__.e(/*! import() | components/xy-dialog */ "components/xy-dialog").then(__webpack_require__.bind(null, /*! @/components/xy-dialog.vue */ "../../../../reactKchen/Easy_xiao/components/xy-dialog.vue"));};var groundlistItem = function groundlistItem() {return __webpack_require__.e(/*! import() | pages/index/components/groundlist/groundListItem */ "pages/index/components/groundlist/groundListItem").then(__webpack_require__.bind(null, /*! ./components/groundlist/groundListItem.vue */ "../../../../reactKchen/Easy_xiao/pages/index/components/groundlist/groundListItem.vue"));};var groupListItem = function groupListItem() {return __webpack_require__.e(/*! import() | pages/index/components/grouplist/groupListItem */ "pages/index/components/grouplist/groupListItem").then(__webpack_require__.bind(null, /*! ./components/grouplist/groupListItem.vue */ "../../../../reactKchen/Easy_xiao/pages/index/components/grouplist/groupListItem.vue"));};var swiperSilder = function swiperSilder() {return __webpack_require__.e(/*! import() | pages/index/components/swiperSilder */ "pages/index/components/swiperSilder").then(__webpack_require__.bind(null, /*! ./components/swiperSilder.vue */ "../../../../reactKchen/Easy_xiao/pages/index/components/swiperSilder.vue"));};var _default =
 
 
 
@@ -234,21 +215,58 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 {
-  components: { uniNavBar: uniNavBar },
+  components: { uniNavBar: uniNavBar, xyDialog: xyDialog, groundlistItem: groundlistItem, groupListItem: groupListItem, swiperSilder: swiperSilder },
   data: function data() {
     return {
       title: 'Hello',
       address: "http://pic40.nipic.com/20140424/12259251_002036722178_2.jpg",
-      golist: [{}, {}, {}, {}] };
+      golist: [{}, {}, {}, {}],
+      showSelect: false,
+      city: '',
+      swipArr: [{
+        url: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561467102487&di=51a2165e4319ce957afd6b2ba0d90d99&imgtype=0&src=http%3A%2F%2Fpic31.nipic.com%2F20130705%2F9527735_231540074000_2.jpg" },
+      {
+        url: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561467102486&di=a0f7af7e144d068ed3ee6d2bc573ddeb&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fc%2F53cdd1f7c1f21.jpg" },
+      {
+        url: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561467102486&di=86986f0d5701322373092fd2a8ac962f&imgtype=0&src=http%3A%2F%2Fpic40.nipic.com%2F20140424%2F12259251_002036722178_2.jpg" }] };
+
 
   },
-  onLoad: function onLoad() {
-
+  onLoad: function onLoad(option) {
+    this.showSelect = false;
+    console.log(option);
+    this.city = option.city || "北京";
   },
   methods: {
     goToFilter: function goToFilter(type) {
-      alert(type);
+      this.showSelect = true;
+    },
+    clickCancel: function clickCancel() {
+      this.showSelect = false;
+    },
+    selecttypeFun: function selecttypeFun(type) {var _this = this;
+      var params = {
+        animationType: 'pop-in',
+        animationDuration: 200,
+        success: function success() {
+          _this.showSelect = false;
+        } };
+
+      if (type === "ground") {
+        params.url = './components/groundlist/groundlist';
+      } else if (type === "group") {
+        params.url = './components/grouplist/grouplist';
+      }
+      uni.navigateTo(params);
+    },
+    goCity: function goCity() {
+      uni.navigateTo({
+        url: "./components/selectCity?city=" + this.city,
+        animationType: 'pop-in',
+        animationDuration: 200 });
+
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
 /***/ }),
 

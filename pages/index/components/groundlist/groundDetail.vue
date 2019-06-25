@@ -14,8 +14,6 @@
 		},
 		data(){
 			return {
-				indicatorDots: true,
-				autoplay: false,
 				swipArr: [{
 					url: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561467102487&di=51a2165e4319ce957afd6b2ba0d90d99&imgtype=0&src=http%3A%2F%2Fpic31.nipic.com%2F20130705%2F9527735_231540074000_2.jpg"
 				},{

@@ -1,6 +1,10 @@
 {
   "navigationBarTitleText": "首页",
   "usingComponents": {
-    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar"
+    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
+    "xy-dialog": "/components/xy-dialog",
+    "groundlist-item": "/pages/index/components/groundlist/groundListItem",
+    "group-list-item": "/pages/index/components/grouplist/groupListItem",
+    "swiper-silder": "/pages/index/components/swiperSilder"
   }
 }
