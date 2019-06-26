@@ -96,8 +96,16 @@
 
 
 /* 2 */
+.icon-zuihouyibanfenxiang:before {
+  content: "\e6fb";
+}
+
 .icon-saoma:before {
   content: "\e749";
+}
+
+.icon-fenxiang:before {
+  content: "\e610";
 }
 
 .icon-lanqiu:before {
@@ -134,6 +142,10 @@
 
 .icon-zuqiu:before {
   content: "\e602";
+}
+
+.icon-shoucang-copy-copy:before {
+  content: "\e501";
 }
 
 .icon-sousuo:before {
@@ -181,7 +193,7 @@
 }
 
 .icon-tubiaozhizuomoban:before {
-  content: "\e610";
+  content: "\e611";
 }
 
 .icon-icon-test:before {
@@ -193,7 +205,15 @@
 }
 
 .icon-lanqiu3:before {
-  content: "\e611";
+  content: "\e612";
+}
+
+.icon-fenxiang1:before {
+  content: "\e60e";
+}
+
+.icon-shoucang:before {
+  content: "\e6af";
 }
 
 .icon-yumaoqiu2:before {
@@ -202,6 +222,10 @@
 
 .icon-qiehuan4:before {
   content: "\e667";
+}
+
+.icon-shoucang1:before {
+  content: "\e61d";
 }
 
 .icon-you1:before {
@@ -213,7 +237,7 @@
 }
 
 .icon-sousuo1:before {
-  content: "\e60e";
+  content: "\e60f";
 }
 
 .icon-jiantou:before {
@@ -224,8 +248,20 @@
   content: "\e623";
 }
 
+.icon-fenxiang2:before {
+  content: "\e660";
+}
+
+.icon-star:before {
+  content: "\e503";
+}
+
 .icon-sousuo2:before {
   content: "\e706";
+}
+
+.icon-fenxiang3:before {
+  content: "\e64a";
 }
 
 .icon-bingpangqiuchang:before {
@@ -233,5 +269,9 @@
 }
 
 .icon-you3:before {
-  content: "\e60f";
+  content: "\e613";
+}
+
+.icon-fenxiang4:before {
+  content: "\e62a";
 }

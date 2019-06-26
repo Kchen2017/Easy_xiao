@@ -2,6 +2,10 @@
 	<view class="groundDetail">
 		<view class="swip_con">
 			<swiperSilder :swipArr="swipArr"></swiperSilder>
+			<view class="operator">
+				<text class="iconfont icon-star"></text>
+				<text class="iconfont icon-fenxiang2"></text>
+			</view>
 		</view>
 	</view>
 </template>
@@ -33,5 +37,20 @@
 </script>
 
 <style>
-	
+	.swip_con {
+		position: relative;
+	}
+	.operator {
+		position: absolute;
+		top: 20upx;
+		right: 20upx;
+		width: 130upx;
+		height: 60upx;
+		line-height: 60upx;
+		border-radius: 40upx;
+		display: flex;
+		background-color: #ccc;
+		justify-content: space-between;
+		padding: 0 20upx;
+	}
 </style>

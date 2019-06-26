@@ -22,23 +22,23 @@
 			<view class="chooseType" style="margin-bottom: 40upx;">
 				<view @click="goToFilter('basketball')">
 					<text class="iconfont icon-lanqiu"></text>
-					<text class="go_swipLabel">篮球</text>
+					<view class="go_swipLabel">篮球</view>
 				</view>
 				<view @click="goToFilter('football')">
 					<text class="iconfont icon-zuqiu"></text>
-					<text class="go_swipLabel">足球</text>
+					<view class="go_swipLabel">足球</view>
 				</view>
 				<view @click="goToFilter('badminton')">
 					<text class="iconfont icon-yumaoqiu1"></text>
-					<text class="go_swipLabel">羽毛球</text>
+					<view class="go_swipLabel">羽毛球</view>
 				</view>
 				<view @click="goToFilter('tennis')">
 					<text class="iconfont icon-wangqiu"></text>
-					<text class="go_swipLabel">网球</text>
+					<view class="go_swipLabel">网球</view>
 				</view>
 				<view @click="goToFilter('tennis')">
 					<text class="iconfont icon-bingpangqiu"></text>
-					<text class="go_swipLabel">兵乓球</text>
+					<view class="go_swipLabel">英语角</view>
 				</view>
 			</view>
 			<!-- 服务类型 -->
