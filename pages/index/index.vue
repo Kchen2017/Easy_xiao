@@ -225,6 +225,7 @@
 		padding: 0 20upx;
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: center;
 	}
 	.servers_type .typeItem {
 		margin: 8upx;
