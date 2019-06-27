@@ -1,10 +1,6 @@
 @font-face {
   font-family: 'iconfont';
-  src: url('~@/static/iconfont1.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'iconfont';
-  src: url('~@/static/iconfont2.ttf') format('truetype');
+  src: url('~@/static/iconfont.ttf') format('truetype');
 }
 
 .iconfont { 
@@ -14,88 +10,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-sousuo:before {
-  content: "\e613";
-}
 
-.icon-fanhui1:before {
-  content: "\e614";
-}
-
-.icon-fanhui2:before {
-  content: "\e615";
-}
-
-.icon-sousuo-m:before {
-  content: "\e60a";
-}
-
-.icon-iconfontzhizuobiaozhun22:before {
-  content: "\e616";
-}
-
-.icon-fanhui:before {
-  content: "\e617";
-}
-
-.icon-dingwei:before {
-  content: "\e675";
-}
-
-.icon-xiala:before {
-  content: "\e662";
-}
-
-.icon-wei-:before {
-  content: "\e608";
-}
-
-.icon-xiala1:before {
-  content: "\f0308";
-}
-
-.icon-zhifeiji:before {
-  content: "\e611";
-}
-
-.icon-fanhui3:before {
-  content: "\e669";
-}
-
-.icon-dingwei1:before {
-  content: "\e648";
-}
-
-.icon-fanhui4:before {
-  content: "\e682";
-}
-
-.icon-Group-:before {
-  content: "\e696";
-}
-
-.icon-dingwei2:before {
-  content: "\e64b";
-}
-
-.icon-dingwei3:before {
-  content: "\e77e";
-}
-
-.icon-sousuo1:before {
-  content: "\e620";
-}
-
-.icon-xiala2:before {
-  content: "\e62a";
-}
-
-.icon-xiala3:before {
-  content: "\e612";
-}
-
-
-/* 2 */
 .icon-zuihouyibanfenxiang:before {
   content: "\e6fb";
 }
@@ -144,6 +59,10 @@
   content: "\e602";
 }
 
+.icon-location:before {
+  content: "\e611";
+}
+
 .icon-shoucang-copy-copy:before {
   content: "\e501";
 }
@@ -184,6 +103,10 @@
   content: "\e66a";
 }
 
+.icon-location1:before {
+  content: "\e55c";
+}
+
 .icon-yumaoqiu1:before {
   content: "\e614";
 }
@@ -193,7 +116,7 @@
 }
 
 .icon-tubiaozhizuomoban:before {
-  content: "\e611";
+  content: "\e612";
 }
 
 .icon-icon-test:before {
@@ -205,7 +128,7 @@
 }
 
 .icon-lanqiu3:before {
-  content: "\e612";
+  content: "\e613";
 }
 
 .icon-fenxiang1:before {
@@ -218,6 +141,10 @@
 
 .icon-yumaoqiu2:before {
   content: "\e722";
+}
+
+.icon-location2:before {
+  content: "\e50f";
 }
 
 .icon-qiehuan4:before {
@@ -238,6 +165,10 @@
 
 .icon-sousuo1:before {
   content: "\e60f";
+}
+
+.icon-dingweiweizhi:before {
+  content: "\e619";
 }
 
 .icon-jiantou:before {
@@ -269,7 +200,11 @@
 }
 
 .icon-you3:before {
-  content: "\e613";
+  content: "\e616";
+}
+
+.icon-zu:before {
+  content: "\e51e";
 }
 
 .icon-fenxiang4:before {

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@dcloudio/uni-ui": "0.0.8",
     "vue-loader": "^15.7.0"
   }
 }

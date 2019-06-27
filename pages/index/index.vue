@@ -3,10 +3,10 @@
 		<uni-nav-bar fixed="true">
 			<view class="search">
 				<input type="text" placeholder="你想玩啥" />
-				<text class="iconfont icon-sousuo-m"></text>
+				<text class="iconfont icon-sousuo1"></text>
 			</view>
 			<view @click="goCity" slot="left" class="topBarCen">
-				<text class="iconfont icon-dingwei">{{city}}</text>
+				<text class="iconfont icon-location">{{city}}</text>
 			</view>
 			<view slot="right" class="topBarCen">
 				<text class="iconfont icon-saoma"></text>
@@ -190,7 +190,7 @@
 		width: 84%;
 		margin-left: 12%;
 	}
-	.index_con .icon-sousuo-m{
+	.index_con .icon-sousuo1{
 		position: absolute;
 		left: 5px;
 		top: -5px;

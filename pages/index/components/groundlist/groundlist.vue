@@ -3,7 +3,7 @@
 		<view class="search_bar">
 			<view class="search">
 				<input type="text" placeholder="输入关键字" />
-				<text class="iconfont icon-sousuo-m"></text>
+				<text class="iconfont icon-sousuo1"></text>
 			</view>
 			<view class="menu">
 				<slFilter :isTransNav="true" 
@@ -131,7 +131,7 @@
 		width: 84%;
 		margin-left: 12%;
 	}
-	.search .icon-sousuo-m{
+	.search .icon-sousuo1{
 		position: absolute;
 		left: 10upx;
 		top: 18upx;
