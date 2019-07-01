@@ -48,6 +48,12 @@
 			}
 		}
 		
+        ,{
+            "path" : "pages/index/components/zugejupage/zugejupage",
+            "style" : {
+				"navigationBarTitleText": "组个局"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

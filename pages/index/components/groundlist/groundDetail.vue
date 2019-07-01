@@ -62,7 +62,7 @@
 			
 		</view>
 		<view class="btn">
-			<text class="zu">组个局</text>
+			<text @click="gotoZu" class="zu">组个局</text>
 			<text @click="jump(0)">局</text>
 			<text @click="jump(1)">圈</text>
 			<text @click="jump(2)">榜</text>
@@ -147,6 +147,11 @@
 						window.pageYOffset = total
 					}
 				}
+			},
+			gotoZu(){
+				uni.navigateTo({
+					url: "../zugejupage/zugejupage"
+				})
 			}
 		},
 		watch:{
