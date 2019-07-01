@@ -1,11 +1,20 @@
 <template>
 	<view class="zujuFrom">
-		<view class="from">
+		<view class="form">
 			<view class="item">
-				<text class="tit">
+				<view class="tit">
 					场地：
-				</text>
-				<text>北京五棵松开伊拉克球场</text>
+				</view>
+				<view class="txt">北京五棵松开伊拉克球场</view>
+				<text class="iconfont icon-you2"></text>
+			</view>
+			<view class="item">
+				<view class="tit">
+					人数：
+				</view>
+				<view class="txt">
+					<input type="text">
+				</view>
 				<text class="iconfont icon-you2"></text>
 			</view>
 		</view>
@@ -39,5 +48,13 @@
 		height: 40px;
 		line-height: 40px;
 		background-color: #dddd;
+	}
+	.form .tit {
+		width: 20%;
+		text-align: right;
+	}
+	.form .txt {
+		width: 65%;
+		overflow: hidden;
 	}
 </style>
