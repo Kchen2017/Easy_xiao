@@ -53,6 +53,12 @@
             "style" : {
 				"navigationBarTitleText": "组个局"
 			}
+        },
+		{
+            "path" : "pages/index/components/grouplist/groupDetail",
+            "style" : {
+				"navigationBarTitleText": "找局"
+			}
         }
     ],
 	"globalStyle": {

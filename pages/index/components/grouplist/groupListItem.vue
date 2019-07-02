@@ -1,5 +1,5 @@
 <template>
-	<view class="item" :class="{border: bottomBorder}">
+	<view @click="gotoDetail" class="item" :class="{border: bottomBorder}">
 		<view class="list_img">
 			<image src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3000033855,214344624&fm=26&gp=0.jpg"></image>
 		</view>
@@ -22,6 +22,10 @@
 			value: {
 				type: Object,
 				default: {}
+			},
+			path: {
+				type: String,
+				default: ""
 			}
 		},
 		data() {
@@ -30,7 +34,13 @@
 			}
 		},
 		methods: {
-			
+			gotoDetail(){
+				uni.navigateTo({
+					url: "./"+this.path+"/groupDetail",
+					animationType: 'pop-in',
+					animationDuration: 200
+				})
+			}
 		}
 	}
 </script>

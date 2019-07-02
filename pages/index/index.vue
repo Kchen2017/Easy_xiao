@@ -86,6 +86,7 @@
 				<view class="title">热门局</view>
 				<view class="list">
 					<groupListItem v-for="(item, index) in golist" 
+							:path="'components/grouplist'"
 							:value="item"
 							:key="index" 
 							:bottomBorder="index !== (golist.length-1)"></groupListItem>
