@@ -10,17 +10,9 @@
 				<view style="font-size: 14px;">签名：不服就干</view>
 			</view>
 		</view>
+		<view class="context"></view>
 		
-		<view class="body">
-			<view class="groupMsg">
-				<view>信息</view>
-				<view class="context">
-					<view class="item">
-						时间：2019
-					</view>
-				</view>
-			</view>
-		</view>
+		
 		
 		
 	</view>
@@ -50,7 +42,7 @@
 		height: 100%;
 		background-image: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561467102487&di=51a2165e4319ce957afd6b2ba0d90d99&imgtype=0&src=http%3A%2F%2Fpic31.nipic.com%2F20130705%2F9527735_231540074000_2.jpg");
 		background-size:cover;
-		opacity: 0.5;
+		/* opacity: 0.5; */
 	}
 	.header .photo {
 		position: absolute;
@@ -71,12 +63,5 @@
 		height: 100upx;
 		line-height: 60upx;
 		left: 380upx;
-	}
-	.tag {
-		position: absolute;
-	}
-	.body {
-		padding: 20upx;
-		padding-top: 180upx;
 	}
 </style>
