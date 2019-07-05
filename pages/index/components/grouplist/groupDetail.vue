@@ -1,17 +1,45 @@
 <template>
 	<view class="groupD">
 		<view class="header">
-			<view class="backgroup"></view>
 			<view class="photo">
 				<image src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3000033855,214344624&fm=26&gp=0.jpg"></image>
 			</view>
 			<view class="title">
-				<view>龙骑士</view>
-				<view style="font-size: 14px;">签名：不服就干</view>
+				<view class="name">玩玩圈</view>
+				<view class="tag">
+					<view>高手</view><view>180</view>
+				</view>
+				<view class="label">俺们瞧不起NBA！</view>
 			</view>
 		</view>
-		<view class="context"></view>
-		
+		<view class="info">
+			<view class="com">时间：2019.07.06 14:00-18:00</view>
+			<view class="com">付费方式：AA制</view>
+			<view class="com adr">场地：北京五棵松克拉克球场<text class="iconfont icon-location"></text></view>
+			<view class="persons">
+				<view>成员：</view>
+				<scroll-view scroll-x style="white-space:nowrap;padding: 20upx;">
+					<view style="display: flex;">
+						<view class="item" v-for="(item, index) in list" :key="index">
+							<view class="phone">
+								<image src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3000033855,214344624&fm=26&gp=0.jpg"></image>
+							</view>
+							<view class="name">Curry</view>
+						</view>
+					</view>
+				</scroll-view>
+			</view>
+			
+		</view>
+		<view class="person_msg">
+			<xyz-tab :tabList="tabList" @tabSelect="tabSelect"></xyz-tab>
+			<view class="panel" v-if="tabType === 'dong'">
+				ddddd
+			</view>
+			<view class="panel" v-if="tabType === 'ta'">
+				ttttt
+			</view>
+		</view>
 		
 		
 		
@@ -20,48 +48,110 @@
 
 <script>
 	import {uniTag } from '@dcloudio/uni-ui'
+	import xyzTab from "@/components/xyz-tab.vue"
 	export default {
 		components: {
-			uniTag 
+			uniTag,
+			xyzTab
 		},
 		data(){
 			return {
-				
+				tabList: [{
+					label: "动态",
+					value: "dong"
+				},{
+					label: "ta局",
+					value: "ta"
+				}],
+				tabType: "dong",
+				list: [{},{},{},{},{},{},{}]
+			}
+		},
+		methods:{
+			tabSelect(value){
+				this.tabType = value
 			}
 		}
 	}
 </script>
 
 <style>
-	.header{
-		width: 100%;
-		height: 240upx;
-		position: relative;
+	.header {
+		display: flex;
+		/* justify-content: space-between; */
+		padding: 40upx;
 	}
-	.backgroup{
-		height: 100%;
-		background-image: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561467102487&di=51a2165e4319ce957afd6b2ba0d90d99&imgtype=0&src=http%3A%2F%2Fpic31.nipic.com%2F20130705%2F9527735_231540074000_2.jpg");
-		background-size:cover;
-		/* opacity: 0.5; */
-	}
-	.header .photo {
-		position: absolute;
-		width: 200upx;
-		height: 200upx;
-		left: 100upx;
-		top: 140upx;
-		border: 20upx solid #dddd;
-		border-radius: 200upx;
+	.photo{
+		width: 160upx;
+		height: 160upx;
+		border-radius: 160upx;
 		overflow: hidden;
+		border: 6upx solid #dddd;
 	}
-	.photo image {
+	.photo image{
 		width: 100%;
 		height: 100%;
 	}
 	.title {
-		position: absolute;
-		height: 100upx;
+		padding-left: 40upx;
+	}
+	.title .name {
+		height: 80upx;
+		line-height: 80upx;
+		font-weight: bold;
+	}
+	.title .tag {
+		display: flex;
+	}
+	.tag view {
+		width: 100upx;
+		font-size: 14upx;
+		background-color: pink;
+		text-align: center;
+		border-radius: 20upx;
+		margin-right: 10upx;
+		height: 40upx;
+		line-height: 40upx;
+		color: #ffff;
+	}
+	.label {
+		color: #cccc;
+		font-size: 28upx;
+		padding-top: 10upx;
+	}
+	.info {
+		padding: 40upx;
+		font-size: 32upx;
+	}
+	.info .com {
+		height: 60upx;
 		line-height: 60upx;
-		left: 380upx;
+	} 
+	.adr {
+		display: flex;
+		justify-content: space-between;
+		padding-right: 20upx;
+	}
+	.persons .item {
+		width: 100upx;
+		margin-right: 10px;
+	}
+	.persons .phone {
+		width: 100upx;
+		height: 100upx;
+		overflow: hidden;
+		border-radius: 28upx;
+		border: 2upx solid #007AFF;
+	}
+	.persons .phone image{
+		width: 100%;
+		height: 100%;
+	}
+	.persons .item .name {
+		width: 100%;
+		text-align: center;
+		font-size: 24upx;
+		color: #ccc;
+		margin-top: 10upx;
 	}
 </style>
