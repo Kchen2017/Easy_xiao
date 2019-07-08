@@ -33,10 +33,13 @@
 		<view class="person_msg">
 			<xyz-tab :tabList="tabList" @tabSelect="tabSelect"></xyz-tab>
 			<view v-if="tabType === 'dong'">
-				ddddd
+				<dongtaiCom></dongtaiCom>
 			</view>
-			<view v-if="tabType === 'ta'">
-				ttttt
+			<view v-if="tabType === 'ta'" class="ta">
+				<groupListItem v-for="(item, index) in golist" 
+							:value="item"
+							:key="index" 
+							:bottomBorder="index !== (golist.length-1)"></groupListItem>
 			</view>
 		</view>
 		
@@ -48,13 +51,18 @@
 <script>
 	import {uniTag } from '@dcloudio/uni-ui'
 	import xyzTab from "@/components/xyz-tab.vue"
+	import dongtaiCom from "./dongtaiCom.vue"
+	import groupListItem from './grouplist/groupListItem.vue'
 	export default {
 		components: {
 			uniTag,
-			xyzTab
+			xyzTab,
+			dongtaiCom,
+			groupListItem
 		},
 		data(){
 			return {
+				golist: [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
 				tabList: [{
 					label: "动态",
 					value: "dong"
@@ -161,5 +169,8 @@
 	}
 	.opertor {
 		padding-top: 50upx;
+	}
+	.ta {
+		padding: 20upx;
 	}
 </style>

@@ -41,10 +41,7 @@
 					<text style="font-size: 12px; color: #ccc;">进圈<text class="iconfont icon-you2" style="font-size: 12px;"></text></text>
 				</view>
 				<scroll-view class="list" scroll-y="true">
-					<groupListItem v-for="(item, index) in golist" 
-							:value="item"
-							:key="index" 
-							:bottomBorder="index !== (golist.length-1)"></groupListItem>
+					<dongtaiCom></dongtaiCom>
 				</scroll-view>
 			</view>
 			<view class="king d_jump">
@@ -78,11 +75,13 @@
 	import swiperSilder from "../swiperSilder.vue"
 	import {uniPopup} from '@dcloudio/uni-ui'
 	import groupListItem from '../grouplist/groupListItem.vue'
+	import dongtaiCom from "../dongtaiCom.vue"
 	export default {
 		components: {
 			swiperSilder,
 			uniPopup,
-			groupListItem
+			groupListItem,
+			dongtaiCom
 		},
 		data(){
 			return {

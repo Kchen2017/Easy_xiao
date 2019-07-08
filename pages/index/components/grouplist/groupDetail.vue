@@ -18,9 +18,9 @@
 			<view class="com adr">场地：北京五棵松克拉克球场<text class="iconfont icon-location"></text></view>
 			<view class="persons">
 				<view>成员：</view>
-				<scroll-view scroll-x style="white-space:nowrap;padding: 20upx;">
-					<view style="display: flex;">
-						<view class="item" v-for="(item, index) in list" :key="index">
+				<scroll-view scroll-y class="scrollView">
+					<view class="srcollCon">
+						<view class="item" v-for="(item, index) in list" :key="index" @click="gotoPer">
 							<view class="phone">
 								<image src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3000033855,214344624&fm=26&gp=0.jpg"></image>
 							</view>
@@ -34,10 +34,7 @@
 		<view class="person_msg">
 			<xyz-tab :tabList="tabList" @tabSelect="tabSelect"></xyz-tab>
 			<view class="panel" v-if="tabType === 'dong'">
-				ddddd
-			</view>
-			<view class="panel" v-if="tabType === 'ta'">
-				ttttt
+				<dongtaiCom></dongtaiCom>
 			</view>
 		</view>
 		
@@ -49,27 +46,31 @@
 <script>
 	import {uniTag } from '@dcloudio/uni-ui'
 	import xyzTab from "@/components/xyz-tab.vue"
+	import dongtaiCom from "../dongtaiCom.vue"
 	export default {
 		components: {
 			uniTag,
-			xyzTab
+			xyzTab,
+			dongtaiCom
 		},
 		data(){
 			return {
 				tabList: [{
 					label: "动态",
 					value: "dong"
-				},{
-					label: "ta局",
-					value: "ta"
 				}],
 				tabType: "dong",
-				list: [{},{},{},{},{},{},{}]
+				list: [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]
 			}
 		},
 		methods:{
 			tabSelect(value){
 				this.tabType = value
+			},
+			gotoPer(){
+				uni.navigateTo({
+					url: "../friends_per"
+				})
 			}
 		}
 	}
@@ -153,5 +154,17 @@
 		font-size: 24upx;
 		color: #ccc;
 		margin-top: 10upx;
+	}
+	.scrollView {
+		white-space:nowrap;
+		padding: 20upx;
+		height: 400upx;
+	}
+	.srcollCon {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.srcollCon .item {
+		margin-bottom:20upx ;
 	}
 </style>
