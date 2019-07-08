@@ -16,19 +16,46 @@
 		<view class="operThree">
 			<view class="item">
 				<text class="iconfont icon-shoucang1"></text>
-				<view>收藏</view>
+				<view class="marTop">收藏</view>
 			</view>
 			<view class="item">
 				<text class="iconfont icon-shoucang1"></text>
-				<view>关注</view>
+				<view class="marTop">关注</view>
 			</view>
 			<view class="item">
 				<text class="iconfont icon-shoucang1"></text>
-				<view>浏览</view>
+				<view class="marTop">浏览</view>
 			</view>
 		</view>
 		<view class="operator">
-			
+			<view class="item itemborder">
+				<view class="tit">
+					<text class="iconfont icon-shoucang1"></text>
+					<view>订单</view>
+				</view>
+				<text class="iconfont icon-jiantou"></text>
+			</view>
+			<view class="item itemborder">
+				<view class="tit">
+					<text class="iconfont icon-shoucang1"></text>
+					<view>积分</view>
+				</view>
+				<text class="iconfont icon-jiantou"></text>
+			</view>
+			<view class="item itemborder">
+				<view class="tit">
+					<text class="iconfont icon-shoucang1"></text>
+					<view>钱包</view>
+				</view>
+				<text class="iconfont icon-jiantou"></text>
+			</view>
+			<view class="item">
+				<view class="tit">
+					<text class="iconfont icon-shoucang1"></text>
+					<view>设置</view>
+				</view>
+				<text class="iconfont icon-jiantou"></text>
+			</view>
 		</view>
 	</view>
 </template>
@@ -112,5 +139,42 @@
 	}
 	.marBtom {
 		margin-bottom: 20upx;
+	}
+	
+	.operThree{
+		margin-top: 60upx;
+		border-radius: 40upx;
+		box-shadow: 0px 0px 60upx #ddd;
+	}
+	.operator {
+		margin-top: 50upx;
+		font-size: 28upx;
+	}
+	.operator .item {
+		display: flex;
+		justify-content: space-between;
+		position: relative;
+		height: 100upx;
+		line-height: 100upx;
+	}
+	.operator .itemborder:before {
+		position: absolute;
+		height: 0;
+		width: 600upx;
+		bottom: 0;
+		left: 56upx;
+		border: 1upx solid #f0f0f0;
+		content: "";
+	}
+	.operator .item .tit {
+		width: 120upx;
+		display: flex;
+		justify-content: space-between;
+	}
+	.operator .item .tit .iconfont {
+		font-size: 42upx;
+	}
+	.marTop {
+		margin-top: 10upx;
 	}
 </style>
