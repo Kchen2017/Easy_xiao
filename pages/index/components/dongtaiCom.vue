@@ -15,7 +15,7 @@
 				</view>
 				<view class="commit">
 					<text>一小时前</text>
-					<text class="iconfont icon-qiehuan"></text>
+					<text class="iconfont icon-gengduo2"></text>
 				</view>
 				<view class="zanzan">
 					<text class="iconfont icon-shoucang diandian"></text> 
@@ -103,7 +103,7 @@
     }
     
     .quanItem .quanCon .diandian{
-        font-size: 32upx;
+        font-size: 28upx;
         color: #d2578d;
     }
     .quanItem .quanCon .pinlun{

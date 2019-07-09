@@ -80,13 +80,23 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-//
-//
-//
-//
-//
-//
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var dongtai = function dongtai() {return __webpack_require__.e(/*! import() | pages/index/components/dongtaiCom */ "pages/index/components/dongtaiCom").then(__webpack_require__.bind(null, /*! ../index/components/dongtaiCom.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages/index/components/dongtaiCom.vue"));};var _default =
 
+
+
+
+
+
+
+{
+  components: {
+    dongtai: dongtai },
+
+  data: function data() {
+    return {};
+
+
+  } };exports.default = _default;
 
 /***/ }),
 

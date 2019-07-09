@@ -10,49 +10,56 @@
 					<view class="bor">粉丝11</view>
 					<view>关注22</view>
 				</view>
-				<view class="myweb">个人主页<text class="iconfont icon-jiantou"></text></view>
+				<view @click="gotoper" class="myweb">个人主页<text class="iconfont icon-jiantou"></text></view>
 			</view>
 		</view>
 		<view class="operThree">
 			<view class="item">
-				<text class="iconfont icon-shoucang1"></text>
+				<text class="iconfont icon-shoucang3"></text>
 				<view class="marTop">收藏</view>
 			</view>
 			<view class="item">
-				<text class="iconfont icon-shoucang1"></text>
+				<text class="iconfont icon-shoucang2"></text>
 				<view class="marTop">关注</view>
 			</view>
 			<view class="item">
-				<text class="iconfont icon-shoucang1"></text>
+				<text class="iconfont icon-liulanjilu1"></text>
 				<view class="marTop">浏览</view>
 			</view>
 		</view>
 		<view class="operator">
 			<view class="item itemborder">
 				<view class="tit">
-					<text class="iconfont icon-shoucang1"></text>
+					<text class="iconfont icon-layer"></text>
 					<view>订单</view>
 				</view>
 				<text class="iconfont icon-jiantou"></text>
 			</view>
 			<view class="item itemborder">
 				<view class="tit">
-					<text class="iconfont icon-shoucang1"></text>
+					<text class="iconfont icon-jifen2"></text>
 					<view>积分</view>
 				</view>
 				<text class="iconfont icon-jiantou"></text>
 			</view>
 			<view class="item itemborder">
 				<view class="tit">
-					<text class="iconfont icon-shoucang1"></text>
+					<text class="iconfont icon-qianbao1"></text>
 					<view>钱包</view>
 				</view>
 				<text class="iconfont icon-jiantou"></text>
 			</view>
 			<view class="item">
 				<view class="tit">
-					<text class="iconfont icon-shoucang1"></text>
+					<text class="iconfont icon-shezhi1"></text>
 					<view>设置</view>
+				</view>
+				<text class="iconfont icon-jiantou"></text>
+			</view>
+			<view class="item">
+				<view class="tit">
+					<text class="iconfont icon-a069"></text>
+					<view>客服</view>
 				</view>
 				<text class="iconfont icon-jiantou"></text>
 			</view>
@@ -61,6 +68,20 @@
 </template>
 
 <script>
+	export default {
+		data(){
+			return {
+				
+			}
+		},
+		methods: {
+			gotoper(){
+				uni.navigateTo({
+					url: "../index/components/friends_per"
+				})
+			}
+		}
+	}
 </script>
 
 <style>

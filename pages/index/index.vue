@@ -1,9 +1,9 @@
 <template>
 	<view class="index_con">
-		<uni-nav-bar fixed="true">
+		<uni-nav-bar fixed="true" :backgroundColor="'#5eaef3'" :color="'#fff'">
 			<view class="search">
 				<input type="text" placeholder="你想玩啥" />
-				<text class="iconfont icon-sousuo1"></text>
+				<text class="iconfont icon-sousuo1" style="color: #000000;"></text>
 			</view>
 			<view @click="goCity" slot="left" class="topBarCen">
 				<text class="iconfont icon-location">{{city}}</text>
@@ -37,17 +37,17 @@
 					<view class="go_swipLabel">网球</view>
 				</view>
 				<view @click="goToFilter('tennis')">
-					<text class="iconfont icon-bingpangqiu"></text>
+					<text class="iconfont icon-yingyu-cuotiben"></text>
 					<view class="go_swipLabel">英语角</view>
 				</view>
 			</view>
 			<!-- 服务类型 -->
 			<view class="servers_type" style="margin-bottom: 40upx;">
-				<view class="typeItem">
+				<view class="typeItem" @click="selecttypeFun('ground')">
 					<view>我的地盘我做主</view>
 					<view class="btn">立即找场</view>
 				</view>
-				<view class="typeItem">
+				<view class="typeItem" @click="selecttypeFun('group')">
 					<view>无兄弟不运动</view>
 					<view class="btn">搜索运动局</view>
 				</view>

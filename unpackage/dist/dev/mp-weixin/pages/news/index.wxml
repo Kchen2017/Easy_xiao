@@ -1,1 +1,1 @@
-<view>news</view>
+<view><dongtai vue-id="1" bind:__l="__l"></dongtai></view>

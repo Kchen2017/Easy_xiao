@@ -5861,6 +5861,23 @@ createPage(_index.default);
 
 /***/ }),
 
+/***/ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/main.js?{\"page\":\"pages%2Findex%2Fcomponents%2Ffriends_per\"}":
+/*!****************************************************************************************************************!*\
+  !*** /Users/chenyankun/Documents/myproject/easyDo/main.js?{"page":"pages%2Findex%2Fcomponents%2Ffriends_per"} ***!
+  \****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _friends_per = _interopRequireDefault(__webpack_require__(/*! ./pages/index/components/friends_per.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages/index/components/friends_per.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_friends_per.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
 /***/ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/main.js?{\"page\":\"pages%2Findex%2Fcomponents%2Fgroundlist%2FgroundDetail\"}":
 /*!******************************************************************************************************************************!*\
   !*** /Users/chenyankun/Documents/myproject/easyDo/main.js?{"page":"pages%2Findex%2Fcomponents%2Fgroundlist%2FgroundDetail"} ***!
@@ -5891,6 +5908,23 @@ createPage(_groundDetail.default);
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
 var _groundlist = _interopRequireDefault(__webpack_require__(/*! ./pages/index/components/groundlist/groundlist.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages/index/components/groundlist/groundlist.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_groundlist.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
+/***/ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/main.js?{\"page\":\"pages%2Findex%2Fcomponents%2Fgrouplist%2FgroupDetail\"}":
+/*!****************************************************************************************************************************!*\
+  !*** /Users/chenyankun/Documents/myproject/easyDo/main.js?{"page":"pages%2Findex%2Fcomponents%2Fgrouplist%2FgroupDetail"} ***!
+  \****************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _groupDetail = _interopRequireDefault(__webpack_require__(/*! ./pages/index/components/grouplist/groupDetail.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages/index/components/grouplist/groupDetail.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_groupDetail.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
 
 /***/ }),

@@ -10,7 +10,7 @@
 				<text class="iconfont icon-dingwei">北京市海淀区五棵松</text>
 			</view>
 			<view>
-				<text class="iconfont icon-you">线上预定</text>
+				<text class="iconfont icon-yuding">线上预定</text>
 				<text style="font-size: 14px;">￥20/人</text>
 			</view>
 		</view>

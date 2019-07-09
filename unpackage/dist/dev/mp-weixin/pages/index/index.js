@@ -214,6 +214,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 {
   components: { uniNavBar: uniNavBar, xyDialog: xyDialog, groundlistItem: groundlistItem, groupListItem: groupListItem, swiperSilder: swiperSilder },
   data: function data() {

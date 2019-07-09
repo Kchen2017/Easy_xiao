@@ -8,7 +8,9 @@
     "pages/index/components/grouplist/grouplist",
     "pages/index/components/selectCity",
     "pages/index/components/groundlist/groundDetail",
-    "pages/index/components/zugejupage/zugejupage"
+    "pages/index/components/zugejupage/zugejupage",
+    "pages/index/components/grouplist/groupDetail",
+    "pages/index/components/friends_per"
   ],
   "subPackages": [],
   "window": {
