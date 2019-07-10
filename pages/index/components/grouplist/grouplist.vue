@@ -36,63 +36,89 @@
 				golist: [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
 				menuList: [
 					{
-						'title': '类型',
-						'detailTitle': '子标题1',
-						'isMutiple': true,
-						'key': 'key_1',
-						'detailList': [
-							{
-								'title': '不限',
-								'value': ''
-							},
-							{
-								'title': '条件_1_1',
-								'value': 'val_1_1'
-							},
-							{
-								'title': '条件1_2',
-								'value': 'val_1_2'
-							}
-						]
-					},
-					{
-						'title': '菜单2',
-						'detailTitle': '子标题2',
-						'key': 'key_2',
+						'title': '运动类型',
+						'detailTitle': '请选择想玩的项目',
 						'isMutiple': false,
+						'key': 'sportType',
+						'reflexTitle': true,
 						'detailList': [
 							{
 								'title': '不限',
 								'value': ''
 							},
 							{
-								'title': '条件_2_1',
-								'value': 'val_2_1'
+								'title': '篮球',
+								'value': 'basketball'
 							},
 							{
-								'title': '条件_2_2',
-								'value': 'val_2_2'
+								'title': '足球',
+								'value': 'footBall'
+							},
+							{
+								'title': '羽毛球',
+								'value': 'badminton'
+							},
+							{
+								'title': '网球',
+								'value': 'tennis'
+							},
+							{
+								'title': '英语角',
+								'value': 'enCorner'
 							}
 						]
 					},
 					{
-						'title': '距离',
-						'detailTitle': '子标题3',
-						'key': 'key_3',
+						'title': '收费方式',
+						'detailTitle': '输了爬起来赢回来',
+						'key': 'payType',
+						'isMutiple': false,
+						'reflexTitle': true,
+						'detailList': [
+							{
+								'title': '不限',
+								'value': ''
+							},
+							{
+								'title': '免费',
+								'value': 'free'
+							},
+							{
+								'title': 'AA制',
+								'value': 'AA'
+							},
+							{
+								'title': '竞赛（谁输谁付）',
+								'value': 'race'
+							}
+						]
+					},
+					{
+						'title': '排列方式',
+						'detailTitle': '请选择排列方式',
+						'key': 'sortType',
 						'isSort': true,
 						'isMutiple': false,
 						'detailList': [
 							{
-								'title': '条件_3_1',
-								'value': 'val_3_1'
+								'title': '距离优先',
+								'value': 'distance'
 							},
 							{
-								'title': '条件_3_2',
-								'value': 'val_3_2'
+								'title': '人气优先',
+								'value': 'mood'
 							},
 							{
-								'title': '条件_3_3',
-								'value': 'val_3_3'
+								'title': '环境优先',
+								'value': 'environment'
+							},
+							{
+								'title': '低价优先',
+								'value': 'highPay'
+							},
+							{
+								'title': '高价优先',
+								'value': 'lowPay'
 							}
 						]
 					}
