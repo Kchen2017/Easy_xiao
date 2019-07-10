@@ -2,7 +2,7 @@
 	<view class="city">
 		<view class="search">
 			<input type="text" placeholder="输入城市名进行搜索" />
-			<text class="iconfont icon-sousuo-m"></text>
+			<text class="iconfont icon-sousuo1"></text>
 		</view>
 		<view class="locale">
 			<view class="title">当前城市</view>
@@ -103,7 +103,7 @@
 		width: 84%;
 		margin-left: 12%;
 	}
-	.search .icon-sousuo-m{
+	.search .iconfont{
 		position: absolute;
 		left: 10upx;
 		top: 18upx;

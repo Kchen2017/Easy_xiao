@@ -66,6 +66,12 @@
 				"navigationBarTitleText": "好友信息"
 			}
         }
+        ,{
+            "path" : "pages/index/components/searchPage/searchPage",
+            "style" : {
+				"navigationBarTitleText": "搜索"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

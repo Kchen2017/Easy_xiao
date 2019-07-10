@@ -1,8 +1,9 @@
 <template>
 	<view class="index_con">
 		<uni-nav-bar fixed="true" :backgroundColor="'#5eaef3'" :color="'#fff'">
-			<view class="search">
-				<input type="text" placeholder="你想玩啥" />
+			<view @click="gotoSearch" class="search">
+				<!-- <input type="text" placeholder="你想玩啥" /> -->
+				<text class="input">你想玩啥</text>
 				<text class="iconfont icon-sousuo1" style="color: #000000;"></text>
 			</view>
 			<view @click="goCity" slot="left" class="topBarCen">
@@ -166,6 +167,13 @@
 					animationType: 'pop-in',
 					animationDuration: 200
 				})
+			},
+			gotoSearch(){
+				uni.navigateTo({
+					url: "./components/searchPage/searchPage",
+					animationType: 'pop-in',
+					animationDuration: 200
+				})
 			}
 		}
 	}
@@ -186,10 +194,11 @@
 		border-radius: 22px;
 		position: relative;
 	}
-	.index_con .search input{
-		height: 100%;
-		width: 84%;
-		margin-left: 12%;
+	.index_con .search .input{
+		color: #878484;
+		position: absolute;
+		top: -12upx;
+		left: 70upx;
 	}
 	.index_con .icon-sousuo1{
 		position: absolute;
