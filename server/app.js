@@ -35,9 +35,11 @@ app.use(session({
     },
 }));
 
-var goWhereApi = require('./api/goWhere')
-var myApi = require('./api/my')
-var withWhoApi = require('./api/withWho')
+var userApi = require('./api/user')
+var commonApi = require('./api/common')
+var groundApi = require('./api/ground')
+var groupApi = require('./api/group')
+var dongTaiApi = require('./api/dongTai')
 
 
 
@@ -69,13 +71,17 @@ app.use("/login", function(req, res, next){
 
 
 
-
-app.use("/goWhere", goWhereApi)
-app.use("/my", myApi)
-app.use("/withWho", withWhoApi)
+app.use("/user", userApi)
+app.use("/common", commonApi)
+app.use("/ground", groundApi)
+app.use("/group", groupApi)
+app.use("/dongTai", dongTaiApi)
 
 
 
 app.listen(3090, function () {
     console.log('server运行在 http://127.0.0.1:3090');
 });
+
+
+
