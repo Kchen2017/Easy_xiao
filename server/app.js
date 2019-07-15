@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 
-var db = require('./baseData/mysql')
+var db = require('./baseData/mysqlutil')
 var base = require('./utils/base')
 var fromQueryOrBody = base.fromQueryOrBody
 
@@ -44,29 +44,16 @@ var dongTaiApi = require('./api/dongTai')
 
 
 app.use("/login", function(req, res, next){
-    var userPin = fromQueryOrBody(req, "userPin")
-    var password = fromQueryOrBody(req, "password")
+    var userPin = fromQueryOrBody(req, "userPin") || "admin"
+    var password = fromQueryOrBody(req, "password") ||  "www" 
 
-    var filters = {
-        userPin: userPin,
-        password: password
-    }
-    console.log(filters)
-    db.searchData("userList", filters).then(res => {
-        if(res){
-            res.json({
-                code: 200,
-                _Easy: 1
-            });
-        }else{
-            res.json({
-                code: 200,
-                _Easy: 0
-            });
-        }
-    }).catch(err => {
-        res.json({status:-1,msg:err});
+    var sql = "SELECT * FROM userList WHERE userPin = ? AND password= ?"
+    var params = [userPin, password]
+
+    db.query(sql, params).then(res => {
+        console.log(res)
     })
+    
 })
 
 
