@@ -9,6 +9,10 @@ var session = require('express-session');
 var db = require('./baseData/mysqlutil')
 var base = require('./utils/base')
 var fromQueryOrBody = base.fromQueryOrBody
+var path = require('path')
+var logger_tag = path.basename(__filename).split(".")[0];
+var logger = require('./utils/logger').getLogger(logger_tag);
+var util = require('util');
 
 app.use("*", (req, res, next)=>{
     // 设置请求头为允许跨域
@@ -50,8 +54,17 @@ app.use("/login", function(req, res, next){
     var sql = "SELECT * FROM userList WHERE userPin = ? AND password= ?"
     var params = [userPin, password]
 
-    db.query(sql, params).then(res => {
-        console.log(res)
+    db.query(sql, params).then(result => {
+        var islogin = false
+        if(result.length){
+            islogin = true
+        }
+        res.json({
+            islogin: islogin,
+            code: 200
+        });
+    }).catch(err => {
+        res.json({status:-1,msg:err});
     })
     
 })
