@@ -5,7 +5,25 @@ var db = require('../baseData/mysqlutil')
 var base = require('../utils/base')
 var fromQueryOrBody = base.fromQueryOrBody
 
-router.all("/getUserRegion", function(res, req, next){
+router.all("/regitryUser", function(req, res, next){
+    var tableData = fromQueryOrBody(req, "tableData")
+
+    var tableData = tableData
+
+    var sql = "INSERT INTO userList SET ?"
+    var params = [tableData]
+
+    db.query(sql, params).then(result => {
+        res.json({
+            code: 200,
+            msg: "success"
+        });
+    }).catch(err => {
+        res.json({status:-1,msg:err});
+    })
+})
+
+router.all("/getUserRegion", function(req, res, next){
     var userPin = fromQueryOrBody(req, "userPin")
 
     var sql = "SELECT * FROM userList WHERE userPin = ?"
@@ -22,7 +40,7 @@ router.all("/getUserRegion", function(res, req, next){
     })
 })
 
-router.all("/setUserRegion", function(res, req, next){
+router.all("/setUserRegion", function(req, res, next){
     var userPin = fromQueryOrBody(req, "userPin")
     var regionId = fromQueryOrBody(req, "regionId")
 
