@@ -58,12 +58,14 @@
 			</view>
 			
 		</view>
-		<view class="btn">
-			<text @click="gotoZu" class="zu">组个局</text>
-			<text @click="jump(0)">局</text>
-			<text @click="jump(1)">圈</text>
-			<text @click="jump(2)">榜</text>
-		</view>
+		<uni-fab
+            :pattern="pattern"
+            :content="content"
+            horizontal="right"	
+            vertical="bottom"
+            direction="horizontal"
+            @trigger="trigger"
+        ></uni-fab>
 		<view v-if="popupshow" class="popup">
 			<text class="iconfont icon-shoucang-copy-copy"></text><br>
 			<text>{{popupMsg}}</text>
@@ -76,12 +78,14 @@
 	import {uniPopup} from '@dcloudio/uni-ui'
 	import groupListItem from '../grouplist/groupListItem.vue'
 	import dongtaiCom from "../dongtaiCom.vue"
+	import uniFab from '@/components/uni-fab.vue';
 	export default {
 		components: {
 			swiperSilder,
 			uniPopup,
 			groupListItem,
-			dongtaiCom
+			dongtaiCom,
+			uniFab
 		},
 		data(){
 			return {
@@ -98,6 +102,38 @@
 				golist: [{},{},{},{}],
 				latitude: 39.909,
 				longitude: 116.39742,
+				pattern: {
+					color: '#7A7E83',
+					backgroundColor: '#fff',
+					selectedColor: '#5eaef3',
+					buttonColor:"#5eaef3"
+				},
+				content: [
+					{
+						iconPath: '/static/zu1.png',
+						selectedIconPath: '/static/zu2.png',
+						text: '组个局',
+						active: false
+					},
+					{
+						iconPath: '/static/ju1.png',
+						selectedIconPath: '/static/ju2.png',
+						text: '局',
+						active: false
+					},
+					{
+						iconPath: '/static/quan1.png',
+						selectedIconPath: '/static/quan2.png',
+						text: '圈子',
+						active: false
+					},
+					{
+						iconPath: '/static/king1.png',
+						selectedIconPath: '/static/king2.png',
+						text: '王者榜',
+						active: false
+					}
+				]
 			}
 		},
 		methods: {
@@ -151,7 +187,22 @@
 				uni.navigateTo({
 					url: "../zugejupage/zugejupage"
 				})
-			}
+			},
+			trigger(e) {
+            console.log(e);
+            this.content[e.index].active = !e.item.active;
+            uni.showModal({
+                title: '提示',
+                content: `您${this.content[e.index].active?'选中了':'取消了'}${e.item.text}`,
+                success: function(res) {
+                    if (res.confirm) {
+                        console.log('用户点击确定');
+                    } else if (res.cancel) {
+                        console.log('用户点击取消');
+                    }
+                }
+            });
+        }
 		},
 		watch:{
 			savein: function(val){

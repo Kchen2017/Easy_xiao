@@ -26,7 +26,7 @@
 <style>
 	.switch {
 		position: fixed;
-		top: 1180upx;
+		top: 960upx;
 		left: 600upx;
 		width: 120upx;
 		height: 120upx;
