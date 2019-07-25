@@ -10,7 +10,7 @@
 				<text class="iconfont icon-location">{{city}}</text>
 			</view>
 			<view slot="right" class="topBarCen">
-				<text class="iconfont icon-saoma"></text>
+				<text class="iconfont icon-saoma" @click="saomaFun"></text>
 			</view>
 		</uni-nav-bar>
 		<view class="index_body">
@@ -116,6 +116,7 @@
 	import groundlistItem from './components/groundlist/groundListItem.vue'
 	import groupListItem from './components/grouplist/groupListItem.vue'
 	import swiperSilder from "./components/swiperSilder.vue"
+	import userApi from "../../common/api/userApi"
 	export default {
 		components: {uniNavBar, xyDialog, groundlistItem, groupListItem, swiperSilder},
 		data() {
@@ -174,6 +175,14 @@
 					animationType: 'pop-in',
 					animationDuration: 200
 				})
+			},
+			saomaFun(){
+				uni.scanCode({
+					success: function (res) {
+						console.log('条码类型：' + res.scanType);
+						console.log('条码内容：' + res.result);
+					}
+				});
 			}
 		}
 	}

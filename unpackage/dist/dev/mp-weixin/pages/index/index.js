@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniNavBar = function uniNavBar() {return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/components/uni-nav-bar/uni-nav-bar.vue"));};var xyDialog = function xyDialog() {return __webpack_require__.e(/*! import() | components/xy-dialog */ "components/xy-dialog").then(__webpack_require__.bind(null, /*! @/components/xy-dialog.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/components/xy-dialog.vue"));};var groundlistItem = function groundlistItem() {return __webpack_require__.e(/*! import() | pages/index/components/groundlist/groundListItem */ "pages/index/components/groundlist/groundListItem").then(__webpack_require__.bind(null, /*! ./components/groundlist/groundListItem.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages/index/components/groundlist/groundListItem.vue"));};var groupListItem = function groupListItem() {return __webpack_require__.e(/*! import() | pages/index/components/grouplist/groupListItem */ "pages/index/components/grouplist/groupListItem").then(__webpack_require__.bind(null, /*! ./components/grouplist/groupListItem.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages/index/components/grouplist/groupListItem.vue"));};var swiperSilder = function swiperSilder() {return __webpack_require__.e(/*! import() | pages/index/components/swiperSilder */ "pages/index/components/swiperSilder").then(__webpack_require__.bind(null, /*! ./components/swiperSilder.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages/index/components/swiperSilder.vue"));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -215,6 +215,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+var _userApi = _interopRequireDefault(__webpack_require__(/*! ../../common/api/userApi */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/common/api/userApi.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var uniNavBar = function uniNavBar() {return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/components/uni-nav-bar/uni-nav-bar.vue"));};var xyDialog = function xyDialog() {return __webpack_require__.e(/*! import() | components/xy-dialog */ "components/xy-dialog").then(__webpack_require__.bind(null, /*! @/components/xy-dialog.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/components/xy-dialog.vue"));};var groundlistItem = function groundlistItem() {return __webpack_require__.e(/*! import() | pages/index/components/groundlist/groundListItem */ "pages/index/components/groundlist/groundListItem").then(__webpack_require__.bind(null, /*! ./components/groundlist/groundListItem.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages/index/components/groundlist/groundListItem.vue"));};var groupListItem = function groupListItem() {return __webpack_require__.e(/*! import() | pages/index/components/grouplist/groupListItem */ "pages/index/components/grouplist/groupListItem").then(__webpack_require__.bind(null, /*! ./components/grouplist/groupListItem.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages/index/components/grouplist/groupListItem.vue"));};var swiperSilder = function swiperSilder() {return __webpack_require__.e(/*! import() | pages/index/components/swiperSilder */ "pages/index/components/swiperSilder").then(__webpack_require__.bind(null, /*! ./components/swiperSilder.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages/index/components/swiperSilder.vue"));};var _default =
 {
   components: { uniNavBar: uniNavBar, xyDialog: xyDialog, groundlistItem: groundlistItem, groupListItem: groupListItem, swiperSilder: swiperSilder },
   data: function data() {
@@ -265,6 +267,21 @@ __webpack_require__.r(__webpack_exports__);
         url: "./components/selectCity?city=" + this.city,
         animationType: 'pop-in',
         animationDuration: 200 });
+
+    },
+    gotoSearch: function gotoSearch() {
+      uni.navigateTo({
+        url: "./components/searchPage/searchPage",
+        animationType: 'pop-in',
+        animationDuration: 200 });
+
+    },
+    saomaFun: function saomaFun() {
+      uni.scanCode({
+        success: function success(res) {
+          console.log('条码类型：' + res.scanType);
+          console.log('条码内容：' + res.result);
+        } });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))

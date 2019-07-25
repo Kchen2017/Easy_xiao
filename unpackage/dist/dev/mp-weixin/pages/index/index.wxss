@@ -14,10 +14,11 @@
 	        border-radius: 22px;
 	position: relative;
 }
-.index_con .search input{
-	height: 100%;
-	width: 84%;
-	margin-left: 12%;
+.index_con .search .input{
+	color: #878484;
+	position: absolute;
+	top: -12rpx;
+	left: 70rpx;
 }
 .index_con .icon-sousuo1{
 	position: absolute;

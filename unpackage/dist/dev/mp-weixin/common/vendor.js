@@ -1,5 +1,172 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],{
 
+/***/ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/common/api/userApi.js":
+/*!**************************************************************************!*\
+  !*** /Users/chenyankun/Documents/myproject/easyDo/common/api/userApi.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _request = _interopRequireDefault(__webpack_require__(/*! ../util/request */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/common/util/request.js"));
+var _apiTools = __webpack_require__(/*! ../util/apiTools */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/common/util/apiTools.js");function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default = _defineProperty({
+
+
+  //获取用户地域
+  getUserRegion: function getUserRegion() {var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var uri = "/user/getUserRegion" + (0, _apiTools.encode_url_params)(params);
+    return _request.default.getRequest(uri, options);
+  } }, "getUserRegion", function getUserRegion()
+{var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var uri = "/user/setUserRegion?t=" + new Date();
+  return _request.default.postRequest(uri, JSON.stringify(params), options);
+});exports.default = _default;
+
+/***/ }),
+
+/***/ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/common/util/apiTools.js":
+/*!****************************************************************************!*\
+  !*** /Users/chenyankun/Documents/myproject/easyDo/common/util/apiTools.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.encode_url_params = encode_url_params;exports.monitor_encodeUrl_params = monitor_encodeUrl_params;exports.frontPagination = frontPagination;exports.filterCurItem = filterCurItem;exports.getCookie = getCookie;exports.isNullObject = isNullObject;function encode_url_params(params) {
+  if (!params._t) {
+    params._t = +new Date();
+  }
+  return "?" + Object.keys(params).map(function (k) {return "".concat(encodeURIComponent(k), "=").concat(encodeURIComponent(params[k]));}).join('&');
+}
+
+function monitor_encodeUrl_params(params) {
+  var paramsObj = params.params;
+  var result = "";
+  result += 'params' + '=' + JSON.stringify(paramsObj);
+  return result ? "?" + result : "";
+}
+
+//前端分页
+//data : 列表页后端返回的原始数据
+//currentPage : 选中的页码
+//pageSize : 每页显示的数量
+function frontPagination(data, currentPage, pageSize) {
+  var result = [];
+  var start = (currentPage - 1) * pageSize;
+  var end = currentPage * pageSize;
+  var arrayLength = data.length;
+  for (var i = start; i < end && i < arrayLength; i++) {
+    result.push(data[i]);
+  }
+  return result;
+}
+//状态筛选
+// val : 状态码 arr中取值status
+// obj : 传入总数据 arr格式
+function filterCurItem(val, obj) {
+  var curEls = [];
+  for (var i = 0; i < obj.length; i++) {
+    if (val == 0) {
+      return obj;
+    } else if (val == obj[i].status) {
+      curEls.push(obj[i]);
+    }
+  }
+  return curEls;
+
+}
+
+// for get Cookie
+function escapeRe(str) {
+  return str.replace(/[.*+?^$|[\](){}\\-]/g, '\\$&');
+}
+
+function getCookie(key) {
+  if (typeof key != 'string' || key == '') {
+    return null;
+  }
+  var reKey = new RegExp("(?:^|; )".concat(escapeRe(key), "(?:=([^;]*))?(?:;|$)"));
+  var match = reKey.exec(document.cookie);
+
+  if (match == null) {
+    return null;
+  }
+
+  return match[1];
+}
+
+function isNullObject(obj) {
+  if (Object.prototype.toString.call(obj) !== '[object Object]' &&
+  obj !== null) {
+    throw TypeError('isNullObject: arg must bu pure obj');
+  }
+  return Object.keys(obj).length <= 0;
+}
+
+/***/ }),
+
+/***/ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/common/util/request.js":
+/*!***************************************************************************!*\
+  !*** /Users/chenyankun/Documents/myproject/easyDo/common/util/request.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+
+  getRequest: function getRequest(url) {var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    url = 'http://127.0.0.1:3090' + url;
+    var reqOptions = {};
+    reqOptions.headers = options.headers || {};
+    reqOptions.headers = Object.assign({
+      'Content-Type': 'application/json',
+      'Authorization': 'Tenant=5678efgh Credential=5678efgh/credential-scope',
+      'Accept': 'application/json' },
+    reqOptions.headers);
+    reqOptions.credentials = 'same-origin';
+
+    return new Promise(function (resolve, reject) {
+      fetch(url, reqOptions).
+      then(function (response) {
+        return response.json();
+      }).
+      then(function (myJson) {
+        resolve(myJson);
+      }).catch(function (err) {
+        reject(err);
+      });
+    });
+  },
+  postRequest: function postRequest(url, params) {var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    url = 'http://127.0.0.1:3090' + url;
+    var reqOptions = {};
+    reqOptions.headers = options.headers || {};
+    reqOptions.headers = Object.assign({
+      'Content-Type': 'application/json',
+      'Authorization': 'Tenant=5678efgh Credential=5678efgh/credential-scope',
+      'Accept': 'application/json' },
+    reqOptions.headers);
+    reqOptions.method = "POST";
+    reqOptions.credentials = 'same-origin';
+    reqOptions.body = params;
+
+    return new Promise(function (resolve, reject) {
+      fetch(url, reqOptions).
+      then(function (response) {
+        return response.json();
+      }).
+      then(function (myJson) {
+        resolve(myJson);
+      }).catch(function (err) {
+        reject(err);
+      });
+    });
+
+  } };exports.default = _default;
+
+/***/ }),
+
 /***/ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/components/lee-select/common/city.js":
 /*!*****************************************************************************************!*\
   !*** /Users/chenyankun/Documents/myproject/easyDo/components/lee-select/common/city.js ***!
@@ -5946,6 +6113,23 @@ createPage(_grouplist.default);
 
 /***/ }),
 
+/***/ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/main.js?{\"page\":\"pages%2Findex%2Fcomponents%2FsearchPage%2FsearchPage\"}":
+/*!****************************************************************************************************************************!*\
+  !*** /Users/chenyankun/Documents/myproject/easyDo/main.js?{"page":"pages%2Findex%2Fcomponents%2FsearchPage%2FsearchPage"} ***!
+  \****************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _searchPage = _interopRequireDefault(__webpack_require__(/*! ./pages/index/components/searchPage/searchPage.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages/index/components/searchPage/searchPage.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_searchPage.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
 /***/ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/main.js?{\"page\":\"pages%2Findex%2Fcomponents%2FselectCity\"}":
 /*!***************************************************************************************************************!*\
   !*** /Users/chenyankun/Documents/myproject/easyDo/main.js?{"page":"pages%2Findex%2Fcomponents%2FselectCity"} ***!
@@ -5993,6 +6177,57 @@ createPage(_zugejupage.default);
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
 var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/index/index.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages/index/index.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_index.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
+/***/ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/main.js?{\"page\":\"pages%2Flogin%2Fforget\"}":
+/*!**********************************************************************************************!*\
+  !*** /Users/chenyankun/Documents/myproject/easyDo/main.js?{"page":"pages%2Flogin%2Fforget"} ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _forget = _interopRequireDefault(__webpack_require__(/*! ./pages/login/forget.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages/login/forget.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_forget.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
+/***/ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/main.js?{\"page\":\"pages%2Flogin%2Flogin\"}":
+/*!*********************************************************************************************!*\
+  !*** /Users/chenyankun/Documents/myproject/easyDo/main.js?{"page":"pages%2Flogin%2Flogin"} ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _login = _interopRequireDefault(__webpack_require__(/*! ./pages/login/login.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages/login/login.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_login.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
+/***/ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/main.js?{\"page\":\"pages%2Flogin%2Fregister\"}":
+/*!************************************************************************************************!*\
+  !*** /Users/chenyankun/Documents/myproject/easyDo/main.js?{"page":"pages%2Flogin%2Fregister"} ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _register = _interopRequireDefault(__webpack_require__(/*! ./pages/login/register.vue */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/pages/login/register.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_register.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
 
 /***/ }),

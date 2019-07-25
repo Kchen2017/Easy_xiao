@@ -22,6 +22,7 @@
 <script>
 	import uniSelect from '@/components/lee-select/wxcomponents/lee-select/lee-select.vue'
 	import listData from '../../../components/lee-select/common/city.js'
+	import userApi from "../../../common/api/userApi"
 	export default {
 		components: {
 			uniSelect
@@ -64,24 +65,28 @@
 		},
 		methods:{
 			chooseItem(item) {
-				uni.reLaunch({
-					url: '../index'
+				console.log(item)
+				userApi.getUserRegion({
+					userPin: "",
+					regionId: item
+				}).then(res => {
+					uni.reLaunch({
+						url: '../index'
+					})
 				})
 			},
 			localeCity(){
+				let _this = this
 				uni.getLocation({
-					type: 'wgs84',
+					type: 'gcj02', 
 					success: function (res) {
-						alert(1)
-						console.log('当前位置的经度：' + res.address);
-						console.log('当前位置的纬度：' + res.latitude);
+						_this.selectedcity = res.city;
 					}
 				});
 			}
 		},
-		onLoad(option) {
-			console.log(option)
-			this.selectedcity = option.city
+		onLoad() {
+			this.localeCity()
 		}
 	}
 </script>

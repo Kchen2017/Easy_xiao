@@ -26,7 +26,7 @@ router.all("/regitryUser", function(req, res, next){
 router.all("/getUserRegion", function(req, res, next){
     var userPin = fromQueryOrBody(req, "userPin")
 
-    var sql = "SELECT * FROM userList WHERE userPin = ?"
+    var sql = "SELECT * FROM users_table WHERE userPin = ?"
     var params = [userPin]
 
     db.query(sql, params).then(result => {

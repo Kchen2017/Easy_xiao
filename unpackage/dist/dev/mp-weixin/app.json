@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/index/index",
     "pages/easyDo/index",
     "pages/news/index",
@@ -10,7 +11,10 @@
     "pages/index/components/groundlist/groundDetail",
     "pages/index/components/zugejupage/zugejupage",
     "pages/index/components/grouplist/groupDetail",
-    "pages/index/components/friends_per"
+    "pages/index/components/friends_per",
+    "pages/index/components/searchPage/searchPage",
+    "pages/login/forget",
+    "pages/login/register"
   ],
   "subPackages": [],
   "window": {
