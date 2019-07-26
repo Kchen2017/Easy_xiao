@@ -4,11 +4,15 @@ import { encode_url_params } from '../util/apiTools'
 export default {
     //获取用户地域
     getUserRegion(params={}, options={}){
-        let uri = "/user/getUserRegion" + encode_url_params(params);
-        return request.getRequest(uri, options);
+        let uri = "/user/getUserRegion?t=" + new Date();
+        return request.getRequest(uri, params, options);
     },
 	getUserRegion(params={}, options={}){
         let uri = "/user/setUserRegion?t=" + new Date();
-        return request.postRequest(uri, JSON.stringify(params), options);
-    }
+        return request.postRequest(uri, params, options);
+    },
+	login(params={}, options={}){
+	    let uri = "/login?t=" + new Date();
+	    return request.getRequest(uri, params, options);
+	},
 }

@@ -9,18 +9,22 @@
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _request = _interopRequireDefault(__webpack_require__(/*! ../util/request */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/common/util/request.js"));
-var _apiTools = __webpack_require__(/*! ../util/apiTools */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/common/util/apiTools.js");function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default = _defineProperty({
+var _apiTools = __webpack_require__(/*! ../util/apiTools */ "../../../../../../Users/chenyankun/Documents/myproject/easyDo/common/util/apiTools.js");var _getUserRegion$getUse;function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default = (_getUserRegion$getUse = {
 
 
   //获取用户地域
   getUserRegion: function getUserRegion() {var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var uri = "/user/getUserRegion" + (0, _apiTools.encode_url_params)(params);
-    return _request.default.getRequest(uri, options);
-  } }, "getUserRegion", function getUserRegion()
+    var uri = "/user/getUserRegion?t=" + new Date();
+    return _request.default.getRequest(uri, params, options);
+  } }, _defineProperty(_getUserRegion$getUse, "getUserRegion", function getUserRegion()
 {var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   var uri = "/user/setUserRegion?t=" + new Date();
-  return _request.default.postRequest(uri, JSON.stringify(params), options);
-});exports.default = _default;
+  return _request.default.postRequest(uri, params, options);
+}), _defineProperty(_getUserRegion$getUse, "login", function login()
+{var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var uri = "/login?t=" + new Date();
+  return _request.default.getRequest(uri, params, options);
+}), _getUserRegion$getUse);exports.default = _default;
 
 /***/ }),
 
@@ -113,9 +117,9 @@ function isNullObject(obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
 
-  getRequest: function getRequest(url) {var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  getRequest: function getRequest(url, params) {var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
     url = 'http://127.0.0.1:3090' + url;
     var reqOptions = {};
     reqOptions.headers = options.headers || {};
@@ -127,15 +131,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     reqOptions.credentials = 'same-origin';
 
     return new Promise(function (resolve, reject) {
-      fetch(url, reqOptions).
-      then(function (response) {
-        return response.json();
-      }).
-      then(function (myJson) {
-        resolve(myJson);
-      }).catch(function (err) {
-        reject(err);
-      });
+      uni.request({
+        url: url,
+        data: params,
+        header: reqOptions.headers,
+        success: function success(res) {
+          resolve(res);
+        } });
+
     });
   },
   postRequest: function postRequest(url, params) {var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
@@ -152,18 +155,19 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     reqOptions.body = params;
 
     return new Promise(function (resolve, reject) {
-      fetch(url, reqOptions).
-      then(function (response) {
-        return response.json();
-      }).
-      then(function (myJson) {
-        resolve(myJson);
-      }).catch(function (err) {
-        reject(err);
-      });
+      uni.request({
+        url: url,
+        data: params,
+        method: "POST",
+        header: reqOptions.headers,
+        success: function success(res) {
+          resolve(res);
+        } });
+
     });
 
   } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
 /***/ }),
 

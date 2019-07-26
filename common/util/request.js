@@ -1,6 +1,6 @@
 export default {
 
-    getRequest (url, options = {}) {
+    getRequest (url, params, options = {}) {
         url = 'http://127.0.0.1:3090' + url 
         var reqOptions = {}
         reqOptions.headers = options.headers || {};
@@ -12,15 +12,14 @@ export default {
         reqOptions.credentials = 'same-origin';
 
         return new Promise((resolve, reject) => {
-            fetch(url, reqOptions)
-              .then((response) => {
-                return response.json();
-              })
-              .then((myJson) => {
-                resolve(myJson)
-              }).catch(err => {
-                  reject(err)
-              });
+            uni.request({
+				url: url,
+				data: params,
+				header: reqOptions.headers,
+				success: (res) => {
+					resolve(res);
+				}
+			});
         }) 
     },
     postRequest (url, params, options = {}){
@@ -36,17 +35,17 @@ export default {
       reqOptions.credentials = 'same-origin';
       reqOptions.body = params;
     
-      return new Promise((resolve, reject) => {
-        fetch(url, reqOptions)
-          .then((response) => {
-            return response.json();
-          })
-          .then((myJson) => {
-            resolve(myJson)
-          }).catch(err => {
-              reject(err)
-          });
-      }) 
+		return new Promise((resolve, reject) => {
+			uni.request({
+				url: url,
+				data: params,
+				method: "POST",
+				header: reqOptions.headers,
+				success: (res) => {
+					resolve(res);
+				}
+			});
+		}) 
 
     }
 }

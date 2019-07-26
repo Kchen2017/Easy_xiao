@@ -36,6 +36,7 @@
 			<wButton 
 				text="重置密码"
 				:rotate="isRotate" 
+				bgColor="#5eaef3"
 				@click.native="startRePass()"
 			></wButton>
 

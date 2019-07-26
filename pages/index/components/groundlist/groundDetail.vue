@@ -4,7 +4,7 @@
 			<swiperSilder :swipArr="swipArr"></swiperSilder>
 			<view class="operator">
 				<text @click="savein=!savein" class="iconfont" :class="{'icon-shoucang': savein, 'icon-shoucang1': !savein}"></text>
-				<text class="iconfont icon-fenxiang2"></text>
+				<text @click="shareFun" class="iconfont icon-fenxiang2"></text>
 			</view>
 		</view>
 		<view class="bodycon">
@@ -189,21 +189,24 @@
 				})
 			},
 			trigger(e) {
-            console.log(e);
-            this.content[e.index].active = !e.item.active;
-            uni.showModal({
-                title: '提示',
-                content: `您${this.content[e.index].active?'选中了':'取消了'}${e.item.text}`,
-                success: function(res) {
-                    if (res.confirm) {
-                        console.log('用户点击确定');
-                    } else if (res.cancel) {
-                        console.log('用户点击取消');
-                    }
-                }
-            });
-        }
-		},
+				console.log(e);
+				this.content[e.index].active = !e.item.active;
+				uni.showModal({
+					title: '提示',
+					content: `您${this.content[e.index].active?'选中了':'取消了'}${e.item.text}`,
+					success: function(res) {
+						if (res.confirm) {
+							console.log('用户点击确定');
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
+				});
+			},
+			shareFun(){
+				
+			}
+		}, 
 		watch:{
 			savein: function(val){
 				if(val){

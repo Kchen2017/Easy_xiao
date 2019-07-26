@@ -51,7 +51,7 @@ app.use("/login", function(req, res, next){
     var userPin = fromQueryOrBody(req, "userPin") || "admin"
     var password = fromQueryOrBody(req, "password") ||  "www" 
 
-    var sql = "SELECT * FROM userList WHERE userPin = ? AND password= ?"
+    var sql = "SELECT * FROM users_table WHERE userPin = ? AND password= ?"
     var params = [userPin, password]
 
     db.query(sql, params).then(result => {
