@@ -14,5 +14,17 @@ export default {
 	login(params={}, options={}){
 	    let uri = "/login?t=" + new Date();
 	    return request.getRequest(uri, params, options);
-	},
+    },
+    register(params={}, options={}){
+        let uri = "/user/register?t=" + new Date();
+        return request.postRequest(uri, params, options);
+    },
+    isRegistered(params={}, options={}){
+	    let uri = "/user/isRegistered?t=" + new Date();
+	    return request.getRequest(uri, params, options);
+    },
+    updataPassword(params={}, options={}){
+        let uri = "/user/updataPassword?t=" + new Date();
+        return request.postRequest(uri, params, options);
+    },
 }

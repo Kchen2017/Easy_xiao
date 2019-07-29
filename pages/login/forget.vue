@@ -10,6 +10,7 @@
 					type="text"
 					maxlength="11"
 					placeholder="请输入手机号码"
+					@blurFun="isCorrect"
 				></wInput>
 				<wInput
 					v-model="passData"
@@ -48,6 +49,7 @@
 	var _this;
 	import wInput from '../../components/watch-login/watch-input.vue' //input
 	import wButton from '../../components/watch-login/watch-button.vue' //button
+	import userApi from '../../common/api/userApi.js'
 	export default {
 		data() {
 			return {
@@ -92,7 +94,11 @@
 					});
 				},3000)
 			},
-			startRePass() {
+			async startRePass() {
+				let iscanRe = await this.isCorrect()
+				if(!iscanRe) {
+					return
+				}
 				//重置密码
 				if(this.isRotate){
 					//判断是否加载中，避免重复点击请求
@@ -106,7 +112,7 @@
 				    });
 				    return false;
 				}
-			    if (this.passData.length < 6) {
+			    if (/^1[3|4|5|7|8][0-9]{9}$/.test(this.phoneData)) {
 			        uni.showToast({
 			            icon: 'none',
 						position: 'bottom',
@@ -122,13 +128,39 @@
 				    });
 				    return false;
 				}
-				console.log("重置密码成功")
 				_this.isRotate=true
-				setTimeout(function(){
-					_this.isRotate=false
-				},3000)
-				
-				
+				userApi.updataPassword({
+					phoneNum: this.phoneData,
+					password: this.passData
+				}).then(res => {
+					if(res.data.code === 200){
+						uni.reLaunch({
+							url: '../index/index'
+						});
+					}
+					_this.isRotate=false  
+				})
+			},
+			isCorrect(){
+				let params = {
+					phoneNum: this.phoneData
+				}
+				return new Promise((resolve, reject) => {
+					userApi.isRegistered(params).then(res => {
+						if(res && res.data && res.data.exist){
+							resolve(true)
+						}else{
+							uni.showToast({
+								icon: 'none',
+								position: 'bottom',
+								title: '该手机号未注册'
+							});
+							resolve(false)
+						}
+					}).catch(err => {
+						reject(err)
+					})
+				})
 			}
 		}
 	}

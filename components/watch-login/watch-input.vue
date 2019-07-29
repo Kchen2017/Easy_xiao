@@ -9,6 +9,7 @@
 			:placeholder="placeholder" 
 			:password="type==='password'&&!showPassword" 
 			@input="onInput"
+			@blur="blurFun"
 		/>
 		<!-- 是否可见密码 -->
 		<image 
@@ -118,6 +119,9 @@
 						clearInterval(countDown)
 					}
 				},1000)
+			},
+			blurFun(){
+				this.$emit("blurFun")
 			}
 			
 			

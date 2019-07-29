@@ -88,6 +88,11 @@
             "style": {
 				"navigationBarTitleText": "注册"
 			}
+        } , {
+            "path": "pages/login/userMsg",
+            "style": {
+				"navigationBarTitleText": "注册"
+			}
         } 
     ],
 	"globalStyle": {

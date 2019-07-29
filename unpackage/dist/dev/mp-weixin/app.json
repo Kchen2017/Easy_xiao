@@ -14,7 +14,8 @@
     "pages/index/components/friends_per",
     "pages/index/components/searchPage/searchPage",
     "pages/login/forget",
-    "pages/login/register"
+    "pages/login/register",
+    "pages/login/userMsg"
   ],
   "subPackages": [],
   "window": {

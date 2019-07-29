@@ -10,8 +10,7 @@
 	background-color: #f5f5f5;
 	height: 30px;
 	width: 100%;
-	-webkit-border-radius: 22px;
-	        border-radius: 22px;
+	border-radius: 22px;
 	position: relative;
 }
 .index_con .search .input{
@@ -76,8 +75,7 @@
 	height: 140rpx;
 	width: 40%;
 	border: 2rpx solid #f1ebeb;
-	-webkit-border-radius: 12rpx;
-	        border-radius: 12rpx;
+	border-radius: 12rpx;
 	padding: 20rpx;
 }
 .servers_type .typeItem .btn {
@@ -89,8 +87,7 @@
 	margin-top: 10px;
 	height: 24px;
 	line-height: 24px;
-	-webkit-border-radius: 6px;
-	        border-radius: 6px;
+	border-radius: 6px;
 }
 .index_con .easyDo {
 	padding: 20rpx;
@@ -106,8 +103,7 @@
 	border: 2rpx solid #ddd;
 	margin-top: 20rpx;
 	padding: 20rpx;
-	-webkit-border-radius: 16rpx;
-	        border-radius: 16rpx;
+	border-radius: 16rpx;
 	color: #908b8b;
 }
 .easyDo .msg .go {
@@ -179,7 +175,6 @@
 	line-height: 34px;
 	color: #ffff;
 	background-color: #5eaef3;
-	-webkit-border-radius: 10px;
-	        border-radius: 10px;
+	border-radius: 10px;
 }
 
