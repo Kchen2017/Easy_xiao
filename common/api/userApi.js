@@ -7,7 +7,7 @@ export default {
         let uri = "/user/getUserRegion?t=" + new Date();
         return request.getRequest(uri, params, options);
     },
-	getUserRegion(params={}, options={}){
+	setUserRegion(params={}, options={}){
         let uri = "/user/setUserRegion?t=" + new Date();
         return request.postRequest(uri, params, options);
     },
@@ -26,5 +26,9 @@ export default {
     updataPassword(params={}, options={}){
         let uri = "/user/updataPassword?t=" + new Date();
         return request.postRequest(uri, params, options);
+    },
+    getIndexData(params={}, options={}){
+	    let uri = "/user/getIndexData?t=" + new Date();
+	    return request.getRequest(uri, params, options);
     },
 }

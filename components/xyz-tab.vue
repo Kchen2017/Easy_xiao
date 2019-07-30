@@ -51,6 +51,7 @@ export default {
 .tab {
 	min-width: 100%;
 	border-bottom: 2upx solid #dddd;
+	background-color: #ffff;
 	.tab_main {	
 		display: flex;
 		align-items: center;

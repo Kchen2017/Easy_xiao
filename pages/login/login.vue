@@ -133,6 +133,7 @@
 							url: '../index/index',
 						});
 						uni.setStorageSync('islogin', true);
+						uni.setStorageSync('userPin', res.data.userPin);
 					}else{
 						_this.passData=""
 						uni.showToast({

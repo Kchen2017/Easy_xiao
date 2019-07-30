@@ -122,6 +122,49 @@ router.all("/updataPassword", function(req, res, next){
     })
 })
 
+router.all("/getIndexData", async function(req, res, next){
+    var userPin = fromQueryOrBody(req, "userPin")
+    try{
+        var sql = "SELECT * FROM users_table WHERE userPin = ?"
+        var params = [userPin]
+
+        let userData =  await db.query(sql, params)
+        
+        var sql = "SELECT * FROM ground_table WHERE regionId = ? AND star = 1"
+        var params = [userData[0].regionId]
+
+        let groundList =  await db.query(sql, params)
+        
+        var sql = "SELECT * FROM group_table WHERE regionId = ? AND star = 1"
+        var params = [userData[0].regionId]
+
+        let groupList =  await db.query(sql, params)
+
+        var sql = "SELECT * FROM common_table WHERE regionId = ?"
+        var params = [userData[0].regionId]
+
+        let commonData =  await db.query(sql, params)
+
+        var result = {
+            regionId: userData[0].regionId,
+            groundIndexList: groundList,
+            groupIndexList: groupList,
+            commonData: commonData
+        }
+        
+        
+        
+        res.json({
+            code: 200,
+            msg: "success",
+            result: result
+        });
+    }catch(err){
+        res.json({status:-1,msg:err});
+    }
+})
+
+
 
 
 module.exports = router;

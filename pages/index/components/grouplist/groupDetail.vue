@@ -1,5 +1,5 @@
 <template>
-	<scroll-view scroll-y class="groupD" @scroll="scrollViewFun">
+	<view class="groupD">
 		<view class="header">
 			<view class="photo">
 				<image src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3000033855,214344624&fm=26&gp=0.jpg"></image>
@@ -32,28 +32,32 @@
 			
 		</view>
 		<view class="person_msg">
-			<view :class="{isfix: isfixedTab}">
-				<xyz-tab :tabList="tabList" @tabSelect="tabSelect"></xyz-tab>
-			</view>
-			<view class="panel" v-if="tabType === 'dong'">
-				<dongtaiCom></dongtaiCom>
-			</view>
+			<sticky :scrollTop="scrollTop">
+				<template v-slot:header>
+					<xyz-tab :tabList="tabList" @tabSelect="tabSelect"></xyz-tab>
+				</template>
+				<template v-slot:content>
+					<view class="panel" v-if="tabType === 'dong'">
+						<dongtaiCom></dongtaiCom>
+					</view>
+				</template>
+			</sticky>
+			
 		</view>
-		
-		
-		
-	</scroll-view>
+	</view>
 </template>
 
 <script>
 	import {uniTag } from '@dcloudio/uni-ui'
 	import xyzTab from "@/components/xyz-tab.vue"
 	import dongtaiCom from "../dongtaiCom.vue"
+	import sticky from "@/components/sticky.vue"
 	export default {
 		components: {
 			uniTag,
 			xyzTab,
-			dongtaiCom
+			dongtaiCom,
+			sticky
 		},
 		data(){
 			return {
@@ -63,7 +67,8 @@
 				}],
 				tabType: "dong",
 				list: [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
-				isfixedTab: false
+				isfixedTab: false,
+				scrollTop: 0
 			}
 		},
 		methods:{
@@ -74,10 +79,10 @@
 				uni.navigateTo({
 					url: "../friends_per"
 				})
-			},
-			scrollViewFun(e){
-				console.log(e.detai)
 			}
+		},
+		onPageScroll(e) {
+			this.scrollTop= e.scrollTop
 		}
 	}
 </script>

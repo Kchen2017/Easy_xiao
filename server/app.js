@@ -48,8 +48,8 @@ var dongTaiApi = require('./api/dongTai')
 
 
 app.use("/login", function(req, res, next){
-    var userPin = fromQueryOrBody(req, "userPin") || "admin"
-    var password = fromQueryOrBody(req, "password") ||  "www" 
+    var userPin = fromQueryOrBody(req, "userPin")
+    var password = fromQueryOrBody(req, "password")
 
     var sql = "SELECT * FROM users_table WHERE userPin = ? AND password= ?"
     var params = [userPin, password]
@@ -60,6 +60,7 @@ app.use("/login", function(req, res, next){
             islogin = true
         }
         res.json({
+            userPin: result[0].userPin,
             islogin: islogin,
             code: 200
         });

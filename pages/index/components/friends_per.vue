@@ -31,16 +31,22 @@
 			</view>
 		</view>
 		<view class="person_msg">
-			<xyz-tab :tabList="tabList" @tabSelect="tabSelect"></xyz-tab>
-			<view v-if="tabType === 'dong'">
-				<dongtaiCom></dongtaiCom>
-			</view>
-			<view v-if="tabType === 'ta'" class="ta">
-				<groupListItem v-for="(item, index) in golist" 
-							:value="item"
-							:key="index" 
-							:bottomBorder="index !== (golist.length-1)"></groupListItem>
-			</view>
+			<sticky :scrollTop="scrollTop">
+				<template v-slot:header>
+					<xyz-tab :tabList="tabList" @tabSelect="tabSelect"></xyz-tab>
+				</template>
+				<template v-slot:content>
+					<view v-if="tabType === 'dong'">
+						<dongtaiCom></dongtaiCom>
+					</view>
+					<view v-if="tabType === 'ta'" class="ta">
+						<groupListItem v-for="(item, index) in golist" 
+									:value="item"
+									:key="index" 
+									:bottomBorder="index !== (golist.length-1)"></groupListItem>
+					</view>
+				</template>
+			</sticky>
 		</view>
 		
 		
@@ -53,12 +59,14 @@
 	import xyzTab from "@/components/xyz-tab.vue"
 	import dongtaiCom from "./dongtaiCom.vue"
 	import groupListItem from './grouplist/groupListItem.vue'
+	import sticky from "@/components/sticky.vue"
 	export default {
 		components: {
 			uniTag,
 			xyzTab,
 			dongtaiCom,
-			groupListItem
+			groupListItem,
+			sticky
 		},
 		data(){
 			return {
@@ -70,13 +78,22 @@
 					label: "ta局",
 					value: "ta"
 				}],
-				tabType: "dong"
+				tabType: "dong",
+				scrollTop: 0
 			}
 		},
 		methods:{
 			tabSelect(value){
+				uni.pageScrollTo({
+					scrollTop: 289,
+					duration: 300
+				});
 				this.tabType = value
 			}
+		},
+		onPageScroll(e) {
+			console.log(e.scrollTop)
+			this.scrollTop= e.scrollTop
 		}
 	}
 </script>
