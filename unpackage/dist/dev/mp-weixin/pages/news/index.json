@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "资讯",
-  "usingComponents": {
-    "dongtai": "/pages/index/components/dongtaiCom"
-  }
-}
