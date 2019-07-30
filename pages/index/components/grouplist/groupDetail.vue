@@ -1,5 +1,5 @@
 <template>
-	<view class="groupD">
+	<scroll-view scroll-y class="groupD" @scroll="scrollViewFun">
 		<view class="header">
 			<view class="photo">
 				<image src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3000033855,214344624&fm=26&gp=0.jpg"></image>
@@ -18,7 +18,7 @@
 			<view class="com adr">场地：北京五棵松克拉克球场<text class="iconfont icon-location"></text></view>
 			<view class="persons">
 				<view>成员：</view>
-				<scroll-view scroll-y class="scrollView">
+				<scroll-view scroll-y class="scrollView" >
 					<view class="srcollCon">
 						<view class="item" v-for="(item, index) in list" :key="index" @click="gotoPer">
 							<view class="phone">
@@ -32,7 +32,9 @@
 			
 		</view>
 		<view class="person_msg">
-			<xyz-tab :tabList="tabList" @tabSelect="tabSelect"></xyz-tab>
+			<view :class="{isfix: isfixedTab}">
+				<xyz-tab :tabList="tabList" @tabSelect="tabSelect"></xyz-tab>
+			</view>
 			<view class="panel" v-if="tabType === 'dong'">
 				<dongtaiCom></dongtaiCom>
 			</view>
@@ -40,7 +42,7 @@
 		
 		
 		
-	</view>
+	</scroll-view>
 </template>
 
 <script>
@@ -60,7 +62,8 @@
 					value: "dong"
 				}],
 				tabType: "dong",
-				list: [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]
+				list: [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+				isfixedTab: false
 			}
 		},
 		methods:{
@@ -71,12 +74,18 @@
 				uni.navigateTo({
 					url: "../friends_per"
 				})
+			},
+			scrollViewFun(e){
+				console.log(e.detai)
 			}
 		}
 	}
 </script>
 
 <style>
+	.groupD {
+		height: 100%;
+	}
 	.header {
 		display: flex;
 		/* justify-content: space-between; */
@@ -166,5 +175,11 @@
 	}
 	.srcollCon .item {
 		margin-bottom:20upx ;
+	}
+	.isfix{
+		position: fixed;
+		width: 100%;
+		top: 44px;
+		z-index: 9999999;
 	}
 </style>
