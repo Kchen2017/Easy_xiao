@@ -17,7 +17,7 @@
 			
 			<!-- 轮播图--- -->
 			<view class="swip">
-				<swiperSilder :swipArr="swipArr"></swiperSilder>
+				<swiperSilder :swipArr="swipArr" :autoplay="true"></swiperSilder>
 			</view>
 			<!-- 选择运动的类型 -->
 			<view class="chooseType" style="margin-bottom: 40upx;">
@@ -74,11 +74,11 @@
 			<view class="playground" style="margin-bottom: 40upx;">
 				<view class="title">精选场地</view>
 				<view class="list">
-					<groundlistItem v-for="(item, index) in golist" 
+					<groundlistItem v-for="(item, index) in groundlist" 
 							:path="'components/groundlist'"
 							:value="item"
 							:key="index" 
-							:bottomBorder="index !== (golist.length-1)"></groundlistItem>
+							:bottomBorder="index !== (groundlist.length-1)"></groundlistItem>
 				</view>
 				<view @click="selecttypeFun('ground')" class="checkMore">查看更多场地</view>
 			</view>
@@ -86,11 +86,11 @@
 			<view class="playgroup" style="margin-bottom: 40upx;">
 				<view class="title">热门局</view>
 				<view class="list">
-					<groupListItem v-for="(item, index) in golist" 
+					<groupListItem v-for="(item, index) in grouplist" 
 							:path="'components/grouplist'"
 							:value="item"
 							:key="index" 
-							:bottomBorder="index !== (golist.length-1)"></groupListItem>
+							:bottomBorder="index !== (grouplist.length-1)"></groupListItem>
 				</view>
 				<view @click="selecttypeFun('group')" class="checkMore">查看更多局</view>
 			</view>
@@ -121,9 +121,9 @@
 		components: {uniNavBar, xyDialog, groundlistItem, groupListItem, swiperSilder},
 		data() {
 			return {
-				title: 'Hello',
-				address: "http://pic40.nipic.com/20140424/12259251_002036722178_2.jpg",
-				golist: [{},{},{},{}],
+				indexData: [],
+				groundlist: [],
+				grouplist: [],
 				showSelect: false,
 				city: '' ,
 				swipArr: []
@@ -183,7 +183,13 @@
 				userApi.getIndexData({
 					userPin: userPin
 				}).then(res => {
-
+					if(res && res.data && res.data.result){
+						this.indexData = res.data.result
+						this.swipArr = this.indexData.swipPics
+						this.groundlist = this.indexData.groundIndexList
+						this.grouplist = this.indexData.groupIndexList
+						this.city = this.indexData.regionId
+					}
 				})
 			}
 		},

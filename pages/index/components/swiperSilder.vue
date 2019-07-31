@@ -12,12 +12,19 @@
 			swipArr: {
 				type: Array,
 				default: []
-			}
+			},
+			autoplay: {
+				type: Boolean,
+				default: false
+			},
+			indicatorDots: {
+				type: Boolean,
+				default: true
+			},
 		},
 		data(){
 			return {
-				indicatorDots: true,
-				autoplay: false,
+				
 			}
 		}
 	}

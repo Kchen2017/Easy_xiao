@@ -128,32 +128,50 @@ router.all("/getIndexData", async function(req, res, next){
         var sql = "SELECT * FROM users_table WHERE userPin = ?"
         var params = [userPin]
 
-        let userData =  await db.query(sql, params)
+        var userData =  await db.query(sql, params)
+        if(userData && userData.length){
+            var userRegionId = userData[0].regionId
+        }
         
         var sql = "SELECT * FROM ground_table WHERE regionId = ? AND star = 1"
         var params = [userData[0].regionId]
 
-        let groundList =  await db.query(sql, params)
+        var groundList =  await db.query(sql, params)
+        if(groundList && groundList.length){
+            groundList = groundList.splice(0, 4)
+        }
         
         var sql = "SELECT * FROM group_table WHERE regionId = ? AND star = 1"
         var params = [userData[0].regionId]
 
-        let groupList =  await db.query(sql, params)
+        var groupList =  await db.query(sql, params)
+        if(groupList && groupList.length){
+            groupList = groupList.splice(0, 4)
+        }
 
         var sql = "SELECT * FROM common_table WHERE regionId = ?"
         var params = [userData[0].regionId]
 
-        let commonData =  await db.query(sql, params)
+        var commonData =  await db.query(sql, params)
+        var swipPics = []
+        if(commonData && commonData.length){
+            var picData = commonData[0]
+            for(var key in picData){
+                if(picData[key] && key.indexOf("swipPic") > -1){
+                    var objPic = {
+                        url: picData[key]
+                    }
+                    swipPics.push(objPic)
+                }
+            }
+        }
 
         var result = {
-            regionId: userData[0].regionId,
+            regionId: userRegionId,
             groundIndexList: groundList,
             groupIndexList: groupList,
-            commonData: commonData
+            swipPics: swipPics
         }
-        
-        
-        
         res.json({
             code: 200,
             msg: "success",
