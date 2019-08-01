@@ -154,7 +154,27 @@
 				uni.login({
 				  provider: 'weixin',
 				  success: function (loginRes) {
-					console.log(loginRes.authResult);
+					 if(loginRes.authResult){
+						 uni.getUserInfo({
+							success: function(obj){
+								if(obj)
+								userApi.register({
+									nickName: obj.userInfo.nickName,
+									gender: obj.userInfo.gender,
+									city: obj.userInfo.city,
+									province: obj.userInfo.province,
+									country: obj.userInfo.country,
+									avatarUrl: obj.userInfo.avatarUrl
+								}).then(res => {
+									if(res.data.code === 200){
+										uni.reLaunch({
+											url: './userMsg'
+										});
+									}
+								})
+							}
+						})
+					 }
 				  }
 				});
 			},

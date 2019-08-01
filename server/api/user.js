@@ -122,6 +122,29 @@ router.all("/updataPassword", function(req, res, next){
     })
 })
 
+router.all("/upload", function(req, res, next){
+    console.log(req, "*********")
+    // var phoneNum = fromQueryOrBody(req, "userPin")
+    // var password = fromQueryOrBody(req, "password")
+
+    // var updataParams = {
+    //     password: password
+    // }
+
+
+    // var sql = "UPDATE users_table SET ? WHERE phoneNum = ?"
+    // var params = [updataParams, phoneNum]
+
+    // db.query(sql, params).then(result => {
+    //     res.json({
+    //         code: 200,
+    //         msg: "success"
+    //     });
+    // }).catch(err => {
+    //     res.json({status:-1,msg:err});
+    // })
+})
+
 router.all("/getIndexData", async function(req, res, next){
     var userPin = fromQueryOrBody(req, "userPin")
     try{
