@@ -2,7 +2,24 @@
 	<view class="container flex">
 		<view style="text-align: center;">
 			<image :src="src" class="avatar" @tap="upload"></image>
-			<view class="item flex" @tap="upload">点我头像</view>
+			<view class="item flex" @tap="upload">点击更换头像</view>
+		</view>
+		<view class="form" style="text-align: center;">
+			<picker :value="genderIndex" @change="bindgenderChange" :range="genderArray">
+				<text class="formitem">
+					{{gender||genderArray[genderIndex]}}
+				</text>
+			</picker>
+			<picker mode="date" :value="date" @change="bindDateChange">
+				<text class="formitem">
+					{{date}}
+				</text>
+			</picker>
+			<picker mode="date" :value="date" @change="bindDateChange">
+				<text class="formitem">
+					{{date}}
+				</text>
+			</picker>
 		</view>
         <wButton 
             text="确定"
@@ -22,10 +39,21 @@ export default {
     data(){
 		return {
             src: '',
-            isRotate: false
+			isRotate: false,
+			genderArray: ["汉子", "妹子", "其他"],
+			date: "点击选择出生日期",
+			gender: "点击选择性别",
+			genderIndex: 0,
         }
 	},
 	methods:{
+		bindDateChange(e) {
+			this.date = e.target.value
+		},
+		bindgenderChange(e) {
+			this.gender = false
+			this.genderIndex = e.target.value
+		},
 		upload() {
 			uni.chooseImage({
 				count: 1, // 默认9
@@ -76,6 +104,18 @@ export default {
 
 .item{
     line-height: 3rem;
+}
+
+.form {
+	display: flex;
+	justify-content: space-between;
+    flex-direction: column;
+    height: 580upx;
+}
+.form .formitem {
+	padding: 20upx;
+    border-bottom: 2upx solid #c3bebe;
+    color: #c3bebe;
 }
 </style>
 

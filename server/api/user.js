@@ -123,9 +123,9 @@ router.all("/updataPassword", function(req, res, next){
 })
 
 router.all("/upload", function(req, res, next){
-    console.log(req, "*********")
-    // var phoneNum = fromQueryOrBody(req, "userPin")
-    // var password = fromQueryOrBody(req, "password")
+    var userPin = fromQueryOrBody(req, "userPin")
+    var file = fromQueryOrBody(req, "file")
+    console.log(userPin, file, "*********")
 
     // var updataParams = {
     //     password: password
