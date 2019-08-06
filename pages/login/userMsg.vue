@@ -5,17 +5,18 @@
 			<view class="item flex" @tap="upload">点击更换头像</view>
 		</view>
 		<view class="form" style="text-align: center;">
-			<picker :value="genderIndex" @change="bindgenderChange" :range="genderArray">
-				<text class="formitem">
-					{{gender||genderArray[genderIndex]}}
-				</text>
-			</picker>
 			<picker mode="date" :value="date" @change="bindDateChange">
 				<text class="formitem">
 					{{date}}
 				</text>
 			</picker>
-			<picker mode="date" :value="date" @change="bindDateChange">
+			<picker :value="genderIndex" @change="bindgenderChange" :range="genderArray">
+				<text class="formitem">
+					{{gender||genderArray[genderIndex]}}
+				</text>
+			</picker>
+			
+			<picker mode="multiSelector" :value="tallweightIndex" :range="twArray" @change="bindTWChange">
 				<text class="formitem">
 					{{date}}
 				</text>
@@ -34,7 +35,8 @@
 import wButton from '../../components/watch-login/watch-button.vue' //button
 export default {
     components: {
-        wButton
+		wButton,
+		uniPopup
     },
     data(){
 		return {
@@ -44,6 +46,8 @@ export default {
 			date: "点击选择出生日期",
 			gender: "点击选择性别",
 			genderIndex: 0,
+			tallweightIndex: 0,
+			twArray: []
         }
 	},
 	methods:{
