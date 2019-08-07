@@ -75,26 +75,15 @@ export default {
 			let userPin = uni.getStorageSync('userPin');
 			this.weCropper.getCropperImage(avatar => {
 				if (avatar) {
-					//  获取到裁剪后的图片
-					//  获取到裁剪后的图片
-					wx.redirectTo({
-					  url: './userMsg?avatar=' + avatar
-					})
-					console.log(userPin, avatar)
-					//下面是上传到服务器的方法
 					uni.uploadFile({
-						header: {
-							'Content-Type': 'application/json',
-							'Authorization': 'Tenant=5678efgh Credential=5678efgh/credential-scope',
-							'Accept': 'application/json'
-						},
 						url: pathurl,
 						filePath: avatar,
+						fileType: 'image',
 						name: 'file',
 						formData: { userPin: userPin},
 						success: res => {
 							console.log('uploadImage success, res is:', res);
-								uni.showToast({
+							uni.showToast({
 								title: '上传成功',
 								icon: 'success',
 								duration: 1000
@@ -112,6 +101,10 @@ export default {
 							console.log('complate');
 						}
 					});
+
+					wx.redirectTo({
+					  url: './userMsg?avatar=' + avatar
+					})
 				} else {
 					console.log('获取图片失败，请稍后重试');
 				}

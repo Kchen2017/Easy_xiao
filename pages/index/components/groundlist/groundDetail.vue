@@ -23,7 +23,7 @@
 					<map style="width: 100%; height: 130px;" :latitude="latitude" :longitude="longitude"></map>
 				</view>
 			</view>
-			<view class="group d_jump">
+			<view class="group">
 				<view class="title">
 					<text>局</text>
 					<text style="font-size: 12px; color: #ccc;">更多局<text class="iconfont icon-you2" style="font-size: 12px;"></text></text>
@@ -35,7 +35,7 @@
 							:bottomBorder="index !== (golist.length-1)"></groupListItem>
 				</scroll-view>
 			</view>
-			<view class="quan d_jump">
+			<view class="quan">
 				<view class="title">
 					<text>圈子</text>
 					<text style="font-size: 12px; color: #ccc;">进圈<text class="iconfont icon-you2" style="font-size: 12px;"></text></text>
@@ -44,7 +44,7 @@
 					<dongtaiCom></dongtaiCom>
 				</scroll-view>
 			</view>
-			<view class="king d_jump">
+			<view class="king">
 				<view class="title">
 					<text>王者榜</text>
 					<text style="font-size: 12px; color: #ccc;">更多榜<text class="iconfont icon-you2" style="font-size: 12px;"></text></text>
@@ -142,66 +142,31 @@
 					this.popupshow = !this.popupshow
 				},1000)
 			},
-			jump (index) {
-				// 用 class="d_jump" 添加锚点
-				let jump = document.querySelectorAll('.d_jump')
-				let total = jump[index].offsetTop
-				let distance = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
-				// 平滑滚动，时长500ms，每10ms一跳，共50跳
-				let step = total / 50
-				if (total > distance) {
-					smoothDown()
-				} else {
-				let newTotal = distance - total
-					step = newTotal / 50
-					smoothUp()
-				}
-				function smoothDown () {
-					if (distance < total) {
-						distance += step
-						document.body.scrollTop = distance
-						document.documentElement.scrollTop = distance
-						window.pageYOffset = distance
-						setTimeout(smoothDown, 10)
-					} else {
-						document.body.scrollTop = total
-						document.documentElement.scrollTop = total
-						window.pageYOffset = total
-					}
-				}
-				function smoothUp () {
-					if (distance > total) {
-						distance -= step
-						document.body.scrollTop = distance
-						document.documentElement.scrollTop = distance
-						window.pageYOffset = distance
-						setTimeout(smoothUp, 10)
-					} else {
-						document.body.scrollTop = total
-						document.documentElement.scrollTop = total
-						window.pageYOffset = total
-					}
-				}
-			},
-			gotoZu(){
-				uni.navigateTo({
-					url: "../zugejupage/zugejupage"
-				})
-			},
 			trigger(e) {
-				console.log(e);
-				this.content[e.index].active = !e.item.active;
-				uni.showModal({
-					title: '提示',
-					content: `您${this.content[e.index].active?'选中了':'取消了'}${e.item.text}`,
-					success: function(res) {
-						if (res.confirm) {
-							console.log('用户点击确定');
-						} else if (res.cancel) {
-							console.log('用户点击取消');
-						}
-					}
-				});
+				if(e.item.text === "组个局"){
+					uni.navigateTo({
+						url: "../zugejupage/zugejupage"
+					})
+				}
+
+				if(e.item.text === "局"){
+					uni.navigateTo({
+						url: "../grouplist/grouplist"
+					})
+				}
+
+				if(e.item.text === "圈子"){
+					uni.navigateTo({
+						url: "../zugejupage/zugejupage"
+					})
+				}
+
+				if(e.item.text === "王者榜"){
+					uni.navigateTo({
+						url: "../zugejupage/zugejupage"
+					})
+				}
+				
 			},
 			shareFun(){
 				

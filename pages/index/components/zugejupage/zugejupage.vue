@@ -1,5 +1,11 @@
 <template>
 	<view class="zujuFrom">
+		<uni-steps :data="[
+			{title: '第一步'}, 
+			{title: '第二步'}, 
+			{title: '第三步'}, 
+			{title: '第四步'}]" 
+			:active="stepIndex" />
 		<view class="form">
 			<view @click="gotoSelectGround" class="item boderbottom">
 				<view class="tit">
@@ -81,7 +87,9 @@
 </template>
 
 <script>
+	import {uniSteps} from '@dcloudio/uni-ui'
 	export default {
+		components: {uniSteps},
 		data() {
 			return {
 				date: "",
@@ -90,7 +98,8 @@
 				count: "",
 				countArr: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
 				payType: "",
-				payTypeArr: ["免费", "AA", "竞赛"]
+				payTypeArr: ["免费", "AA", "竞赛"],
+				stepIndex: 1
 			}
 		},
 		methods: {

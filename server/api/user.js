@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+var multiparty = require('connect-multiparty')
+var multipartyMiddleware = new multiparty()
+
 var db = require('../baseData/mysqlutil')
 var base = require('../utils/base')
 var fromQueryOrBody = base.fromQueryOrBody
@@ -122,27 +125,42 @@ router.all("/updataPassword", function(req, res, next){
     })
 })
 
-router.all("/upload", function(req, res, next){
+router.all("/upload", multipartyMiddleware, function(req, res, next){
     var userPin = fromQueryOrBody(req, "userPin")
-    var file = fromQueryOrBody(req, "file")
-    console.log(userPin, file, "*********")
+    var file = req.files['file']
 
-    // var updataParams = {
-    //     password: password
-    // }
+    var updataParams = {
+        avatarUrl: file.path
+    }
 
+    var sql = "UPDATE users_table SET ? WHERE userPin = ?"
+    var params = [updataParams, userPin]
 
-    // var sql = "UPDATE users_table SET ? WHERE phoneNum = ?"
-    // var params = [updataParams, phoneNum]
+    db.query(sql, params).then(result => {
+        res.json({
+            code: 200,
+            msg: "success"
+        });
+    }).catch(err => {
+        res.json({status:-1,msg:err});
+    })
+})
 
-    // db.query(sql, params).then(result => {
-    //     res.json({
-    //         code: 200,
-    //         msg: "success"
-    //     });
-    // }).catch(err => {
-    //     res.json({status:-1,msg:err});
-    // })
+router.all("/registerMsg", function(req, res, next){
+    var userPin = fromQueryOrBody(req, "userPin")
+    var msg = fromQueryOrBody(req, "msg")
+
+    var sql = "UPDATE users_table SET ? WHERE userPin = ?"
+    var params = [msg, userPin]
+
+    db.query(sql, params).then(result => {
+        res.json({
+            code: 200,
+            msg: "success"
+        });
+    }).catch(err => {
+        res.json({status:-1,msg:err});
+    })
 })
 
 router.all("/getIndexData", async function(req, res, next){

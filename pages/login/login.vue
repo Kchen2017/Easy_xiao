@@ -130,7 +130,7 @@
 							title: '登录成功'
 						});
 						uni.reLaunch({
-							url: '../index/index',
+							url: './userMsg'
 						});
 						uni.setStorageSync('islogin', true);
 						uni.setStorageSync('userPin', res.data.userPin);

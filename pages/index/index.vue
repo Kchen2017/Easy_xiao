@@ -122,8 +122,8 @@
 		data() {
 			return {
 				indexData: [],
-				groundlist: [],
-				grouplist: [],
+				groundlist: [{}],
+				grouplist: [{}],
 				showSelect: false,
 				city: '' ,
 				swipArr: []
@@ -186,8 +186,8 @@
 					if(res && res.data && res.data.result){
 						this.indexData = res.data.result
 						this.swipArr = this.indexData.swipPics
-						this.groundlist = this.indexData.groundIndexList
-						this.grouplist = this.indexData.groupIndexList
+						// this.groundlist = this.indexData.groundIndexList
+						// this.grouplist = this.indexData.groupIndexList
 						this.city = this.indexData.regionId
 					}
 				})

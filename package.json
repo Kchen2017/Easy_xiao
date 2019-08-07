@@ -11,9 +11,11 @@
   "dependencies": {
     "@dcloudio/uni-ui": "0.0.8",
     "config": "^3.1.0",
+    "connect-multiparty": "^2.2.0",
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
+    "formidable": "^1.2.1",
     "log4js": "^4.5.0",
     "md5": "^2.2.1",
     "mysql": "^2.17.1",

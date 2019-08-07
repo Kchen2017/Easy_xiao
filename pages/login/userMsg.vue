@@ -18,7 +18,7 @@
 			
 			<picker mode="multiSelector" :value="tallweightIndex" :range="twArray" @change="bindTWChange">
 				<text class="formitem">
-					{{date}}
+					{{tallWeight||bodyWeight}}
 				</text>
 			</picker>
 		</view>
@@ -33,6 +33,9 @@
 
 <script>
 import wButton from '../../components/watch-login/watch-button.vue' //button
+import {uniPopup } from '@dcloudio/uni-ui'
+import commonData from '../../common/data/commonData'
+import userApi from '../../common/api/userApi.js'
 export default {
     components: {
 		wButton,
@@ -45,18 +48,33 @@ export default {
 			genderArray: ["汉子", "妹子", "其他"],
 			date: "点击选择出生日期",
 			gender: "点击选择性别",
+			tallWeight: "点击选择身型",
 			genderIndex: 0,
 			tallweightIndex: 0,
-			twArray: []
+			twArray: commonData.tallWeightData,
+			bodyWeight: "偏胖",
+			msg: {
+				gender: 1,
+				birthday: "",
+				tall: "", 
+				weight: ""
+			}
         }
 	},
 	methods:{
 		bindDateChange(e) {
 			this.date = e.target.value
+			this.msg.birthday = e.target.value
 		},
 		bindgenderChange(e) {
 			this.gender = false
 			this.genderIndex = e.target.value
+			this.msg.gender = this.genderArray[e.target.value] 
+		},
+		bindTWChange(e) {
+			this.tallWeight = false
+			this.msg.tall = this.twArray[0][e.target.value[0] || 0]
+			this.msg.weight = this.twArray[1][e.target.value[1] || 0]
 		},
 		upload() {
 			uni.chooseImage({
@@ -73,7 +91,20 @@ export default {
 			});
         },
         ensureFun(){
-
+			let userPin = uni.getStorageSync('userPin');
+			
+			userApi.registerMsg({
+				userPin: "Kchen",
+				msg: this.msg
+			}).then(res => {
+				uni.reLaunch({
+					url: '../index/index',
+				});
+			}).catch(err => {
+				uni.reLaunch({
+					url: '../index/index',
+				});
+			})
         }
 	},
 	onLoad(option) {

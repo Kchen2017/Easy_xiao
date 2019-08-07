@@ -19,6 +19,10 @@ export default {
         let uri = "/user/register?t=" + new Date();
         return request.postRequest(uri, params, options);
     },
+    registerMsg(params={}, options={}){
+        let uri = "/user/registerMsg?t=" + new Date();
+        return request.postRequest(uri, params, options);
+    },
     isRegistered(params={}, options={}){
 	    let uri = "/user/isRegistered?t=" + new Date();
 	    return request.getRequest(uri, params, options);
