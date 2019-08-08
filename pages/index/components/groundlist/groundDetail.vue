@@ -145,7 +145,7 @@
 			trigger(e) {
 				if(e.item.text === "组个局"){
 					uni.navigateTo({
-						url: "../zugejupage/zugejupage"
+						url: "../zugejupage/zujuPage"
 					})
 				}
 

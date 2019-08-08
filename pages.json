@@ -55,9 +55,9 @@
 		}
 		
         ,{
-            "path" : "pages/index/components/zugejupage/zugejupage",
+            "path" : "pages/index/components/zugejupage/zujuPage",
             "style" : {
-				"navigationBarTitleText": "组个局"
+				"navigationBarTitleText": "三步组局"
 			}
         },
 		{
