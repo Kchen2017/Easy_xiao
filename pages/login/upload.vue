@@ -40,7 +40,8 @@ export default {
 					height: 413
 				}
 			},
-			weCropper: ''
+			weCropper: '',
+			source: ''
 		};
 	},
 	methods: {
@@ -102,9 +103,17 @@ export default {
 						}
 					});
 
-					wx.redirectTo({
-					  url: './userMsg?avatar=' + avatar
-					})
+					
+
+					if(this.source === "msg"){
+						wx.redirectTo({
+							url: './userMsg?avatar=' + avatar
+						})
+					}else {
+						wx.redirectTo({
+							url: '../index/components/zugejupage/zujuPage?avatar=' + avatar
+						})
+					}
 				} else {
 					console.log('获取图片失败，请稍后重试');
 				}
@@ -130,6 +139,7 @@ export default {
 		// do something
 		const cropperOpt = this.cropperOpt;
 		const src = option.src;
+		this.source = option.source
 		if (src) {
 			Object.assign(cropperOpt, {
 				src

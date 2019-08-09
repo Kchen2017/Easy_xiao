@@ -4,9 +4,9 @@
 			:active="stepIndex" />
 			
 		<view class="form">
-			<basicMsg v-if="stepIndex === 0"></basicMsg>
-            <wherewhoMsg v-if="stepIndex === 1"></wherewhoMsg>
-            <limitMsg v-if="stepIndex === 2"></limitMsg>
+			<basicMsg v-if="stepIndex === 0" v-model="createForm.basicMsg"></basicMsg>
+            <wherewhoMsg v-if="stepIndex === 1" v-model="createForm.whereWhoMsg"></wherewhoMsg>
+            <limitMsg v-if="stepIndex === 2" v-model="createForm.limitData"></limitMsg>
 		</view>
 		<view :class="{'btn': stepIndex !== 0}">
             <button v-if="stepIndex !== 0" @click="upFun" type="primary">上一步</button>
@@ -32,7 +32,24 @@
 					title: '第二步'
 				},{
 					title: '第三步'
-				}]
+				}],
+				createForm: {
+					basicMsg: {
+						typeju: "请选择组什么局",
+						nameju: "",
+						avatar: ""
+					},
+					whereWhoMsg: {
+						ground: ""
+					},
+					limitData: {
+						date: "",
+						startTime: "",
+						endTime: "",
+						payType: "",
+						count: ""
+					}
+				}
 			}
 		},
 		methods: {
