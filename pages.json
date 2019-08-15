@@ -13,17 +13,39 @@
 			}
 		},
 		{
-			"path": "pages/easyDo/index",
+			"path": "pages/chat/index",
 			"style": {
-				"navigationBarTitleText": "EasyDo"
+				"navigationBarTitleText": "聊聊"
 			}
 		},
 		{
 			"path": "pages/news/index",
-			"style": {
-				"navigationBarTitleText": "资讯"
-			}
+			"style" : {
+                "navigationBarTitleText" : "发现",
+            	"enablePullDownRefresh" : true,
+                "app-plus" : {
+                    "bounce" : "none",
+                    "titleNView" : {
+                        "type" : "transparent",
+                        "buttons" : [
+                            {
+                                "background" : "rgba(255,255,255,0.2)",
+                                "color" : "#696969",
+                                "type" : "none",
+                                "fontSrc" : "/static/fonts/iconfont.ttf",
+                                "text" : "\ue608" 
+                            }
+                        ]
+                    }
+                }
+            }
 		},
+		{
+            "path" : "pages/news/publish/publish",
+            "style" : {
+				"navigationBarTitleText" : "发布"
+			}
+        },
 		{
 			"path": "pages/my/index",
 			"style": {
@@ -93,12 +115,31 @@
             "style": {
 				"navigationBarTitleText": "注册"
 			}
-        } , {
+		} , 
+		{
             "path": "pages/login/upload",
             "style": {
 				"navigationBarTitleText": "选择头像"
 			}
-        } 
+		} ,
+		{
+			"path": "pages/chat/components/HM-chat",
+			"style": {
+				"navigationBarTitleText": "聊聊"
+			}
+		},
+		{
+			"path": "pages/chat/components/HM-details/HM-details",
+			"style": {
+				"navigationBarTitleText": "红包"
+			}
+		},
+		{
+			"path": "pages/chat/components/HM-hand/HM-hand",
+			"style": {
+				"navigationBarTitleText": "发红包"
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -117,10 +158,15 @@
             "selectedIconPath": "static/index2.png",
             "text": "首页"
         }, {
+            "pagePath": "pages/chat/index",
+            "iconPath": "static/msg1.png",
+            "selectedIconPath": "static/msg3.png",
+            "text": "聊聊"
+        }, {
             "pagePath": "pages/news/index",
             "iconPath": "static/news1.png",
             "selectedIconPath": "static/news3.png",
-            "text": "资讯"
+            "text": "圈子"
         }, {
             "pagePath": "pages/my/index",
             "iconPath": "static/my1.png",
