@@ -5,15 +5,20 @@ var whereDataList = require('./wherList')
 var insert = function(){
 	whereDataList.data.searchResult.forEach(async (item)=>{
 		var operation ={
-			id: item.id,
+			groupId: item.id,
 			name: item.title,
-			imageUrl: item.imageUrl,
-			address: item.address,
-			type: item.backCateName,
-			city: item.city,
-			cityId: item.cityId
+			images: item.imageUrl,
+			avatarUrl: item.imageUrl,
+			adress: item.address,
+			sportType: item.backCateName,
+			regionId: item.city,
+			star: 5,
+			billType: "free",
+			tags: "高手,器材好，牛逼",
+			ownGroundId: "1001",
+			sign: "不服就干"
 		}
-		await db.insertData("wherelist", operation).then(res=>{
+		await db.insertData("group_table", operation).then(res=>{
 	        console.log(res)
 	    }).catch(err=>{
 	        console.log(err)

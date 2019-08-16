@@ -76,7 +76,7 @@
 				<view class="list">
 					<groundlistItem v-for="(item, index) in groundlist" 
 							:path="'components/groundlist'"
-							:value="item"
+							:dataItem="item"
 							:key="index" 
 							:bottomBorder="index !== (groundlist.length-1)"></groundlistItem>
 				</view>
@@ -88,7 +88,7 @@
 				<view class="list">
 					<groupListItem v-for="(item, index) in grouplist" 
 							:path="'components/grouplist'"
-							:value="item"
+							:dataItem="item"
 							:key="index" 
 							:bottomBorder="index !== (grouplist.length-1)"></groupListItem>
 				</view>
@@ -186,8 +186,8 @@
 					if(res && res.data && res.data.result){
 						this.indexData = res.data.result
 						this.swipArr = this.indexData.swipPics
-						// this.groundlist = this.indexData.groundIndexList
-						// this.grouplist = this.indexData.groupIndexList
+						this.groundlist = this.indexData.groundIndexList
+						this.grouplist = this.indexData.groupIndexList
 						this.city = this.indexData.regionId
 					}
 				})

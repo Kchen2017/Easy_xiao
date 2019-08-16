@@ -1,13 +1,13 @@
 <template>
 	<view @click="gotoDetail"  class="item" :class="{border: bottomBorder}" >
 		<view class="go_list_img">
-			<image src="http://qcloud.dpfile.com/pc/UNEToIAeCRQPxjLQt6_McVI4AjmAwOV_xVe9Mf7BKJUDnw8jcyW4sc-iLuwOCZlKZSUjBikR5Ecy-DoGYkMhlg.jpg"></image>
+			<image :src="dataItem.avatarUrl"></image>
 		</view>
 		<view class="go_list_context">
-			<view>五棵松开伊拉克球场</view>
-			<view style="font-size: 14px;">篮球</view>
+			<view>{{dataItem.name}}</view>
+			<view style="font-size: 28upx;">{{dataItem.sportType}}</view>
 			<view>
-				<text class="iconfont icon-dingwei">北京市海淀区五棵松</text>
+				<text class="iconfont icon-dingwei">{{dataItem.adress}}</text>
 			</view>
 			<view>
 				<text class="iconfont icon-yuding">线上预定</text>
@@ -24,7 +24,7 @@
 				type: Boolean,
 				default: true
 			},
-			value: {
+			dataItem: {
 				type: Object,
 				default: {}
 			},
@@ -55,6 +55,7 @@
 		display: flex;
 		margin-bottom: 40upx;
 		position: relative;
+		height: 250upx;
 	}
 	.border:before {
 		content: "";
