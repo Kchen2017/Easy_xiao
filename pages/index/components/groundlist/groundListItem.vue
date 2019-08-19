@@ -4,10 +4,10 @@
 			<image :src="dataItem.avatarUrl"></image>
 		</view>
 		<view class="go_list_context">
-			<view>{{dataItem.name}}</view>
+			<view class="long-title">{{dataItem.name || "--"}}</view>
 			<view style="font-size: 28upx;">{{dataItem.sportType}}</view>
-			<view>
-				<text class="iconfont icon-dingwei">{{dataItem.adress}}</text>
+			<view class="long-title">
+				<text class="iconfont icon-location">{{dataItem.adress}}</text>
 			</view>
 			<view>
 				<text class="iconfont icon-yuding">线上预定</text>
@@ -41,7 +41,7 @@
 		methods: {
 			gotoDetail(){
 				uni.navigateTo({
-					url: "./"+this.path+"/groundDetail",
+					url: "./"+this.path+"/groundDetail?id="+this.dataItem.groundId,
 					animationType: 'pop-in',
 					animationDuration: 200
 				})

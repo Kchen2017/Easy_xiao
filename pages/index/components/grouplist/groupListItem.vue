@@ -1,13 +1,13 @@
 <template>
 	<view @click="gotoDetail" class="item" :class="{border: bottomBorder}">
 		<view class="list_img">
-			<image src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3000033855,214344624&fm=26&gp=0.jpg"></image>
+			<image :src="value.avatarUrl"></image>
 		</view>
 		<view class="list_con">
-			<view>龙骑士</view>
+			<view class="long-title">{{value.name}}</view>
 			<view>时间：2019.4.24</view>
-			<view>地点：凯翔篮球馆</view>
-			<view>标签：</view>
+			<view  class="long-title">地点：{{value.adress}}</view>
+			<view>标签：{{value.sign}}</view>
 		</view>
 	</view>
 </template>
@@ -52,8 +52,10 @@
 		position: relative;
 	}
 	.list_img image {
-		width: 300upx;
+		width: 200upx;
 		height: 200upx;
+		margin-right: 10upx;
+		border-radius: 20upx;
 	}
 	.list_con {
 		height: 200upx;

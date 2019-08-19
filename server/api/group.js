@@ -1,50 +1,59 @@
 var express = require('express');
 var router = express.Router();
 
+var multiparty = require('connect-multiparty')
+var multipartyMiddleware = new multiparty()
+
 var db = require('../baseData/mysqlutil')
 var base = require('../utils/base')
 var fromQueryOrBody = base.fromQueryOrBody
 
+router.all("/getGroups", function(req, res, next){
+    var groundId = fromQueryOrBody(req, "groundId")
 
-router.all("/getGroupList", async function(req, res, next){
-    var pageNumber = fromQueryOrBody(req, "pageNumber")
-    var pageSize = fromQueryOrBody(req, "pageSize")
-    var filters =  getFiltersInReq(req)
+    var sql = "SELECT * FROM group_table WHERE ownGroundId = ?"
+    var params = [groundId]
 
-
-    var start = (pageNumber - 1)*pageSize
-    try{
-        var sql = "SELECT * FROM groundList LIMIT ?,? WHERE ? "
-        var params = [start, pageSize, filters]
-        var dbData = await db.query(sql, params)
-
-        var sql = "SELECT COUNT(*) FROM groundList"
-        var titleCount = await db.query(sql, params)
-
-        var resListData = {
-            listData: dbData,
-            totalCount: titleCount[0]["COUNT(*)"]
-        }
-        res.json(resListData);
-    }catch(err){
+    db.query(sql, params).then(result => {
+        res.json({
+            code: 200,
+            msg: "success",
+            result: result
+        });
+    }).catch(err => {
         res.json({status:-1,msg:err});
-    }
+    })
 })
 
-router.all("/getGroupDetail", async function(req, res, next){
-    var id = fromQueryOrBody(req, "id")
+router.all("/getGroup", function(req, res, next){
+    var groundId = fromQueryOrBody(req, "groundId")
 
-    try{
-        var sql = "SELECT * FROM groundList WHERE id=" + id
-        var dbData = await db.query(sql, params)
 
-        var resListData = {
-            detailData: dbData[0]
+    var sql = "SELECT * FROM group_table WHERE groundId = ?"
+    var params = [groundId]
+
+    db.query(sql, params).then(result => {
+        var groundObj = result[0]
+        var tagArr = groundObj.tags.split(",")
+        groundObj.tagsArr = tagArr
+        groundObj.swips = []
+        var urlImage = {
+            url: groundObj.images
         }
-        res.json(resListData);
-    }catch(err){
+        groundObj.swips.push(urlImage)
+
+        res.json({
+            code: 200,
+            msg: "success",
+            result: groundObj
+        });
+    }).catch(err => {
         res.json({status:-1,msg:err});
-    }
+    })
 })
+
+
+
+
 
 module.exports = router;

@@ -3,22 +3,22 @@
 		<view class="swip_con">
 			<swiperSilder :swipArr="swipArr"></swiperSilder>
 			<view class="operator">
-				<text @click="savein=!savein" class="iconfont" :class="{'icon-shoucang': savein, 'icon-shoucang1': !savein}"></text>
+				<text @click="savein=!savein;popupShowFun()" class="iconfont" :class="{'icon-shoucang': savein, 'icon-shoucang1': !savein}"></text>
 				<text @click="shareFun" class="iconfont icon-fenxiang2"></text>
 			</view>
 		</view>
 		<view class="bodycon">
 			<view >
 				<view class="tag">
-					<text>免费</text><text>学校</text><text>大神多</text>
+					<text v-for="(item, index) in groundDetail.tagsArr" :key="index">{{item}}</text>
 				</view>
 				<view>
-					北京信息科技大学（小营桥小区篮球场）南区
+					{{groundDetail.name}}
 				</view>
 				<view class="address">
-					<view>
+					<view class="itemCon">
 						<text class="iconfont icon-location"></text>
-						<text class="address_msg">北京市海淀区清河小营东路12号北信科（清河校区）</text>
+						<text class="address_msg">{{groundDetail.adress}}</text>
 					</view>
 					<map style="width: 100%; height: 130px;" :latitude="latitude" :longitude="longitude"></map>
 				</view>
@@ -28,33 +28,33 @@
 					<text>局</text>
 					<text style="font-size: 12px; color: #ccc;">更多局<text class="iconfont icon-you2" style="font-size: 12px;"></text></text>
 				</view>
-				<scroll-view class="list" scroll-y="true">
-					<groupListItem v-for="(item, index) in golist" 
+				<view >
+					<groupListItem v-for="(item, index) in groupList" 
 							:value="item"
 							:key="index" 
-							:bottomBorder="index !== (golist.length-1)"></groupListItem>
-				</scroll-view>
+							:bottomBorder="index !== (groupList.length-1)"></groupListItem>
+				</view>
 			</view>
 			<view class="quan">
 				<view class="title">
 					<text>圈子</text>
 					<text style="font-size: 12px; color: #ccc;">进圈<text class="iconfont icon-you2" style="font-size: 12px;"></text></text>
 				</view>
-				<scroll-view class="list" scroll-y="true">
+				<view >
 					<dongtaiCom></dongtaiCom>
-				</scroll-view>
+				</view>
 			</view>
 			<view class="king">
 				<view class="title">
 					<text>王者榜</text>
 					<text style="font-size: 12px; color: #ccc;">更多榜<text class="iconfont icon-you2" style="font-size: 12px;"></text></text>
 				</view>
-				<scroll-view class="list" scroll-y="true">
-					<groupListItem v-for="(item, index) in golist" 
+				<view >
+					<groupListItem v-for="(item, index) in groupList" 
 							:value="item"
 							:key="index" 
-							:bottomBorder="index !== (golist.length-1)"></groupListItem>
-				</scroll-view>
+							:bottomBorder="index !== (groupList.length-1)"></groupListItem>
+				</view>
 			</view>
 			
 		</view>
@@ -66,19 +66,40 @@
             direction="horizontal"
             @trigger="trigger"
         ></uni-fab>
-		<view v-if="popupshow" class="popup">
-			<text class="iconfont icon-shoucang-copy-copy"></text><br>
-			<text>{{popupMsg}}</text>
-		</view>
+		<uni-popup
+			ref="popup"
+			:custom="true"
+			:type="type"
+			@change="change">
+			<view class="uni-share">
+				<view class="uni-share-title">分享到</view>
+				<view class="uni-share-content">
+				<view
+					v-for="(item, index) in bottomData"
+					:key="index"
+					class="uni-share-content-box">
+					<view class="uni-share-content-image"><image
+					:src="item.icon"
+					class="image" /></view>
+					<view class="uni-share-content-text">{{ item.text }}</view>
+				</view>
+				</view>
+				<view
+				class="uni-share-btn"
+				@click="cancel">取消分享</view>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
 	import swiperSilder from "../swiperSilder.vue"
-	import {uniPopup} from '@dcloudio/uni-ui'
+	import uniPopup from "@/components/uni-popup.vue"
 	import groupListItem from '../grouplist/groupListItem.vue'
 	import dongtaiCom from "../dongtaiCom.vue"
 	import uniFab from '@/components/uni-fab.vue';
+	import groundApi from "../../../../common/api/groundApi"
+	import groupApi from "../../../../common/api/groupApi"
 	export default {
 		components: {
 			swiperSilder,
@@ -89,16 +110,10 @@
 		},
 		data(){
 			return {
-				swipArr: [{
-					url: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561467102487&di=51a2165e4319ce957afd6b2ba0d90d99&imgtype=0&src=http%3A%2F%2Fpic31.nipic.com%2F20130705%2F9527735_231540074000_2.jpg"
-				},{
-					url: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561467102486&di=a0f7af7e144d068ed3ee6d2bc573ddeb&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fc%2F53cdd1f7c1f21.jpg"
-				},{
-					url: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561467102486&di=86986f0d5701322373092fd2a8ac962f&imgtype=0&src=http%3A%2F%2Fpic40.nipic.com%2F20140424%2F12259251_002036722178_2.jpg"
-				}],
+				groundDetail: {},
+				swipArr: [],
 				savein: true,
 				popupshow: false,
-				popupMsg: "关注成功",
 				golist: [{},{},{},{}],
 				latitude: 39.909,
 				longitude: 116.39742,
@@ -133,14 +148,59 @@
 						text: '王者榜',
 						active: false
 					}
-				]
+				],
+				bottomData: [
+					{
+					text: '微信',
+					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-2.png',
+					name: 'wx'
+					},
+					{
+					text: '支付宝',
+					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-8.png',
+					name: 'wx'
+					},
+					{
+					text: 'QQ',
+					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/gird-3.png',
+					name: 'qq'
+					},
+					{
+					text: '新浪',
+					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-1.png',
+					name: 'sina'
+					},
+					{
+					text: '百度',
+					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-7.png',
+					name: 'copy'
+					},
+					{
+					text: '其他',
+					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-5.png',
+					name: 'more'
+					}
+				],
+				type: "bottom",
+				groupList: []
 			}
 		},
 		methods: {
 			popupShowFun(){
-				setTimeout(() => {
-					this.popupshow = !this.popupshow
-				},1000)
+				if(!this.savein){
+					uni.showToast({
+						icon: 'none',
+						position: 'bottom',
+						title: '收藏成功'
+					});
+				}else{
+					uni.showToast({
+						icon: 'none',
+						position: 'bottom',
+						title: '取消收藏'
+					});
+				}
+				
 			},
 			trigger(e) {
 				if(e.item.text === "组个局"){
@@ -169,23 +229,32 @@
 				
 			},
 			shareFun(){
-				
+				console.log(this.$refs)
+				this.$refs.popup.open()
+			},
+			cancel () {
+				this.$refs.popup.close()
+			},
+			change (e) {
+				console.log(e.show)
 			}
 		}, 
-		watch:{
-			savein: function(val){
-				if(val){
-					this.popupMsg = "关注成功"
-					this.popupshow = true
-				}else{
-					this.popupMsg = "取消关注成功"
-					this.popupshow = true
+		onLoad(params) {
+			groundApi.getGround({
+				groundId: params.id
+			}).then(res => {
+				if(res && res.data && res.data.result){
+					this.groundDetail = res.data.result
+					this.swipArr = this.groundDetail.swips
 				}
-				this.popupShowFun()
-			}
-		},
-		onLoad() {
-			
+				groupApi.getGroups({
+					groundId: params.id
+				}).then(res => {
+					if(res && res.data && res.data.result){
+						this.groupList = res.data.result.splice(0,4)
+					}
+				})
+			})
 		}
 	}
 </script>
@@ -279,9 +348,9 @@
 	}
 	.address_msg {
 		font-size: 28upx;
-		height: 120upx;
-		line-height: 60upx;
 		overflow: hidden;
+		display: flex;
+		align-items: center;
 	}
 	.btn {
 		position: fixed;
@@ -308,4 +377,59 @@
 		height: 140upx;
 		line-height: 140upx;
 	}
+	/* 底部分享 */
+.uni-share {
+	background: #fff;
+}
+
+.uni-share-title {
+	line-height: 60upx;
+	font-size: 24upx;
+	padding: 15upx 0;
+	text-align: center;
+}
+
+.uni-share-content {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 15px;
+}
+
+.uni-share-content-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 25%;
+	box-sizing: border-box;
+}
+
+.uni-share-content-image {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 60upx;
+	height: 60upx;
+	overflow: hidden;
+	border-radius: 10upx;
+}
+
+.uni-share-content-image .image {
+	width: 100%;
+	height: 100%;
+}
+
+.uni-share-content-text {
+	font-size: 26upx;
+	color: #333;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+.uni-share-btn {
+	height: 90upx;
+	line-height: 90upx;
+	border-top: 1px #f5f5f5 solid;
+	text-align: center;
+	color: #666;
+}
 </style>

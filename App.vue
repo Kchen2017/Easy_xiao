@@ -19,4 +19,5 @@
 		display: flex;
 		align-items: center;
 	}
+	.long-title{width:480upx;white-space:nowrap; overflow:hidden; word-break:keep-all; text-overflow:ellipsis;word-wrap:normal;}
 </style>
