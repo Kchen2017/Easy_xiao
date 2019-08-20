@@ -50,7 +50,7 @@
 <script>
 	import {uniTag } from '@dcloudio/uni-ui'
 	import xyzTab from "@/components/xyz-tab.vue"
-	import dongtaiCom from "../dongtaiCom.vue"
+	import dongtaiCom from "../../../news/index"
 	import sticky from "@/components/sticky.vue"
 	export default {
 		components: {

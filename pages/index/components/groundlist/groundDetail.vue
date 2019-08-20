@@ -96,7 +96,7 @@
 	import swiperSilder from "../swiperSilder.vue"
 	import uniPopup from "@/components/uni-popup.vue"
 	import groupListItem from '../grouplist/groupListItem.vue'
-	import dongtaiCom from "../dongtaiCom.vue"
+	import dongtaiCom from "../../../news/index"
 	import uniFab from '@/components/uni-fab.vue';
 	import groundApi from "../../../../common/api/groundApi"
 	import groupApi from "../../../../common/api/groupApi"

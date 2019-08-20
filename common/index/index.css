@@ -44,11 +44,11 @@
 	margin-top: 8upx;
 }
 
-#moments {
+.moments {
 	background: #fff;
 }
 
-#moments .home-pic {
+.moments .home-pic {
 	width: 100%;
 	/* margin-top: -150upx; */
 	position: relative;
@@ -59,7 +59,7 @@
 	margin-bottom: 50upx
 }
 
-#moments .home-pic-base {
+.moments .home-pic-base {
 	position: absolute;
 	left: -60upx;
 	bottom: -40upx;
@@ -68,7 +68,7 @@
 	padding: 0 30upx;
 }
 
-#moments .home-pic-base .top-pic {
+.moments .home-pic-base .top-pic {
 	width: 360upx;
 	height: 360upx;
 	
@@ -84,7 +84,7 @@
 	float: right
 }
 
-#moments .home-pic-base .top-name {
+.moments .home-pic-base .top-name {
 	position: absolute;
 	/* left: 20px; */
 	right: 240upx;
@@ -96,7 +96,7 @@
 	overflow: hidden
 }
 
-#moments .moments__post {
+.moments .moments__post {
 	background: #fff;
 	display: block;
 	border-bottom: 1px solid #f2eeee;
@@ -107,18 +107,18 @@
 	display: flex;
 }
 
-#moments .moments__post::before {
+.moments .moments__post::before {
 	content: none
 }
 
-#moments .moments__post .post_right {
+.moments .moments__post .post_right {
 	font-size: 32upx;
 	display: table-cell;
 	padding-left: 20upx;
 	width: 100%;
 }
 
-/* #moments .moments__post .post_right .paragraphExtender {
+/* .moments .moments__post .post_right .paragraphExtender {
 		margin: 5px auto;
 		display: -webkit-box;
 		display: -webkit-flex;
@@ -126,11 +126,11 @@
 		display: flex
 	} */
 
-#moments .moments__post .title {
+.moments .moments__post .title {
 	color: #094dcc
 }
 
-#moments .moments__post .thumbnails {
+.moments .moments__post .thumbnails {
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
@@ -141,7 +141,7 @@
 	-ms-flex-wrap: wrap; */
 }
 
-#moments .moments__post .thumbnails .thumbnail {
+.moments .moments__post .thumbnails .thumbnail {
 	width: 30%;
 	height: 180upx;
 	margin: 4upx;
@@ -157,7 +157,7 @@
 	overflow: hidden
 }
 
-#moments .moments__post .toolbar {
+.moments .moments__post .toolbar {
 	position: relative;
 	top: 10upx;
 	display: -webkit-box;
@@ -170,13 +170,13 @@
 	align-items: center
 }
 
-#moments .moments__post .toolbar .timestamp {
+.moments .moments__post .toolbar .timestamp {
 	color: #757575;
 	font-size: 22upx;
 }
 
 
-#moments .moments__post .like {
+.moments .moments__post .like {
 	width: auto;
 	height: auto;
 	position: absolute;
@@ -184,7 +184,7 @@
 	display: flex;
 	align-items: center;
 }
-#moments .moments__post .comment {
+.moments .moments__post .comment {
 	width: auto;
 	height: auto;
 	position: absolute;
@@ -193,7 +193,7 @@
 	align-items: center;
 }
 
-#moments .moments__post .toolbar image{
+.moments .moments__post .toolbar image{
 	padding-left: 20upx;
 	width: 40upx;
 	height: 40upx;
@@ -205,7 +205,7 @@
 	width: 100%;
 }
 
-#moments .moments__post .footer_content {
+.moments .moments__post .footer_content {
 	padding-left: 10upx;
 	position: relative;
 	display: -webkit-box;
@@ -221,17 +221,17 @@
 	flex-wrap: wrap
 }
 
-#moments .moments__post .footer_content .nickname {
+.moments .moments__post .footer_content .nickname {
 	color: #36648B;
 	font-size: 24upx
 }
 
-#moments .moments__post .footer_content .comment-nickname {
+.moments .moments__post .footer_content .comment-nickname {
 	color: #36648B;
 	font-size: 24upx
 }
 
-#moments .moments__post .footer_content .comment-content {
+.moments .moments__post .footer_content .comment-content {
 	color: #000000;
 	font-size: 24upx
 }

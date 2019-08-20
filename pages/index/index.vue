@@ -88,7 +88,7 @@
 				<view class="list">
 					<groupListItem v-for="(item, index) in grouplist" 
 							:path="'components/grouplist'"
-							:dataItem="item"
+							v-model="item"
 							:key="index" 
 							:bottomBorder="index !== (grouplist.length-1)"></groupListItem>
 				</view>
