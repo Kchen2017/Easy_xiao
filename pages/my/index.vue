@@ -2,13 +2,13 @@
 	<view class="my_con">
 		<view class="info">
 			<view class="photo">
-				<image src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3000033855,214344624&fm=26&gp=0.jpg"></image>
+				<image :src="userObj.avatarUrl"></image>
 			</view>
 			<view class="title">
-				<view class="name">亦可往</view>
+				<view class="name">{{userObj.nickName || "--"}}</view>
 				<view class="medle">
-					<view class="bor">粉丝11</view>
-					<view>关注22</view>
+					<view class="bor">粉丝{{userObj.fans}}</view>
+					<view>关注{{userObj.beFans}}</view>
 				</view>
 				<view @click="gotoper" class="myweb">个人主页<text class="iconfont icon-jiantou"></text></view>
 			</view>
@@ -49,29 +49,33 @@
 				</view>
 				<text class="iconfont icon-jiantou"></text>
 			</view>
-			<view class="item">
+			<view class="item itemborder">
 				<view class="tit">
 					<text class="iconfont icon-shezhi1"></text>
 					<view>设置</view>
 				</view>
 				<text class="iconfont icon-jiantou"></text>
 			</view>
-			<view class="item">
+			<view class="item" @click="gotoPhone">
 				<view class="tit">
 					<text class="iconfont icon-a069"></text>
 					<view>客服</view>
 				</view>
-				<text class="iconfont icon-jiantou"></text>
+				<view>
+					<text style="color:#c9d0cb;margin-right: 40upx">118118</text>
+					<text class="iconfont icon-jiantou"></text>
+				</view>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	import userApi from "../../common/api/userApi"
 	export default {
 		data(){
 			return {
-				
+				userObj: {}
 			}
 		},
 		methods: {
@@ -79,7 +83,25 @@
 				uni.navigateTo({
 					url: "../index/components/friends_per"
 				})
+			},
+			getUser(){
+				let userPin = uni.getStorageSync('userPin');
+				userApi.getUserMsg({
+					userPin: userPin
+				}).then(res => {
+					if(res && res.data && res.data.result){
+						this.userObj = res.data.result[0]
+					}
+				})
+			},
+			gotoPhone(){
+				uni.makePhoneCall({
+					phoneNumber: '118118'
+				});
 			}
+		},
+		onLoad(){
+			this.getUser()
 		}
 	}
 </script>

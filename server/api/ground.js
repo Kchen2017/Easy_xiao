@@ -7,23 +7,18 @@ var multipartyMiddleware = new multiparty()
 var db = require('../baseData/mysqlutil')
 var base = require('../utils/base')
 var fromQueryOrBody = base.fromQueryOrBody
+var transFromfiltersql = base.transFromfiltersql
 
 router.all("/getGrounds", function(req, res, next){
-    var phoneNum = fromQueryOrBody(req, "phoneNum")
+    var regionId = fromQueryOrBody(req, "regionId")
+    var filter = JSON.parse(fromQueryOrBody(req, "filter"))
 
-    var tableData = {
-        phoneNum: phoneNum,
-        password: password,
-        userPin: userPin
-    }
-
-    var sql = "SELECT * FROM ground_table WHERE groundId = ?"
-    var params = [tableData]
-
-    db.query(sql, params).then(result => {
+    var sql = `SELECT * FROM ground_table WHERE regionId = '${regionId}' ${transFromfiltersql(filter)? 'AND ' +transFromfiltersql(filter): ''}`
+    console.log(sql)
+    db.query(sql).then(result => {
         res.json({
             code: 200,
-            msg: "success",
+            msg: "success", 
             result: result
         });
     }).catch(err => {

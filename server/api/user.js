@@ -223,6 +223,24 @@ router.all("/getIndexData", async function(req, res, next){
     }
 })
 
+router.all("/getUserMsg", async function(req, res, next){
+    var userPin = fromQueryOrBody(req, "userPin")
+    try{
+        var sql = "SELECT * FROM users_table WHERE userPin = ?"
+        var params = [userPin]
+
+        var result =  await db.query(sql, params)
+
+        res.json({
+            code: 200,
+            msg: "success",
+            result: result
+        });
+    }catch(err){
+        res.json({status:-1,msg:err});
+    }
+})
+
 
 
 

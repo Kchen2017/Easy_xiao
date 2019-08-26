@@ -8,7 +8,8 @@
 			<view class="menu">
 				<slFilter :isTransNav="true" 
 						:navHeight="0"  
-						:menuList="menuList"></slFilter>
+						:menuList="menuList"
+						@result="filerFun"></slFilter>
 			</view>
 		</view>
 		<view class="list">
@@ -25,6 +26,8 @@
 	import slFilter from '@/components/sl-filter/sl-filter.vue';
 	import groupListItem from './groupListItem.vue'
 	import switchType from '../switchType.vue'
+	import commonData from '../../../../common/data/commonData'
+	import groupApi from '../../../../common/api/groupApi'
 	export default {
 		components: {
             slFilter,
@@ -33,7 +36,7 @@
         },
 		data() {
 			return {
-				golist: [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+				golist: [],
 				menuList: [
 					{
 						'title': '运动类型',
@@ -122,14 +125,37 @@
 							}
 						]
 					}
-				]
+				],
+				filterObj: {
+					sportType: "",
+					sortType: "",
+					payType: ""
+				},
+				regionId: uni.getStorageSync('regionId')
 			}
 		},
 		methods: {
-			
+			filerFun(val){
+				this.filterObj = val
+				this.getGroupList()
+			},
+			getGroupList(){
+				groupApi.getGroups({
+					regionId: this.regionId,
+					filter: this.filterObj
+				}).then(res => {
+					if(res && res.data && res.data.result){
+						this.golist = res.data.result
+					}
+				})
+			}
 		},
 		onLoad(option) {
-			
+			if(option.sportType){
+				this.filterObj.sportType = option.sportType
+				this.menuList[0].title = commonData.sportTypeMapToCn[option.sportType]
+			}
+			this.getGroupList()
 		}
 	}
 </script>

@@ -25,7 +25,7 @@
 					<text class="iconfont icon-lanqiu"></text>
 					<view class="go_swipLabel">篮球</view>
 				</view>
-				<view @click="goToFilter('football')">
+				<view @click="goToFilter('footBall')">
 					<text class="iconfont icon-zuqiu"></text>
 					<view class="go_swipLabel">足球</view>
 				</view>
@@ -49,8 +49,8 @@
 					<view class="btn">立即找场</view>
 				</view>
 				<view class="typeItem" @click="selecttypeFun('group')">
-					<view>无兄弟不运动</view>
-					<view class="btn">搜索运动局</view>
+					<view>社交找局</view>
+					<view class="btn">搜索局</view>
 				</view>
 				<view class="typeItem">
 					<view>跟着专业的玩</view>
@@ -75,7 +75,7 @@
 				<view class="title">精选场地</view>
 				<view class="list">
 					<groundlistItem v-for="(item, index) in groundlist" 
-							:path="'components/groundlist'"
+							:path="'components/groundlist/'"
 							:dataItem="item"
 							:key="index" 
 							:bottomBorder="index !== (groundlist.length-1)"></groundlistItem>
@@ -87,7 +87,7 @@
 				<view class="title">热门局</view>
 				<view class="list">
 					<groupListItem v-for="(item, index) in grouplist" 
-							:path="'components/grouplist'"
+							:path="'components/grouplist/'"
 							:value="item"
 							:key="index" 
 							:bottomBorder="index !== (grouplist.length-1)"></groupListItem>
@@ -122,20 +122,21 @@
 		data() {
 			return {
 				indexData: [],
-				groundlist: [{}],
-				grouplist: [{}],
+				groundlist: [],
+				grouplist: [],
 				showSelect: false,
 				city: '' ,
-				swipArr: []
+				swipArr: [],
+				seletedTypeju: ""
 			}
 		},
 		onLoad(option) {
 			this.showSelect = false
-			console.log(option)
 			this.city = option.city || "北京"
 		},
 		methods: {
 			goToFilter(type){
+				this.seletedTypeju = type
 				this.showSelect = true
 			},
 			clickCancel(){
@@ -150,9 +151,9 @@
 					}
 				}
 				if(type === "ground"){
-					params.url = './components/groundlist/groundlist'
+					params.url = './components/groundlist/groundlist?sportType=' + this.seletedTypeju
 				}else if(type === "group"){
-					params.url = './components/grouplist/grouplist'
+					params.url = './components/grouplist/grouplist?sportType=' + this.seletedTypeju
 				}
 				uni.navigateTo(params)
 			},
@@ -189,6 +190,9 @@
 						this.groundlist = this.indexData.groundIndexList
 						this.grouplist = this.indexData.groupIndexList
 						this.city = this.indexData.regionId
+					}
+					if(this.city){
+						uni.setStorageSync('regionId', this.city);
 					}
 				})
 			}

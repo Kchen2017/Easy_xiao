@@ -12,12 +12,12 @@
 						@result="filerFun"></slFilter>
 			</view>
 		</view>
-		<view class="list">
+		<scroll-view class="list">
 			<groundlistItem v-for="(item, index) in golist" 
-							:value="item"
-							:key="index" 
+							:dataItem="item"
+							:key="index"
 							:bottomBorder="index !== (golist.length-1)"></groundlistItem>
-		</view>
+		</scroll-view>
 		<switchType :text="'去找局'" :url="'../grouplist/grouplist'"></switchType>
 	</view>
 </template>
@@ -26,6 +26,8 @@
 	import slFilter from '@/components/sl-filter/sl-filter.vue';
 	import groundlistItem from './groundListItem.vue'
 	import switchType from '../switchType.vue'
+	import commonData from '../../../../common/data/commonData'
+	import groundApi from '../../../../common/api/groundApi'
 	export default {
 		components: {
             slFilter,
@@ -34,7 +36,7 @@
         },
 		data() {
 			return {
-				golist: [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+				golist: [],
 				menuList: [
 					{
 						'title': '运动类型',
@@ -123,16 +125,37 @@
 							}
 						]
 					}
-				]
+				],
+				filterObj: {
+					sportType: "",
+					sortType: "",
+					payType: ""
+				},
+				regionId: uni.getStorageSync('regionId')
 			}
 		},
 		methods: {
 			filerFun(val){
-				console.log(val)
+				this.filterObj = val
+				this.getGroundList()
+			},
+			getGroundList(){
+				groundApi.getGrounds({
+					regionId: this.regionId,
+					filter: this.filterObj
+				}).then(res => {
+					if(res && res.data && res.data.result){
+						this.golist = res.data.result
+					}
+				})
 			}
 		},
 		onLoad(option) {
-			
+			if(option.sportType){
+				this.filterObj.sportType = option.sportType
+				this.menuList[0].title = commonData.sportTypeMapToCn[option.sportType]
+			}
+			this.getGroundList()
 		}
 	}
 </script>
@@ -140,13 +163,16 @@
 <style>
 	.ground{
 		padding: 0 40upx;
+		display: flex;
+		flex-direction: column;
 	}
 	.list {
 		padding-top: 20upx;
+		flex: 1;
 	}
 	.search_bar{
 		padding: 20upx 0;
-		
+		flex: 1;
 	}
 	.search{
 		background-color: #f5f5f5;

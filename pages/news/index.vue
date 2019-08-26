@@ -10,6 +10,8 @@
 			</view>
 		</view> -->
 
+		<view @click="goPublish">发表</view>
+
 		<view class="moments__post" v-for="(post,index) in posts" :key="index" :id="'post-'+index">
 			<view class="post-left">
 				<image class="post_header" :src="post.header_image"></image>
@@ -53,6 +55,8 @@
 			<!-- <chat-input @send-message="send_comment" @blur="blur" :placeholder="input_placeholder"></chat-input> -->
 		</view>
 		<view class="uni-loadmore" v-if="showLoadMore">{{loadMoreText}}</view>
+
+		<switchType :text="'发表'" :url="'./publish/publish'"></switchType>
 	</view>
 
 </template>
@@ -60,10 +64,12 @@
 <script>
 	import chatInput from '../../components/im-chat/chatinput.vue'; //input框
 	import postData from '../../common/index/index.post.data.js';//朋友圈数据
+	import switchType from '../index/components/switchType.vue'
 	
 	export default {
 		components: {
-			chatInput
+			chatInput,
+			switchType
 		},
 		data() {
 			return {
@@ -261,6 +267,7 @@
 </script>
 
 <style scoped>
+	@import '../../common/uni.css';
 	@import url("../../common/index/index.css");
 	.moments .uni-loadmore {
 		width: 100%;

@@ -3,7 +3,7 @@
 		<form>
 			<view class="uni-textarea">
 				<textarea placeholder="这一刻的想法..." v-model="input_content" />
-				</view>
+			</view>
 			<view class="uni-list list-pd">
 				<view class="uni-list-cell cell-pd">
 					<view class="uni-uploader">
@@ -213,8 +213,8 @@
 	}
 </script>
 
-<style scoped>
-	
+<style>
+@import '../../../common/uni.css';
 	.footer {
 		margin-top: 80upx;
 	}

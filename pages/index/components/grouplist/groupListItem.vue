@@ -36,7 +36,7 @@
 		methods: {
 			gotoDetail(){
 				uni.navigateTo({
-					url: "./"+this.path+"/groupDetail",
+					url: "./"+this.path+"groupDetail",
 					animationType: 'pop-in',
 					animationDuration: 200
 				})

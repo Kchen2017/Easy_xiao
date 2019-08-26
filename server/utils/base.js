@@ -127,3 +127,18 @@ exports.getFiltersInReq=(req)=>{
     }
     return filtersObj
 }
+
+exports.transFromfiltersql = (params = {}) => {
+    if(!params) return ""
+    let filterStr = []
+    for(let key in params){
+        if(params[key]){
+            let tempStr = `${key}='${params[key]}'`
+            filterStr.push(tempStr)
+        }
+    }
+    if(filterStr.length===0){
+        return ""
+    }
+    return filterStr.join(" AND ")
+}

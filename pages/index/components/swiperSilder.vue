@@ -1,12 +1,13 @@
 <template>
 	<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay">
-		<swiper-item v-for="(item, index) in swipArr" :key="index">
+		<swiper-item v-for="(item, index) in swipArr" :key="index" @click="openBrower(item.webUrl)">
 			<image :src="item.url"></image>
 		</swiper-item>
 	</swiper>
 </template>
 
 <script>
+	import browser from "../../../components/browser"
 	export default {
 		props: {
 			swipArr: {
@@ -25,6 +26,15 @@
 		data(){
 			return {
 				
+			}
+		},
+		methods: {
+			openBrower(url){
+				var options = {
+					'data': '123'
+				}
+				browser.init(options)
+				browser.show(url)
 			}
 		}
 	}

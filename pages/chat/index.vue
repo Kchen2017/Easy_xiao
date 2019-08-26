@@ -2,8 +2,8 @@
   <view class="content">
     <view class="search-box" @click="tosearch">
       <view class="search-bg">
-        <!-- <input type="text" class="search" disabled="true"> -->
-        <text class="iconfont ic_find"></text>
+        <input type="text" class="search" disabled="true" placeholder="输入关键字搜索">
+        <text class="iconfont icon-sousuo1"></text>
       </view>
     </view>
     <view class="message-list">
@@ -215,9 +215,9 @@ export default {
   onLoad() {},
   methods: {
     tosearch() {
-    //   uni.navigateTo({
-    //     url: "../common/search/index"
-    //   });
+      uni.navigateTo({
+        url: "../index/components/searchPage/searchPage"
+      });
     }
   },
   onNavigationBarButtonTap(e) {

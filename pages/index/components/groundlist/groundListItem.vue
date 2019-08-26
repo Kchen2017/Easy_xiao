@@ -41,7 +41,7 @@
 		methods: {
 			gotoDetail(){
 				uni.navigateTo({
-					url: "./"+this.path+"/groundDetail?id="+this.dataItem.groundId,
+					url: "./"+this.path+"groundDetail?id="+this.dataItem.groundId,
 					animationType: 'pop-in',
 					animationDuration: 200
 				})

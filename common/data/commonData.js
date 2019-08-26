@@ -20,5 +20,19 @@ export default {
             "label": "其他",
             "children": [{"label":"约炮"}, {"label":"广场舞"}, {"label":"其他"}]
         }
-    ]
+    ],
+    sportTypeMapToEn: {
+        '篮球': 'basketball',
+        '足球': 'footBall',
+        '羽毛球': 'badminton',
+        '网球': 'tennis',
+        '英语角': 'enCorner'
+    },
+    sportTypeMapToCn: {
+        'basketball': '篮球',
+        'footBall': '足球',
+        'badminton': '羽毛球',
+        'tennis': '网球',
+        'enCorner': '英语角'
+    }
 }

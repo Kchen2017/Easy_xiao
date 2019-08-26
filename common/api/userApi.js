@@ -35,4 +35,8 @@ export default {
 	    let uri = "/user/getIndexData?t=" + new Date();
 	    return request.getRequest(uri, params, options);
     },
+    getUserMsg(params={}, options={}){
+	    let uri = "/user/getUserMsg?t=" + new Date();
+	    return request.getRequest(uri, params, options);
+    },
 }
