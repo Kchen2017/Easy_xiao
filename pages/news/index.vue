@@ -56,7 +56,7 @@
 		</view>
 		<view class="uni-loadmore" v-if="showLoadMore">{{loadMoreText}}</view>
 
-		<switchType :text="'发表'" :url="'./publish/publish'"></switchType>
+		<switchType v-if="isShowP" :text="'发表'" :url="'./publish/publish'"></switchType>
 	</view>
 
 </template>
@@ -70,6 +70,12 @@
 		components: {
 			chatInput,
 			switchType
+		},
+		props: {
+			isShowP: {
+				type: Boolean,
+				default: true
+			}
 		},
 		data() {
 			return {

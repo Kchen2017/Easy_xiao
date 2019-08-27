@@ -11,7 +11,7 @@ var transFromfiltersql = base.transFromfiltersql
 
 router.all("/getGroups", function(req, res, next){
     var regionId = fromQueryOrBody(req, "regionId")
-    var filter = JSON.parse(fromQueryOrBody(req, "filter"))
+    var filter = fromQueryOrBody(req, "filter") && JSON.parse(fromQueryOrBody(req, "filter"))
 
     var sql = `SELECT * FROM group_table WHERE regionId = '${regionId}' ${transFromfiltersql(filter)? 'AND ' +transFromfiltersql(filter): ''}`
     console.log(sql)

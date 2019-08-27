@@ -41,7 +41,7 @@
 					<text style="font-size: 12px; color: #ccc;">进圈<text class="iconfont icon-you2" style="font-size: 12px;"></text></text>
 				</view>
 				<view >
-					<dongtaiCom></dongtaiCom>
+					<dongtaiCom :isShowP="false"></dongtaiCom>
 				</view>
 			</view>
 			<view class="king">
@@ -114,7 +114,6 @@
 				swipArr: [],
 				savein: true,
 				popupshow: false,
-				golist: [{},{},{},{}],
 				latitude: 39.909,
 				longitude: 116.39742,
 				pattern: {

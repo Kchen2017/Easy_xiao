@@ -163,16 +163,12 @@
 <style>
 	.ground{
 		padding: 0 40upx;
-		display: flex;
-		flex-direction: column;
 	}
 	.list {
 		padding-top: 20upx;
-		flex: 1;
 	}
 	.search_bar{
 		padding: 20upx 0;
-		flex: 1;
 	}
 	.search{
 		background-color: #f5f5f5;

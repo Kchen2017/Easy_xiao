@@ -22,41 +22,41 @@
 			<!-- 选择运动的类型 -->
 			<view class="chooseType" style="margin-bottom: 40upx;">
 				<view @click="goToFilter('basketball')">
-					<text class="iconfont icon-lanqiu"></text>
+					<view class="iconfont icon-lanqiu" style="background-color: #ec8989;color: #fff;"></view>
 					<view class="go_swipLabel">篮球</view>
 				</view>
 				<view @click="goToFilter('footBall')">
-					<text class="iconfont icon-zuqiu"></text>
+					<view class="iconfont icon-zuqiu" style="background-color: #65bf44;color: #fff;"></view>
 					<view class="go_swipLabel">足球</view>
 				</view>
 				<view @click="goToFilter('badminton')">
-					<text class="iconfont icon-yumaoqiu1"></text>
+					<view class="iconfont icon-yumaoqiu1" style="background-color: #4081da;color: #fff;"></view>
 					<view class="go_swipLabel">羽毛球</view>
 				</view>
 				<view @click="goToFilter('tennis')">
-					<text class="iconfont icon-wangqiu"></text>
+					<view class="iconfont icon-wangqiu" style="background-color: #b25ce2;color: #fff;"></view>
 					<view class="go_swipLabel">网球</view>
 				</view>
 				<view @click="goToFilter('tennis')">
-					<text class="iconfont icon-yingyu-cuotiben"></text>
+					<view class="iconfont icon-yingyu-cuotiben" style="background-color: #e25cc8;color: #fff;"></view>
 					<view class="go_swipLabel">英语角</view>
 				</view>
 			</view>
 			<!-- 服务类型 -->
 			<view class="servers_type" style="margin-bottom: 40upx;">
-				<view class="typeItem" @click="selecttypeFun('ground')">
+				<view class="typeItem type1" @click="selecttypeFun('ground')">
 					<view>我的地盘我做主</view>
 					<view class="btn">立即找场</view>
 				</view>
-				<view class="typeItem" @click="selecttypeFun('group')">
+				<view class="typeItem type2" @click="selecttypeFun('group')">
 					<view>社交找局</view>
 					<view class="btn">搜索局</view>
 				</view>
-				<view class="typeItem">
+				<view class="typeItem type3">
 					<view>跟着专业的玩</view>
 					<view class="btn">找教练</view>
 				</view>
-				<view class="typeItem">
+				<view class="typeItem type4">
 					<view>传授洪荒之力</view>
 					<view class="btn">找学员</view>
 				</view>
@@ -236,7 +236,7 @@
 	.index_con .chooseType {
 		height: 160upx;
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 		font-size: 12px;
 		padding: 0 20upx;
 		padding-top: 30upx;
@@ -244,6 +244,9 @@
 	.index_con .chooseType view {
 		width: 100upx;
 		text-align: center;
+		flex: 1;
+		padding: 10upx;
+		border-radius: 40upx;
 	}
 	.index_con .chooseType view .iconfont {
 		font-size: 40px;
@@ -268,6 +271,20 @@
 		border: 2upx solid #f1ebeb;
 		border-radius: 12upx;
 		padding: 20upx;
+		background-repeat: no-repeat;
+		background-position: 100% 100%;
+	}
+	.servers_type .type1 {
+		background-image: url("../../static/go1.png");
+	}
+	.servers_type .type2 {
+		background-image: url("../../static/go2.png");
+	}
+	.servers_type .type3 {
+		background-image: url("../../static/go3.png");
+	}
+	.servers_type .type4 {
+		background-image: url("../../static/go4.png");
 	}
 	.servers_type .typeItem .btn {
 		font-size: 14px;
@@ -282,6 +299,7 @@
 	}
 	.index_con .easyDo {
 		padding: 20upx;
+		
 	}
 	.easyDo .title {
 		height: 24px;
@@ -290,12 +308,16 @@
 		padding-left: 6px;
 	}
 	.easyDo .msg {
+		height: 100upx;
 		font-size: 28upx;
 		border: 2upx solid #ddd;
 		margin-top: 20upx;
 		padding: 20upx;
 		border-radius: 16upx;
 		color: #908b8b;
+		background-repeat: no-repeat;
+		background-position: 100% 100%;
+		background-image: url("../../static/go6.png");
 	}
 	.easyDo .msg .go {
 		color: #000000;
