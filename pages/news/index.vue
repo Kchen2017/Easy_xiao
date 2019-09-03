@@ -1,18 +1,6 @@
 <template>
 	<view class="moments">
-
-		<!-- <view class="home-pic">
-			<view class="home-pic-base">
-				<view class="top-pic">
-					<image class="header" src="../../static/index/test/header06.jpg" @tap="test"></image>
-				</view>
-				<view class="top-name">Liuxy</view>
-			</view>
-		</view> -->
-
-		<view @click="goPublish">发表</view>
-
-		<view class="moments__post" v-for="(post,index) in posts" :key="index" :id="'post-'+index">
+		<view ref="kkk" class="moments__post" v-for="(post,index) in posts" :key="index" :id="'post-'+index">
 			<view class="post-left">
 				<image class="post_header" :src="post.header_image"></image>
 			</view>
@@ -21,10 +9,14 @@
 				<text class="post-username">{{post.username}}</text>
 				<view id="paragraph" class="paragraph">{{post.content.text}}</view>
 				<!-- 相册 -->
-				<view class="thumbnails">
+				<view v-if="post.content.type === 'image'" class="thumbnails" >
 					<view :class="post.content.images.length === 1?'my-gallery':'thumbnail'" v-for="(image, index_images) in post.content.images" :key="index_images">
 						<image class="gallery_img" lazy-load mode="aspectFill" :src="image" :data-src="image" @tap="previewImage(post.content.images,index_images)"></image>
 					</view>
+				</view>
+				<!-- 视频 -->
+				<view v-else-if="post.content.type === 'vedio'" class="thumbnails" @click="videoFun('video'+index)">
+					<video :ref="'video'+index" :id="'video'+index"  :src="post.content.vedio"  objectFit="fill" :show-center-play-btn="false"></video>
 				</view>
 				<!-- 资料条 -->
 				<view class="toolbar">
@@ -40,7 +32,7 @@
 				<view class="post-footer">
 					<view class="footer_content">
 						<image class="liked" src="../../static/index/liked.png"></image>
-						<text class="nickname" v-for="(user,index_like) in post.like" :key="index_like">{{user.username}}</text>
+						<text class="nickname" v-for="(user,index_like) in post.like.content" :key="index_like">{{user.username}}</text>
 					</view>
 					<view class="footer_content" v-for="(comment,comment_index) in post.comments.comment" :key="comment_index" @tap="reply(index,comment_index)">
 						<text class="comment-nickname">{{comment.username}}: <text class="comment-content">{{comment.content}}</text></text>
@@ -63,8 +55,9 @@
 
 <script>
 	import chatInput from '../../components/im-chat/chatinput.vue'; //input框
-	import postData from '../../common/index/index.post.data.js';//朋友圈数据
+	// import postData from '../../common/index/index.post.data.js';//朋友圈数据
 	import switchType from '../index/components/switchType.vue'
+	import dongtaiApi from '../../common/api/dongtaiApi'
 	
 	export default {
 		components: {
@@ -79,7 +72,7 @@
 		},
 		data() {
 			return {
-				posts: postData,//模拟数据
+				posts: [],//模拟数据
 				user_id: 4,
 				username: 'Liuxy',
 
@@ -97,18 +90,9 @@
 				
 				loadMoreText: "加载中...",
 				showLoadMore: false,
+				userPin: uni.getStorageSync('userPin'),
+				pageNumber: 1
 			}
-		},
-		mounted() {
-			
-			uni.getStorage({
-				key: 'posts',
-				success: function (res) {
-					console.log(res.data);
-					this.posts = res.data;
-				}
-			});
-
 		},
 		onLoad() {
 			uni.getSystemInfo({ //获取设备信息
@@ -118,6 +102,7 @@
 				}
 			});
 			uni.startPullDownRefresh();
+			this.getDongTaiList()
 		},
 		onShow() {
 			uni.onWindowResize((res) => { //监听窗口尺寸变化,窗口尺寸不包括底部导航栏
@@ -155,19 +140,27 @@
 		},
 		onPullDownRefresh() { //监听下拉刷新动作
 			console.log('onPullDownRefresh');
-			// 这里获取数据
-			setTimeout(function() {
-				//初始化数据
-				uni.stopPullDownRefresh(); //停止下拉刷新
-			}, 1000);
+			this.getDongTaiList()
 		},
-		onNavigationBarButtonTap(e) {//监听标题栏点击事件
-			if (e.index == 0) {
-				this.navigateTo('../publish/publish')
-			}
-		},
-		computed:{
-			
+		onPageScroll(e){
+			this.posts.forEach((post, index) => {
+				if(post.content.type === "vedio"){
+					uni.createSelectorQuery().select("#video3").boundingClientRect(data=>{
+						if(!this.$refs.video3) return 
+						if(data.top < -180 && this.$refs.video3[0].playing){
+							console.log(1)
+							this.$refs.video3[0].pause()
+						}else if(data.top > this.screenHeight && this.$refs.video3[0].playing){
+							console.log(2)
+							this.$refs.video3[0].pause()
+						}else if(data.top > -170 && data.top< (this.screenHeight-100) && !this.$refs.video3[0].playing){
+							console.log(3)
+							this.$refs.video3[0].play()
+						}
+						
+					}).exec()
+				}
+			})
 		},
 		methods: {
 			test(){
@@ -181,13 +174,13 @@
 			like(index) {
 				if (this.posts[index].islike === 0) {
 					this.posts[index].islike = 1;
-					this.posts[index].like.push({
+					this.posts[index].like.content.push({
 						"uid": this.user_id,
 						"username": "," + this.username
 					});
 				} else {
 					this.posts[index].islike = 0;
-					this.posts[index].like.splice(this.posts[index].like.indexOf({
+					this.posts[index].like.content.splice(this.posts[index].like.content.indexOf({
 						"uid": this.user_id,
 						"username": "," + this.username
 					}), 1);
@@ -199,7 +192,7 @@
 				this.index = index;
 			},
 			adjust() { //当弹出软键盘发生评论动作时,调整页面位置pageScrollTo
-				return;
+				// return;
 				uni.createSelectorQuery().selectViewport().scrollOffset(res => {
 					var scrollTop = res.scrollTop;
 					let view = uni.createSelectorQuery().select("#post-" + this.index);
@@ -267,6 +260,29 @@
 					fail: () => {},
 					complete: () => {}
 				});
+			},
+			videoFun(index){
+				console.log(uni.createSelectorQuery().select("#" + index))
+				console.log(this.$refs)
+				// this.$refs[index][0].enterFullscreen()
+				uni.createSelectorQuery().select("#" + index).fields({
+					size: true,
+  					scrollOffset: true
+				}, data=>{
+					console.log(data)
+				}).exec()
+			},
+			getDongTaiList(){
+				dongtaiApi.dongtaiList({
+					userPin: this.userPin,
+					pageNumber: this.pageNumber,
+					pageSize: 4
+				}).then(res => {
+					if(res && res.data && res.data.result){
+						this.posts = res.data.result
+					}
+					uni.stopPullDownRefresh()
+				})
 			}
 		}
 	}
@@ -278,5 +294,9 @@
 	.moments .uni-loadmore {
 		width: 100%;
 		text-align: center;
+	}
+	.thumbnails video {
+		width: 558upx;
+		height: 340upx;
 	}
 </style>

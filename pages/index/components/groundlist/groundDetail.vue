@@ -10,7 +10,7 @@
 		<view class="bodycon">
 			<view >
 				<view class="tag">
-					<text v-for="(item, index) in groundDetail.tagsArr" :key="index">{{item}}</text>
+					<text  v-for="(item, index) in groundDetail.tagsArr" :key="index">{{item}}</text>
 				</view>
 				<view>
 					{{groundDetail.name}}
@@ -50,10 +50,10 @@
 					<text style="font-size: 12px; color: #ccc;">更多榜<text class="iconfont icon-you2" style="font-size: 12px;"></text></text>
 				</view>
 				<view >
-					<groupListItem v-for="(item, index) in groupList" 
+					<kingList v-for="(item, index) in kingList" 
 							:value="item"
 							:key="index" 
-							:bottomBorder="index !== (groupList.length-1)"></groupListItem>
+							:bottomBorder="index !== (kingList.length-1)"></kingList>
 				</view>
 			</view>
 			
@@ -77,6 +77,7 @@
 				<view
 					v-for="(item, index) in bottomData"
 					:key="index"
+					@click="sharesendFun(item.type, item.name)"
 					class="uni-share-content-box">
 					<view class="uni-share-content-image"><image
 					:src="item.icon"
@@ -100,13 +101,38 @@
 	import uniFab from '@/components/uni-fab.vue';
 	import groundApi from "../../../../common/api/groundApi"
 	import groupApi from "../../../../common/api/groupApi"
+	import userApi from "../../../../common/api/userApi"
+	import kingApi from "../../../../common/api/kingApi"
+	import kingList from "../king/list"
+
+	const allShareArr = [
+		{
+			text: '微信',
+			icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-2.png',
+			name: 'weixin',
+			type: 'WXSceneSession'
+		},
+		{
+			text: '朋友圈',
+			icon: '../../../../static/pengyouquan.png',
+			name: 'weixin',
+			type: 'WXSenceTimeline'
+		},
+		{
+			text: '新浪微博',
+			icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-1.png',
+			name: 'sinaweibo',
+			type: 'sinaweibo'
+		}
+	]
 	export default {
 		components: {
 			swiperSilder,
 			uniPopup,
 			groupListItem,
 			dongtaiCom,
-			uniFab
+			uniFab,
+			kingList
 		},
 		data(){
 			return {
@@ -150,38 +176,17 @@
 				],
 				bottomData: [
 					{
-					text: '微信',
-					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-2.png',
-					name: 'wx'
-					},
-					{
-					text: '支付宝',
-					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-8.png',
-					name: 'wx'
-					},
-					{
-					text: 'QQ',
-					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/gird-3.png',
-					name: 'qq'
-					},
-					{
-					text: '新浪',
-					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-1.png',
-					name: 'sina'
-					},
-					{
-					text: '百度',
-					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-7.png',
-					name: 'copy'
-					},
-					{
-					text: '其他',
-					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-5.png',
-					name: 'more'
+						text: '其他',
+						icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-5.png',
+						name: 'more',
+						type: 'more'
 					}
 				],
 				type: "bottom",
-				groupList: []
+				groupList: [],
+				groundId: "",
+				userPin: uni.getStorageSync('userPin'),
+				kingList: []
 			}
 		},
 		methods: {
@@ -199,7 +204,11 @@
 						title: '取消收藏'
 					});
 				}
-				
+				userApi.setCollectApi({
+					groundId: this.groundId,
+					savein: this.savein,
+					userPin: this.userPin
+				})
 			},
 			trigger(e) {
 				if(e.item.text === "组个局"){
@@ -228,7 +237,6 @@
 				
 			},
 			shareFun(){
-				console.log(this.$refs)
 				this.$refs.popup.open()
 			},
 			cancel () {
@@ -236,9 +244,44 @@
 			},
 			change (e) {
 				console.log(e.show)
+			},
+			sharesendFun(type, name){
+				uni.share({
+					provider: name,
+					scene: type,
+					type: 1,
+					summary: "一起来玩",
+					success: res =>{
+						uni.showToast({
+							icon: 'none',
+							position: 'bottom',
+							title: '分享成功'
+						});
+						this.$refs.popup.close()
+					},
+					fail: err => {
+						uni.showToast({
+							icon: 'none',
+							position: 'bottom',
+							title: '分享失败'
+						});
+						this.$refs.popup.close()
+					}
+				});
 			}
 		}, 
 		onLoad(params) {
+			this.groundId = params.id
+			uni.getProvider({
+				service: 'share',
+				success: res => {
+					var providerTypeArr = res.provider
+					var hadShareArr = allShareArr.filter(itemAll => {
+						return providerTypeArr.indexOf(itemAll.name) > -1
+					})
+					this.bottomData.unshift(...hadShareArr)
+				}
+			});
 			groundApi.getGround({
 				groundId: params.id
 			}).then(res => {
@@ -251,6 +294,13 @@
 				}).then(res => {
 					if(res && res.data && res.data.result){
 						this.groupList = res.data.result.splice(0,4)
+					}
+				})
+				kingApi.getKings({
+					groundId: params.id
+				}).then(res => {
+					if(res && res.data && res.data.result){
+						this.kingList = res.data.result.splice(0,4)
 					}
 				})
 			})

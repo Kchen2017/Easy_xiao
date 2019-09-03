@@ -29,14 +29,8 @@
 			
 			<!-- 其他登录 -->
 			<view class="other_login cuIcon">
-				<view class="login_icon" style="color: #62b900">
-					<view class="cuIcon-weixin" @tap="login_weixin"></view>
-				</view>
-				<view class="login_icon" style="color: #e64340">
-					<view class="cuIcon-weibo" @tap="login_weibo"></view>
-				</view>
-				<view class="login_icon">
-					<view class="cuIcon-github" @tap="login_github"></view>
+				<view v-for="item in loginArr" :key="item.type" class="login_icon" style="color: #62b900">
+					<view :class="item.className" @tap="login_Fun(item.type)"></view>
 				</view>
 			</view>
 			
@@ -55,6 +49,14 @@
 	import wInput from '../../components/watch-login/watch-input.vue' //input
 	import wButton from '../../components/watch-login/watch-button.vue' //button
 	import userApi from '../../common/api/userApi.js'
+
+	const allLoginType = [{
+					type: "weixin",
+					className: "cuIcon-weixin"
+				}, {
+					type: "sinaweibo",
+					className: "cuIcon-weibo"
+				}]
 	
 	export default {
 		data() {
@@ -63,7 +65,8 @@
 				phoneData:'', //用户/电话
 				passData:'', //密码
 				isRotate: false, //是否加载旋转
-			};
+				loginArr: []
+			}
 		},
 		components:{
 			wInput,
@@ -71,7 +74,16 @@
 		},
 		onLoad() {
 			_this= this;
-			this.isLogin();
+			uni.getProvider({
+				service: 'oauth',
+				success: function (res) {
+					var providerArr = res.provider
+					_this.loginArr = allLoginType .filter(item => {
+						return providerArr.indexOf(item.type) >-1
+					})
+					_this.isLogin();
+				}
+			});
 		},
 		methods: {
 			isLogin(){
@@ -91,7 +103,7 @@
 					// error
 				}
 			},
-		    startLogin(){
+		  startLogin(){
 				//登录
 				if(this.isRotate){
 					//判断是否加载中，避免重复点击请求
@@ -149,52 +161,32 @@
 				})
 		    }
 			,
-			login_weixin() {
-				//微信登录
-				uni.login({
-				  provider: 'weixin',
-				  success: function (loginRes) {
-					 if(loginRes.authResult){
-						 uni.getUserInfo({
-							success: function(obj){
-								if(obj)
-								userApi.register({
-									nickName: obj.userInfo.nickName,
-									gender: obj.userInfo.gender,
-									city: obj.userInfo.city,
-									province: obj.userInfo.province,
-									country: obj.userInfo.country,
-									avatarUrl: obj.userInfo.avatarUrl
-								}).then(res => {
-									if(res.data.code === 200){
-										uni.reLaunch({
-											url: './userMsg'
-										});
-									}
-								})
+			login_Fun(providerType) {
+					uni.login({
+							provider: providerType,
+							success: function (loginRes) {
+							if(loginRes.authResult){
+									uni.getUserInfo({
+										success: function(obj){
+												userApi.register({
+														nickName: obj.userInfo.nickName,
+														gender: obj.userInfo.gender,
+														city: obj.userInfo.city,
+														province: obj.userInfo.province,
+														country: obj.userInfo.country,
+														avatarUrl: obj.userInfo.avatarUrl
+												}).then(res => {
+														if(res.data.code === 200){
+															uni.reLaunch({
+																url: './userMsg'
+															});
+														}
+												})
+										}
+									})
 							}
-						})
-					 }
-				  }
-				});
-			},
-			login_weibo() {
-				//微博登录
-				uni.login({
-				  provider: 'weixin',
-				  success: function (loginRes) {
-					console.log(loginRes.authResult);
-				  }
-				});
-			},
-			login_github() {
-				//github登录
-				uni.login({
-				  provider: 'weixin',
-				  success: function (loginRes) {
-					console.log(loginRes.authResult);
-				  }
-				});
+							}
+					});
 			}
 		}
 	}

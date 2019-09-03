@@ -44,7 +44,7 @@ var commonApi = require('./api/common')
 var groundApi = require('./api/ground')
 var groupApi = require('./api/group')
 var dongTaiApi = require('./api/dongTai')
-
+var kingApi = require('./api/king')
 
 
 app.use("/login", function(req, res, next){
@@ -77,7 +77,7 @@ app.use("/common", commonApi)
 app.use("/ground", groundApi)
 app.use("/group", groupApi)
 app.use("/dongTai", dongTaiApi)
-
+app.use("/king", kingApi)
 
 
 app.listen(3090, function () {

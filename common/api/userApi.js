@@ -39,4 +39,8 @@ export default {
 	    let uri = "/user/getUserMsg?t=" + new Date();
 	    return request.getRequest(uri, params, options);
     },
+    setCollectApi(params={}, options={}){
+        let uri = "/user/setCollectApi?t=" + new Date();
+        return request.postRequest(uri, params, options);
+    },
 }

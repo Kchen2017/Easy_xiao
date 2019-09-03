@@ -271,20 +271,55 @@
 		border: 2upx solid #f1ebeb;
 		border-radius: 12upx;
 		padding: 20upx;
+		position: relative;
+	}
+	.servers_type .type1:before {
+		position: absolute;
 		background-repeat: no-repeat;
-		background-position: 100% 100%;
-	}
-	.servers_type .type1 {
 		background-image: url("../../static/go1.png");
+		right: 0;
+		bottom: 0;
+		display: block;
+		width: 100upx;
+		height: 100upx;
+		content: "";
+		opacity: 0.5;
 	}
-	.servers_type .type2 {
+	.servers_type .type2:before {
+		position: absolute;
+		background-repeat: no-repeat;
 		background-image: url("../../static/go2.png");
+		right: 0;
+		bottom: 0;
+		display: block;
+		width: 100upx;
+		height: 100upx;
+		content: "";
+		opacity: 0.5;
 	}
-	.servers_type .type3 {
+	.servers_type .type3:before {
+		position: absolute;
+		background-repeat: no-repeat;
 		background-image: url("../../static/go3.png");
+		right: 0;
+		bottom: 0;
+		display: block;
+		width: 100upx;
+		height: 100upx;
+		content: "";
+		opacity: 0.5;
 	}
-	.servers_type .type4 {
+	.servers_type .type4:before {
+		position: absolute;
+		background-repeat: no-repeat;
 		background-image: url("../../static/go4.png");
+		right: 0;
+		bottom: 0;
+		display: block;
+		width: 100upx;
+		height: 100upx;
+		content: "";
+		opacity: 0.5;
 	}
 	.servers_type .typeItem .btn {
 		font-size: 14px;
@@ -315,9 +350,19 @@
 		padding: 20upx;
 		border-radius: 16upx;
 		color: #908b8b;
+		position: relative;
+	}
+	.easyDo .msg:before{
+		position: absolute;
 		background-repeat: no-repeat;
-		background-position: 100% 100%;
 		background-image: url("../../static/go6.png");
+		right: 0;
+		bottom: 0;
+		display: block;
+		width: 100upx;
+		height: 100upx;
+		content: "";
+		opacity: 0.5;
 	}
 	.easyDo .msg .go {
 		color: #000000;

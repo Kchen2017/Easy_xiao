@@ -241,7 +241,55 @@ router.all("/getUserMsg", async function(req, res, next){
     }
 })
 
+router.all("/setCollectApi", async function(req, res, next){
+    var userPin = fromQueryOrBody(req, "userPin")
+    var savein = fromQueryOrBody(req, "savein")||false
+    var groundId = fromQueryOrBody(req, "groundId")
 
+    try{
+        var sql = "SELECT * FROM users_table WHERE userPin = ?"
+        var params = [userPin]
 
+        var result =  await db.query(sql, params)
+        console.log(result[0].collectObj)
+        var collectArr = JSON.parse(result[0].collectObj).collectArr || []
+
+        if(collectArr){
+            var filterArr = collectArr.filter(item => {
+                return item.groundId === groundId
+            })
+
+            if(filterArr.length){
+                collectArr.forEach(item => {
+                    if(item.groundId === groundId){
+                        item.savein = savein
+                    }
+                })
+            }else{
+                var objTemp = {
+                    groundId: groundId,
+                    savein: savein
+                }
+                collectArr.push(objTemp)
+            }
+        }
+
+        var sql2 = "UPDATE users_table SET ? WHERE userPin = ?"
+        var params2 = [{
+            collectObj: JSON.stringify({
+                collectArr: collectArr
+            })
+        }, userPin]
+
+        await db.query(sql2, params2)
+
+        res.json({
+            code: 200,
+            msg: "success"
+        });
+    }catch(err){
+        res.json({status:-1,msg:err});
+    }
+})
 
 module.exports = router;
