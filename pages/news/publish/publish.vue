@@ -37,6 +37,7 @@
 
 <script>
 	import image from '@/common/image.js';
+	import {uploadFileFun} from '@/common/util/apiTools.js'
 	
 	var sourceType = [
 		['camera'],
@@ -93,42 +94,39 @@
 					images.push(image_obj);
 				}
 				let pathurl = 'http://127.0.0.1:3090/dongTai/publicDontai';
-				console.log(images, "*****")
-				uni.uploadFile({//该上传仅为示例,可根据自己业务修改或封装,注意:统一上传可能会导致服务器压力过大
-					url: pathurl, 
-					files:images,//有files时,会忽略filePath和name
-					filePath: '',
-					fileType: 'image',
-					name: '',
-					formData: {
-						'userPin': this.userPin,
-						'uid':'1',
-						'text': this.input_content,//moment文字部分
-						'longitude':location.longitude,//经度
-						'latitude':location.latitude,//纬度
-						'timestamp': new Date()
-					},
-					success: (uploadFileRes) => {
-						uni.hideLoading();
-						uni.showToast({
-							icon:'success',
-							title:"发布成功"
+				try{
+					images.forEach(async image => {
+						await uploadFileFun({
+							url: pathurl,
+							filePath: image.uri,
+							name: image.name,
+							formData: {
+								'userPin': this.userPin,
+								'uid':'1',
+								'text': this.input_content,//moment文字部分
+								'longitude':location.longitude,//经度
+								'latitude':location.latitude,//纬度
+								'timestamp': new Date()
+							}
 						})
-						uni.navigateBack({//可根据实际情况使用其他路由方式
-							delta:1
-						});
-					},
-					fail: (e) => {
-						console.log("e: " + JSON.stringify(e));
-						uni.hideLoading();
-						uni.showToast({
-							icon:'none',
-							title:"发布失败,请检查网络"
-						})
-					}
-				});
+					})
+					
+					uni.hideLoading();
+					uni.showToast({
+						icon:'success',
+						title:"发布成功"
+					})
+					uni.navigateBack({//可根据实际情况使用其他路由方式
+						delta:1
+					});
+				}catch(e){
+					uni.hideLoading();
+					uni.showToast({
+						icon:'none',
+						title:"发布失败,请检查网络"
+					})
+				}	
 			},
-			
 			getLocation(){//h5中可能不支持,自己选择
 				return new Promise((resolve, reject) => {
 					uni.getLocation({

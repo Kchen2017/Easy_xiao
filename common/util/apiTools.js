@@ -69,3 +69,23 @@ export function isNullObject (obj) {
 	return Object.keys(obj).length <= 0
 }
 
+export function uploadFileFun (obj) {
+	return new Promise((resolve, reject) => {
+		uni.uploadFile({
+			url: obj.url, 
+			filePath: obj.filePath,
+			fileType: 'image',
+			name: obj.name,
+			formData: obj.formData,
+			success: (uploadFileRes) => {
+				resolve(uploadFileRes)
+			},
+			fail: (e) => {
+				throw e
+			}
+		});
+	})
+	
+	
+}
+
