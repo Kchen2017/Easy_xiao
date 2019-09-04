@@ -61,14 +61,20 @@ router.all("/dongtaiList", async (req, res, next) => {
     } 
 })
 
-router.all("/publicDontai", function(req, res, next){
+router.all("/publicDontai", multipartyMiddleware, async function(req, res, next){
     var uid = fromQueryOrBody(req, "uid")
-    var username = fromQueryOrBody(req, "username")
-    var content = fromQueryOrBody(req, "content")
-    var like = fromQueryOrBody(req, "like")
-    var comments = fromQueryOrBody(req, "comments")
+    var userPin = fromQueryOrBody(req, "userPin")
+    var text = fromQueryOrBody(req, "text")
+    var longitude = fromQueryOrBody(req, "longitude")
+    var latitude = fromQueryOrBody(req, "latitude")
     var timestamp = fromQueryOrBody(req, "timestamp")
-    var header_image = fromQueryOrBody(req, "header_image")
+
+    console.log(req.files)
+
+    res.json({
+        code: 200,
+        msg: "success"
+    });
 
     var tempObj = {
         "uid": uid,

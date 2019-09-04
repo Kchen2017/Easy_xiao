@@ -54,9 +54,6 @@
 				// title: 'choose/previewImage',
 				input_content:'',
 				imageList: [],
-				
-				
-				
 				sourceTypeIndex: 2,
 				sourceType: ['拍照', '相册', '拍照或相册'],
 				sizeTypeIndex: 2,
@@ -68,7 +65,7 @@
 				startX: 0, //点击屏幕起始位置
 				movedX: 0, //横向移动的距离
 				endX: 0, //接触屏幕后移开时的位置
-				//end
+				userPin: uni.getStorageSync('userPin')
 			}
 		},
 		onUnload() {
@@ -95,17 +92,21 @@
 					var image_obj = {name:'image-'+i,uri:this.imageList[i]};
 					images.push(image_obj);
 				}
-				
+				let pathurl = 'http://127.0.0.1:3090/dongTai/publicDontai';
+				console.log(images, "*****")
 				uni.uploadFile({//该上传仅为示例,可根据自己业务修改或封装,注意:统一上传可能会导致服务器压力过大
-					url: 'moment/moments', //仅为示例，非真实的接口地址
+					url: pathurl, 
 					files:images,//有files时,会忽略filePath和name
 					filePath: '',
+					fileType: 'image',
 					name: '',
-					formData: {//后台以post方式接收
-						'user_id':'1',//自己系统中的用户id
+					formData: {
+						'userPin': this.userPin,
+						'uid':'1',
 						'text': this.input_content,//moment文字部分
 						'longitude':location.longitude,//经度
-						'latitude':location.latitude//纬度
+						'latitude':location.latitude,//纬度
+						'timestamp': new Date()
 					},
 					success: (uploadFileRes) => {
 						uni.hideLoading();
