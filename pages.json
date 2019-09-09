@@ -147,11 +147,6 @@
             "selectedIconPath": "static/msg3.png",
             "text": "聊聊"
         }, {
-            "pagePath": "pages/news/index",
-            "iconPath": "static/news1.png",
-            "selectedIconPath": "static/news3.png",
-            "text": "圈子"
-        }, {
             "pagePath": "pages/my/index",
             "iconPath": "static/my1.png",
             "selectedIconPath": "static/my2.png",

@@ -68,7 +68,7 @@ router.all("/publicDontai", multipartyMiddleware, async function(
 ) {
   var uid = fromQueryOrBody(req, "uid");
   var userPin = fromQueryOrBody(req, "userPin");
-  var text = fromQueryOrBody(req, "text");
+  var text = fromQueryOrBody(req, "text", false, false);
   var longitude = fromQueryOrBody(req, "longitude");
   var latitude = fromQueryOrBody(req, "latitude");
   var timestamp = fromQueryOrBody(req, "timestamp");
@@ -85,6 +85,7 @@ router.all("/publicDontai", multipartyMiddleware, async function(
 
     if (type === "image") {
       var sqlimage = `SELECT * FROM dongtai_table WHERE post_id = '${post_id}'`;
+	  console.log(sqlimage)
       var imageObjArr = await db.query(sqlimage);
 
       if (imageObjArr.length === 0) {
@@ -194,7 +195,7 @@ router.all("/dongtaiLike", async (req, res, next) => {
 
 router.all("/sendComment", async (req, res, next) => {
     var post_id = fromQueryOrBody(req, "post_id");
-    var commit = JSON.parse(fromQueryOrBody(req, "commit"));
+    var commit = JSON.parse(fromQueryOrBody(req, "commit", false, false));
   
     try {
       var sql1 = `SELECT * FROM dongtai_table WHERE post_id = '${post_id}'`;
