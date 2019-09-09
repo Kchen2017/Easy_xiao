@@ -7,8 +7,12 @@ export default {
         let uri = "/dongtai/dongtaiList?t=" + new Date();
         return request.getRequest(uri, params, options);
     },
-    getKing(params={}, options={}){
-        let uri = "/dongtai/getKing?t=" + new Date();
+    dongtaiLike(params={}, options={}){
+        let uri = "/dongtai/dongtaiLike?t=" + new Date();
         return request.getRequest(uri, params, options);
-    }
+    },
+    sendComment(params={}, options={}){
+        let uri = "/dongtai/sendComment?t=" + new Date();
+        return request.getRequest(uri, params, options);
+    },
 }

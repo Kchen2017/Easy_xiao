@@ -38,6 +38,7 @@
 <script>
 	import image from '@/common/image.js';
 	import {uploadFileFun} from '@/common/util/apiTools.js'
+	import uuid from 'uuid'
 	
 	var sourceType = [
 		['camera'],
@@ -80,6 +81,7 @@
 		
 		methods: {
 			async publish(){
+				var post_id = uuid.v1()
 				if (!this.input_content) {
 					uni.showModal({ content: '内容不能为空', showCancel: false, });
 					return;
@@ -99,14 +101,16 @@
 						await uploadFileFun({
 							url: pathurl,
 							filePath: image.uri,
-							name: image.name,
+							name: 'file',
 							formData: {
 								'userPin': this.userPin,
 								'uid':'1',
 								'text': this.input_content,//moment文字部分
 								'longitude':location.longitude,//经度
 								'latitude':location.latitude,//纬度
-								'timestamp': new Date()
+								'timestamp': new Date().getTime(),
+								'type': "image",
+								'post_id': post_id
 							}
 						})
 					})
@@ -127,7 +131,7 @@
 					})
 				}	
 			},
-			getLocation(){//h5中可能不支持,自己选择
+			getLocation(){
 				return new Promise((resolve, reject) => {
 					uni.getLocation({
 						type: 'wgs84',
@@ -179,8 +183,8 @@
 						content: "已经有9张图片了,是否清空现有图片？",
 						success: (e) => {
 							if (e.confirm) {
-								this.imageList = [];
-								res(true);
+								this.imageList = []
+								res(true)
 							} else {
 								res(false)
 							}

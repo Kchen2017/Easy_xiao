@@ -2,11 +2,11 @@
 	<view class="moments">
 		<view ref="kkk" class="moments__post" v-for="(post,index) in posts" :key="index" :id="'post-'+index">
 			<view class="post-left">
-				<image class="post_header" :src="post.header_image"></image>
+				<image class="post_header" :src="post.avatarUrl"></image>
 			</view>
 
 			<view class="post_right">
-				<text class="post-username">{{post.username}}</text>
+				<text class="post-userPin">{{post.userPin}}</text>
 				<view id="paragraph" class="paragraph">{{post.content.text}}</view>
 				<!-- 相册 -->
 				<view v-if="post.content.type === 'image'" class="thumbnails" >
@@ -22,7 +22,7 @@
 				<view class="toolbar">
 					<view class="timestamp">{{post.timestamp}}</view>
 					<view class="like" @tap="like(index)">
-						<image :src="post.islike===0?'../../static/index/islike.png':'../../static/index/like.png'"></image>
+						<image :src="post.islike==0?'../../static/index/islike.png':'../../static/index/like.png'"></image>
 					</view>
 					<view class="comment" @tap="comment(index)">
 						<image src="../../static/index/comment.png"></image>
@@ -32,10 +32,10 @@
 				<view class="post-footer">
 					<view class="footer_content">
 						<image class="liked" src="../../static/index/liked.png"></image>
-						<text class="nickname" v-for="(user,index_like) in post.like.content" :key="index_like">{{user.username}}</text>
+						<text class="nickname" v-for="(user,index_like) in post.like.content" :key="index_like">{{user.userPin}}</text>
 					</view>
 					<view class="footer_content" v-for="(comment,comment_index) in post.comments.comment" :key="comment_index" @tap="reply(index,comment_index)">
-						<text class="comment-nickname">{{comment.username}}: <text class="comment-content">{{comment.content}}</text></text>
+						<text class="comment-nickname">{{comment.userPin}}: <text class="comment-content">{{comment.content}}</text></text>
 					</view>
 				</view>
 			</view>
@@ -58,6 +58,7 @@
 	// import postData from '../../common/index/index.post.data.js';//朋友圈数据
 	import switchType from '../index/components/switchType.vue'
 	import dongtaiApi from '../../common/api/dongtaiApi'
+	import moment from 'moment'
 	
 	export default {
 		components: {
@@ -74,7 +75,6 @@
 			return {
 				posts: [],//模拟数据
 				user_id: 4,
-				username: 'Liuxy',
 
 				index: '',
 				comment_index: '',
@@ -127,16 +127,7 @@
 				this.showLoadMore = false;
 		},
 		onReachBottom() { //监听上拉触底事件
-			console.log('onReachBottom');
-			this.showLoadMore = true;
-			setTimeout(() => {
-				//获取数据
-				if (this.posts.length < 20){//测试数据
-					this.posts = this.posts.concat(this.posts);
-				}else{
-					this.loadMoreText = "暂无更多";
-				}
-			}, 1000);
+			this.getDongTaiList()
 		},
 		onPullDownRefresh() { //监听下拉刷新动作
 			console.log('onPullDownRefresh');
@@ -163,6 +154,7 @@
 			})
 		},
 		methods: {
+			moment,
 			test(){
 				this.navigateTo('../test/test');
 			},
@@ -172,18 +164,34 @@
 				});
 			},
 			like(index) {
-				if (this.posts[index].islike === 0) {
+				if (this.posts[index].islike == 0) {
 					this.posts[index].islike = 1;
 					this.posts[index].like.content.push({
 						"uid": this.user_id,
-						"username": "," + this.username
+						"userPin": "," + this.userPin
 					});
+					dongtaiApi.dongtaiLike({
+						islike: 1,
+						post_id: this.posts[index].post_id,
+						likecontent: {
+							"uid": this.user_id,
+							"userPin": this.userPin
+						}
+					})
 				} else {
 					this.posts[index].islike = 0;
 					this.posts[index].like.content.splice(this.posts[index].like.content.indexOf({
 						"uid": this.user_id,
-						"username": "," + this.username
+						"userPin": "," + this.userPin
 					}), 1);
+					dongtaiApi.dongtaiLike({
+						islike: 0,
+						post_id: this.posts[index].post_id,
+						likecontent: {
+							"uid": this.user_id,
+							"userPin": this.userPin
+						}
+					})
 				}
 			},
 			comment(index) {
@@ -215,7 +223,7 @@
 			reply(index, comment_index) {
 				this.is_reply = true; //回复中
 				this.showInput = true; //调起input框
-				let replyTo = this.posts[index].comments.comment[comment_index].username;
+				let replyTo = this.posts[index].comments.comment[comment_index].userPin;
 				this.input_placeholder = '回复' + replyTo;
 				this.index = index; //post索引
 				this.comment_index = comment_index; //评论索引
@@ -225,19 +233,26 @@
 				this.init_input();
 			},
 			send_comment: function(message) {
-
 				if (this.is_reply) {
-					var reply_username = this.posts[this.index].comments.comment[this.comment_index].username;
-					var comment_content = '回复' + reply_username + ':' + message.content;
+					var reply_userPin = this.posts[this.index].comments.comment[this.comment_index].userPin;
+					var comment_content = '回复' + reply_userPin + ':' + message.content;
 				} else {
 					var comment_content = message.content;
 				}
 				this.posts[this.index].comments.total += 1;
 				this.posts[this.index].comments.comment.push({
 					"uid": this.user_id,
-					"username": this.username,
+					"userPin": this.userPin,
 					"content": comment_content //直接获取input中的值
 				});
+				dongtaiApi.sendComment({
+					post_id: this.posts[this.index].post_id,
+					commit: {
+						"uid": this.user_id,
+						"userPin": this.userPin,
+						"content": comment_content //直接获取input中的值
+					}
+				})
 				this.init_input();
 			},
 			init_input() {
@@ -279,7 +294,15 @@
 					pageSize: 4
 				}).then(res => {
 					if(res && res.data && res.data.result){
-						this.posts = res.data.result
+						if(res.data.result.length > this.posts.length){
+							res.data.result.map(item => {
+								if(this.posts.filter(post => {return post.post_id === item.post_id}).length === 0){
+									this.posts.push(item)
+								}
+							})
+						}
+						console.log(this.posts)
+						
 					}
 					uni.stopPullDownRefresh()
 				})
